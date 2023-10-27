@@ -13,5 +13,30 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- 
+--
 -- lspconfig.pyright.setup { blabla}
+--
+
+-- [LSP] Change inline diagnostic text to hover popup
+vim.diagnostic.config {
+  virtual_text = false,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = false,
+}
+
+-- Open diganostic when hover on error words
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    local opts = {
+      focusable = false, -- focus with Tab, turn off since it often focus accidentally, use the shortcut Space-d instead
+      close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+      border = "rounded",
+      source = "always",
+      -- prefix = ' ',
+      scope = "cursor",
+    }
+    vim.diagnostic.open_float(nil, opts)
+  end,
+})

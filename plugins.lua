@@ -1,4 +1,4 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -25,7 +25,7 @@ local plugins = {
   -- override plugin configs
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason
+    opts = overrides.mason,
   },
 
   {
@@ -56,10 +56,61 @@ local plugins = {
   -- All NvChad plugins are lazy-loaded by default
   -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
   -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
-  -- {
-  --   "mg979/vim-visual-multi",
-  --   lazy = false,
-  -- }
+  {
+    "mg979/vim-visual-multi",
+    lazy = false,
+  },
+  -- better editorconfig
+  {
+    "gpanders/editorconfig.nvim",
+    lazy = false,
+  },
+  -- surround text ysiw" cs'` ysiw)
+  {
+    "tpope/vim-surround",
+    lazy = false,
+  },
+  -- move line text <A-hjkl>
+  {
+    "matze/vim-move",
+    lazy = false,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    ft = {
+      "html",
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+      "svelte",
+      "vue",
+      "tsx",
+      "jsx",
+      "rescript",
+      "xml",
+      "php",
+      "markdown",
+      "astro",
+      "glimmer",
+      "handlebars",
+      "hbs",
+    },
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
+  {
+    "dyng/ctrlsf.vim",
+    lazy = false,
+    init = function()
+      require("core.utils").load_mappings "ctrlsf"
+    end,
+  },
+  {
+    "godlygeek/tabular",
+    lazy = false,
+  },
 }
 
 return plugins
