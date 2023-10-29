@@ -22,6 +22,27 @@ local plugins = {
     end, -- Override to setup mason-lspconfig
   },
 
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = function()
+      return require "custom.configs.telescope"
+    end,
+  },
+  -- load git related plugin
+  {
+    "lewis6991/gitsigns.nvim",
+    dependencies = {
+      {
+        "f-person/git-blame.nvim",
+        config = function()
+          vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
+          vim.g.gitblame_date_format = "%r"
+          vim.g.gitblame_message_template = " <author>, <date>"
+          vim.g.gitblame_message_when_not_committed = " Not commited yet"
+        end,
+      },
+    },
+  },
   -- override plugin configs
   {
     "williamboman/mason.nvim",
@@ -74,6 +95,10 @@ local plugins = {
   {
     "matze/vim-move",
     lazy = false,
+    config = function()
+      vim.g.ctrlsf_auto_focus = { at = "start" }
+      vim.g.ctrlsf_position = "right_local"
+    end,
   },
   {
     "windwp/nvim-ts-autotag",
@@ -110,6 +135,23 @@ local plugins = {
   {
     "godlygeek/tabular",
     lazy = false,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+  {
+    "mattn/emmet-vim",
+    ft = { "html", "xml" },
+  },
+  {
+    "mracos/mermaid.vim",
+    ft = { "mermaid", "markdown" },
   },
 }
 
