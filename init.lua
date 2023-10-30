@@ -5,6 +5,11 @@ vim.filetype.add {
   },
 }
 
+-- allows quit all buffers without saving
+vim.api.nvim_create_user_command("Q", "qa<bang>", {
+  bang = true,
+})
+
 -- Options
 local opt = vim.opt
 
@@ -23,7 +28,7 @@ local autocmd = vim.api.nvim_create_autocmd
 -- })
 --
 
--- Higlight yarn text
+-- Highlight yank text
 autocmd("TextYankPost", {
   pattern = "*",
   callback = function()
@@ -39,6 +44,7 @@ autocmd("FileType", {
   end,
 })
 
+-- force NvimTree window to normal mode
 autocmd("BufEnter", {
   pattern = "NvimTree*",
   command = "stopinsert",
