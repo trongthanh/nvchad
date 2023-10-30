@@ -108,4 +108,35 @@ M.nvimtree = {
   },
 }
 
+M.cmp = {
+  mapping = {
+    ["<CR>"] = require("cmp").mapping.confirm {
+      behavior = require("cmp").ConfirmBehavior.Insert,
+      select = false,
+    },
+    ["<Down>"] = require("cmp").mapping(function(fallback)
+      if require("cmp").visible() then
+        require("cmp").select_next_item()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+    ["<Up>"] = require("cmp").mapping(function(fallback)
+      if require("cmp").visible() then
+        require("cmp").select_prev_item()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    -- disable tab so that copilot will work
+    ["<Tab>"] = function(callback)
+      callback()
+    end,
+
+    ["<S-Tab>"] = function(callback)
+      callback()
+    end,
+  },
+}
 return M

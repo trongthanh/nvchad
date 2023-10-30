@@ -27,6 +27,10 @@ local plugins = {
     opts = function()
       return require "custom.configs.telescope"
     end,
+  {
+
+    "hrsh7th/nvim-cmp",
+    opts = overrides.cmp,
   },
   -- load git related plugin
   {
@@ -152,6 +156,22 @@ local plugins = {
   {
     "mracos/mermaid.vim",
     ft = { "mermaid", "markdown" },
+  },
+  {
+    "github/copilot.vim",
+    lazy = false,
+    init = function()
+      vim.g.copilot_node_command = "/usr/local/bin/node"
+      -- Mapping tab is already used by NvChad
+      -- vim.g.copilot_no_tab_map = true
+      vim.g.copilot_assume_mapped = true
+      -- vim.g.copilot_tab_fallback = ""
+      -- The mapping is set to other key, see custom/lua/mappings
+      -- or run <leader>ch to see copilot mapping section
+    end,
+    config = function()
+      require("core.utils").load_mappings "copilot"
+    end,
   },
 }
 
