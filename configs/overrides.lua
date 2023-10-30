@@ -139,4 +139,14 @@ M.cmp = {
     end,
   },
 }
+
+M.telescope = {
+  defaults = {
+    mappings = {
+      i = { ["<C-x>"] = require("telescope.actions").close },
+      n = { ["q"] = require("telescope.actions").close },
+    },
+  },
+}
+
 return M

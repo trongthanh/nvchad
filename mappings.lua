@@ -104,6 +104,13 @@ M.ctrlsf = {
   },
 }
 
+M.markdownpreview = {
+  plugin = true,
+  n = {
+    ["<leader>pm"] = { "<cmd> MarkdownPreview <CR>", "Preview Markdown" },
+  },
+}
+
 M.copilot = {
   plugin = true,
   i = {

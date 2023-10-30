@@ -24,9 +24,8 @@ local plugins = {
 
   {
     "nvim-telescope/telescope.nvim",
-    opts = function()
-      return require "custom.configs.telescope"
-    end,
+    opts = overrides.telescope,
+  },
   {
 
     "hrsh7th/nvim-cmp",
@@ -142,12 +141,15 @@ local plugins = {
   },
   {
     "iamcco/markdown-preview.nvim",
+    ft = { "markdown" },
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     build = "cd app && yarn install",
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
-    ft = { "markdown" },
+    config = function()
+      require("core.utils").load_mappings "markdownpreview"
+    end,
   },
   {
     "mattn/emmet-vim",
