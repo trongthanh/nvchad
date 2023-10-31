@@ -5,7 +5,7 @@ This is my repo for the `custom` folder in [NvChad config](https://nvchad.com/do
 
 HOW TO:
 
-```
+```bash
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 cd ~/.config/nvim/lua/
 git clone https://github.com/trongthanh/dotfiles custom
