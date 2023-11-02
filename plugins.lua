@@ -175,6 +175,12 @@ local plugins = {
       require("core.utils").load_mappings "copilot"
     end,
   },
+  {
+    "ggandor/leap.nvim",
+    init = function()
+      require("leap").add_default_mappings()
+    end,
+  },
 }
 
 return plugins
