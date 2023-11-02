@@ -64,10 +64,11 @@ M.mason = {
 
     -- web dev stuff
     "css-lsp",
+    "eslint-lsp",
     "html-lsp",
+    "json-lsp",
+    "prettierd",
     "typescript-language-server",
-    "prettier",
-    "vscode-json-language-server",
 
     -- go lang
     "gopls",
