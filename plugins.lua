@@ -163,7 +163,7 @@ local plugins = {
     "github/copilot.vim",
     lazy = false,
     init = function()
-      vim.g.copilot_node_command = "/usr/local/bin/node"
+      -- vim.g.copilot_node_command = "/usr/local/bin/node"
       -- Mapping tab is already used by NvChad
       -- vim.g.copilot_no_tab_map = true
       vim.g.copilot_assume_mapped = true
