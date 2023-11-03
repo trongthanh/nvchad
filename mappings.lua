@@ -19,6 +19,7 @@ M.general = {
     ["<C-A-f>"] = { ":%s/", "Search prompt" },
   },
   v = {
+    ["<C-f>"] = { 'y<ESC>/<c-r>"<CR>', "Search selected text" },
     ["<C-c>"] = { '"+y', "copy selection to clipboard" },
     ["'"] = { "i'", "select inner quotes shortcut" },
     ['"'] = { 'i"', "select inner quotes shortcut" },
