@@ -12,6 +12,20 @@ M.ui = {
   hl_add = highlights.add,
   nvdash = {
     load_on_startup = true,
+    header = {
+      "       TRONGTHANH NVIM IDE        ",
+      "       Based on NvChad 2.0        ",
+      "  github.com/trongthanh/dotfiles  ",
+    },
+    buttons = {
+      { "  Find File", "Ctrl-p", "Telescope find_files" },
+      { "󰙅  File explorer", "Ctrl-b", "NvimTreeToggle" },
+      { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
+      { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
+      { "  Bookmarks", "Spc m a", "Telescope marks" },
+      { "  Themes", "Spc t h", "Telescope themes" },
+      { "  Mappings", "Spc c h", "NvCheatsheet" },
+    },
   },
   statusline = {
     theme = "default", -- default/vscode/vscode_colored/minimal
