@@ -34,17 +34,7 @@ local plugins = {
   -- load git related plugin
   {
     "lewis6991/gitsigns.nvim",
-    dependencies = {
-      {
-        "f-person/git-blame.nvim",
-        config = function()
-          vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
-          vim.g.gitblame_date_format = "%r"
-          vim.g.gitblame_message_template = " <author>, <date>"
-          vim.g.gitblame_message_when_not_committed = " Not commited yet"
-        end,
-      },
-    },
+    opts = overrides.gitsigns,
   },
   -- override plugin configs
   {
