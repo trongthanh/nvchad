@@ -80,6 +80,7 @@ M.mason = {
     "json-lsp",
     "prettierd",
     "typescript-language-server",
+    "stylelint-lsp",
 
     -- go lang
     "gopls",
