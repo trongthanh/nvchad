@@ -7,6 +7,7 @@ M.disabled = {
     ["<C-n>"] = "",
     -- In lspconfig
     ["<leader>fm"] = "",
+    ["<leader>cm"] = "",
   },
 }
 
@@ -59,9 +60,11 @@ M.telescope = {
   n = {
     ["<C-S-p>"] = { "<cmd> Telescope commands <CR>", "Open commands panel" },
     -- find
-    ["<C-p>"] = { "<cmd> Telescope find_files <CR>", "Find files" },
+    ["<C-p>"] = { "<cmd> Telescope find_files hidden=true <CR>", "Find files" },
     ["<C-f>"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
     ["<C-j>"] = { "<cmd> Telescope treesitter <CR>", "Find symbols" },
+
+    ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
   },
 }
 
