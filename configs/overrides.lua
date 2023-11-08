@@ -3,7 +3,6 @@ local M = {}
 M.treesitter = {
   ensure_installed = {
     "bash",
-    "c",
     "css",
     "dockerfile",
     "gitignore",
@@ -17,6 +16,7 @@ M.treesitter = {
     "typescript",
     "vim",
     "yaml",
+    "go",
     -- "html",
     -- "mermaid"
   },
