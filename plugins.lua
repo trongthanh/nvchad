@@ -35,6 +35,23 @@ local plugins = {
   {
     "lewis6991/gitsigns.nvim",
     opts = overrides.gitsigns,
+    dependencies = {
+      -- scrollbar
+      {
+        "petertriho/nvim-scrollbar",
+        lazy = false,
+        opts = overrides.scrollbar,
+        config = function(_, opts)
+          require("scrollbar").setup(opts)
+        end,
+      },
+    },
+
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "git")
+      require("gitsigns").setup(opts)
+      require("scrollbar.handlers.gitsigns").setup()
+    end,
   },
   -- override plugin configs
   {
