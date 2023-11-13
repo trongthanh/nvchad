@@ -14,7 +14,11 @@ vim.api.nvim_create_user_command("Q", "qa<bang>", {
 -- Options
 local opt = vim.opt
 
+-- enable blinking caret
+opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25-blinkon300-blinkoff200,r-cr-o:hor20"
+
 -- indent and whitespaces
+opt.expandtab = false -- use tabs by default, to be overriden by .editorconfig
 opt.listchars = "tab:‣─,trail:~,extends:›,precedes:‹" -- space:·
 opt.list = true
 -- do not use clipboard for register

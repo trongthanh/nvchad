@@ -5,9 +5,16 @@ M.disabled = {
   n = {
     -- reserve this shortcut for vim-visual-multi
     ["<C-n>"] = "",
-    -- In lspconfig
+    ["<leader>n"] = "", -- changed to <leader>nn
+    ["<leader>rn"] = "", -- changed to <leader>nr
+    -- telescope
+    ["<leader>cm"] = "", -- changed to <leader>gc
+    ["<leader>ma"] = "", -- changed to <leader>tm
+    -- Change lspconfig shortcuts to <leader>l*
+    ["<leader>q"] = "",
     ["<leader>fm"] = "",
-    ["<leader>cm"] = "",
+    ["<leader>ca"] = "",
+    ["<leader>ra"] = "",
   },
 }
 
@@ -18,6 +25,8 @@ M.general = {
     ["<C-a>"] = { "ggVG", "Select all" },
     ["<leader>q"] = { "<C-w>q", "Close (split) window" },
     ["<C-A-f>"] = { ":%s/", "Search prompt" },
+    ["<leader>nn"] = { "<cmd> set nu! <CR>", "Toggle line number" },
+    ["<leader>nr"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
   },
   v = {
     ["<C-f>"] = { 'y<ESC>/<c-r>"<CR>', "Search selected text" },
@@ -65,6 +74,7 @@ M.telescope = {
     ["<C-j>"] = { "<cmd> Telescope treesitter <CR>", "Find symbols" },
 
     ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
+    ["<leader>tm"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
   },
 }
 
@@ -102,6 +112,19 @@ M.lspconfig = {
         vim.diagnostic.setloclist()
       end,
       "Diagnostic setloclist",
+    },
+    ["<leader>lr"] = {
+      function()
+        require("nvchad.renamer").open()
+      end,
+      "LSP rename",
+    },
+
+    ["<leader>a"] = {
+      function()
+        vim.lsp.buf.code_action()
+      end,
+      "LSP code action",
     },
   },
 }
