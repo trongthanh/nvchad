@@ -87,40 +87,6 @@ M.mason = {
   },
 }
 
--- git support in nvimtree
-M.nvimtree = {
-  git = {
-    enable = true,
-    ignore = false,
-    show_on_dirs = true,
-    timeout = 200,
-  },
-
-  renderer = {
-    highlight_git = true,
-    icons = {
-      show = {
-        git = true,
-      },
-    },
-  },
-  filters = {
-    dotfiles = false,
-    custom = {
-      "\\.DS_Store",
-      "\\.cache",
-      "\\.git$",
-      "\\.linaria-cache",
-      "\\.sass-cache",
-      "__coverage__",
-      "node_modules",
-      "package-lock\\.json",
-      "pnpm-lock\\.yaml",
-      "yarn\\.lock",
-    },
-  },
-}
-
 M.cmp = {
   mapping = {
     ["<CR>"] = require("cmp").mapping.confirm {

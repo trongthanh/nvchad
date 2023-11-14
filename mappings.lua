@@ -60,6 +60,12 @@ M.nvimtree = {
   n = {
     -- toggle
     ["<C-b>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
+    ["ga"] = {
+      function()
+        require("custom.configs.nvimtree").git_add()
+      end,
+      "Nvimtree: Git Add",
+    },
   },
 }
 
