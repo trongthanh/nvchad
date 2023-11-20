@@ -15,6 +15,8 @@ M.disabled = {
     ["<leader>fm"] = "",
     ["<leader>ca"] = "",
     ["<leader>ra"] = "",
+    ["<leader>rh"] = "", -- changed to hr
+    ["<leader>ph"] = "", -- changed to hp
   },
 }
 
@@ -29,7 +31,8 @@ M.general = {
     ["<leader>nr"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
   },
   v = {
-    ["<C-f>"] = { 'y<ESC>/<c-r>"<CR>', "Search selected text" },
+    ["<C-f>"] = { 'y<ESC>/<c-r>"<CR>', "Search current selection" },
+    ["<C-h>"] = { ":s/\\%V", "Start search and replace within selection" },
     ["<C-c>"] = { '"+y', "copy selection to clipboard" },
     ["'"] = { "i'", "select inner quotes shortcut" },
     ['"'] = { 'i"', "select inner quotes shortcut" },
@@ -119,7 +122,7 @@ M.lspconfig = {
       end,
       "Diagnostic setloclist",
     },
-    ["<leader>lr"] = {
+    ["<leader>r"] = {
       function()
         require("nvchad.renamer").open()
       end,
@@ -147,6 +150,25 @@ M.markdownpreview = {
   plugin = true,
   n = {
     ["<leader>pm"] = { "<cmd> MarkdownPreview <CR>", "Preview Markdown" },
+  },
+}
+
+M.gitsigns = {
+  plugin = true,
+  n = {
+    ["<leader>hr"] = {
+      function()
+        require("gitsigns").reset_hunk()
+      end,
+      "Reset hunk",
+    },
+
+    ["<leader>hp"] = {
+      function()
+        require("gitsigns").preview_hunk()
+      end,
+      "Preview hunk",
+    },
   },
 }
 
