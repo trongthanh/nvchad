@@ -53,12 +53,6 @@ autocmd("FileType", {
   end,
 })
 
--- force NvimTree window to normal mode
-autocmd("BufEnter", {
-  pattern = "NvimTree*",
-  command = "stopinsert",
-})
-
 -- close quickfix menu after selecting choice
 autocmd("FileType", {
   pattern = { "qf" },

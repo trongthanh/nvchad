@@ -2,6 +2,18 @@
 --   return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 -- end
 
+local augroup = vim.api.nvim_create_augroup("nvimtree", {})
+-- Auto commands
+local autocmd = vim.api.nvim_create_autocmd
+
+-- force NvimTree window to normal mode
+autocmd("BufEnter", {
+  group = augroup,
+  pattern = "NvimTree*",
+  command = "stopinsert",
+})
+
+-- extra action for nvimtree
 local git_add = function()
   local api = require "nvim-tree.api"
   local node = api.tree.get_node_under_cursor()
@@ -25,7 +37,7 @@ local git_add = function()
   api.tree.reload()
 end
 
--- vim.keymap.set("n", "ga", git_add, opts "Git Add")
+-- vim.keymap.set("n", "ga", git_add, { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true })
 
 -- git support in nvimtree
 local options = {

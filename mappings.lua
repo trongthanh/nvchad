@@ -64,7 +64,7 @@ M.nvimtree = {
       function()
         require("custom.configs.nvimtree").git_add()
       end,
-      "Nvimtree: Git Add",
+      "nvim-tree: Git Add",
     },
   },
 }
