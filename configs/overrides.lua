@@ -17,6 +17,7 @@ M.treesitter = {
     "vim",
     "yaml",
     "go",
+    "vue",
     -- "html",
     -- "mermaid"
   },
@@ -81,6 +82,8 @@ M.mason = {
     "prettierd",
     "typescript-language-server",
     "stylelint-lsp",
+    "tailwindcss-language-server",
+    "vue-language-server",
 
     -- go lang
     "gopls",
