@@ -56,5 +56,20 @@ autocmd("FileType", {
 -- close quickfix menu after selecting choice
 autocmd("FileType", {
   pattern = { "qf" },
-  command = [[nnoremap <buffer> <CR> <CR>:cclose<CR>]],
+  callback = function()
+    -- vim.cmd [[nnoremap <buffer> <CR> <CR>:cclose<CR>]]
+
+    vim.keymap.set(
+      "n",
+      "<CR>",
+      "<CR>:cclose<CR>",
+      { desc = "Quickfix: Close", buffer = true, noremap = true, silent = true, nowait = true }
+    )
+    vim.keymap.set(
+      "n",
+      "q",
+      ":cclose<CR>",
+      { desc = "Quickfix: Close", buffer = true, noremap = true, silent = true, nowait = true }
+    )
+  end,
 })
