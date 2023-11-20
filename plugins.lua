@@ -188,6 +188,14 @@ local plugins = {
       require("leap").add_default_mappings()
     end,
   },
+  {
+    "lervag/wiki.vim",
+    ft = { "markdown" },
+    lazy = false,
+    init = function()
+      vim.g.wiki_root = "~/Documents/wiki"
+    end,
+  },
 }
 
 return plugins
