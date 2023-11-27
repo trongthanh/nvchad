@@ -38,6 +38,13 @@ local autocmd = vim.api.nvim_create_autocmd
 -- })
 --
 
+-- Open NvimTree on startup
+autocmd("VimEnter", {
+  callback = function()
+    require("nvim-tree.api").tree.open()
+  end,
+})
+
 -- Highlight yank text
 autocmd("TextYankPost", {
   pattern = "*",
