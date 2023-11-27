@@ -24,7 +24,6 @@ M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
     ["<C-A-z>"] = { "<cmd> set wrap! <CR>", "toggle soft wrap" },
-    ["<C-a>"] = { "ggVG", "Select all" },
     ["<leader>q"] = { "<C-w>q", "Close (split) window" },
     ["<C-A-f>"] = { ":%s/", "Search prompt" },
     ["<leader>nn"] = { "<cmd> set nu! <CR>", "Toggle line number" },
