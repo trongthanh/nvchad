@@ -21,6 +21,9 @@ M.disabled = {
 }
 
 M.general = {
+  i = {
+    ["<C-A-t>"] = { "<C-r>=strftime('%FT%T%z')<CR>", "Insert ISO Time string" },
+  },
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
     ["<C-A-z>"] = { "<cmd> set wrap! <CR>", "toggle soft wrap" },
@@ -28,6 +31,9 @@ M.general = {
     ["<C-A-f>"] = { ":%s/", "Search prompt" },
     ["<leader>nn"] = { "<cmd> set nu! <CR>", "Toggle line number" },
     ["<leader>nr"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
+    ["<C-A-t>"] = { '"=strftime("%FT%T%z")<CR>P', "Insert ISO Time string" },
+    ["<C-S-a>"] = { "ggVG", "Select all" },
+    ["<leader>wji"] = { ":WikiJournalIndex<CR>", "Insert Journal Index" },
   },
   v = {
     ["<C-f>"] = { 'y<ESC>/<c-r>"<CR>', "Search current selection" },
