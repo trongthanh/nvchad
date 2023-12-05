@@ -125,8 +125,11 @@ M.cmp = {
 M.telescope = {
   defaults = {
     mappings = {
-      i = { ["<C-x>"] = require("telescope.actions").close },
-      n = { ["q"] = require("telescope.actions").close },
+      i = { ["<Esc>"] = require("telescope.actions").close },
+      n = {
+        ["q"] = require("telescope.actions").close,
+        ["<Esc>"] = require("telescope.actions").close,
+      },
     },
     file_ignore_patterns = { "node_modules", ".git/objects/" },
   },
