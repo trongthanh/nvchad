@@ -40,9 +40,11 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- Open NvimTree on startup
 autocmd("VimEnter", {
+  pattern = "",
   callback = function()
-    require("nvim-tree.api").tree.open()
+    require("nvim-tree.api").tree.toggle { focus = false }
   end,
+  desc = "Open NvimTree on startup",
 })
 
 -- Highlight yank text
@@ -51,6 +53,7 @@ autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank { higroup = "IncSearch", timeout = 300 }
   end,
+  desc = "Highlight yank text",
 })
 
 -- change surround * to double ** in markdown
@@ -59,6 +62,7 @@ autocmd("FileType", {
   callback = function()
     vim.g.surround_42 = "**\r**"
   end,
+  desc = "Change surround * to double ** in markdown",
 })
 
 -- close quickfix menu after selecting choice
