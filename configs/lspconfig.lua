@@ -23,9 +23,28 @@ lspconfig["volar"].setup {
   },
 }
 
---
--- lspconfig.pyright.setup { blabla}
---
+-- python-lsp-server (used for styles only)
+-- lspconfig["pylsp"].setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   settings = {
+--     pylsp = {
+--       configurationSources = { "pycodestyle" },
+--       plugins = {
+--         autopep8 = { enabled = false },
+--         pycodestyle = { enabled = true, ignore = { "W391" } },
+--         pyflakes = { enabled = false },
+--         mccabe = { enabled = false },
+--         yapf = { enabled = true },
+--       },
+--     },
+--   },
+-- }
+-- MS python language server
+lspconfig["pyright"].setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 
 -- [LSP] Change inline diagnostic text to hover popup
 vim.diagnostic.config {

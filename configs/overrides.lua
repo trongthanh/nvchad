@@ -87,6 +87,10 @@ M.mason = {
 
     -- go lang
     "gopls",
+
+    -- python
+    -- "python-lsp-server",
+    "pyright",
   },
 }
 
@@ -131,7 +135,7 @@ M.telescope = {
         ["<Esc>"] = require("telescope.actions").close,
       },
     },
-    file_ignore_patterns = { "node_modules", ".git/objects/" },
+    file_ignore_patterns = { "node_modules", ".git/objects/", ".venv" },
   },
 }
 
