@@ -91,6 +91,8 @@ M.mason = {
     -- python
     -- "python-lsp-server",
     "pyright",
+    -- yaml
+    "yaml-language-server",
   },
 }
 
