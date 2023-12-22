@@ -91,11 +91,6 @@ local plugins = {
     "mg979/vim-visual-multi",
     lazy = false,
   },
-  -- better editorconfig
-  {
-    "gpanders/editorconfig.nvim",
-    lazy = false,
-  },
   -- surround text ysiw" cs'` ysiw)
   {
     "tpope/vim-surround",
