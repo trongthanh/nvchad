@@ -5,15 +5,33 @@ This is my repo for the `custom` folder in [NvChad config](https://nvchad.com/do
 
 ## Installation:
 
-For Linux & macOS
+Prerequisites: 
+
+- nvim >= 9.0
+- Node.js >= 16, `npm` and `yarn` CLI
+- go CLI
+- python CLI
+
+For Linux & macOS:
 
 ```bash
-# nvchad core 2.0
+# Install NvChad core 2.0
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-# My custom config for Front End and Go
-git clone https://github.com/trongthanh/nvchad ~/.config/nvim/lua/custom --depth 1
-# start nvim to begin nvchad setup
+
+# init nvchad core
 nvim
+# 1. Choose N (No) when asking for example config
+# 2. Wait until the bootstrap script is done and ask to quit nvim.
+
+# Install this custom config for Front End, Go lang and Python
+rm -rf ~/.config/nvim/lua/custom
+git clone https://github.com/trongthanh/nvchad ~/.config/nvim/lua/custom --depth 1
+# start nvim again to begin custom setup
+nvim
+# 1. Wait until lazy install new plugins finished
+# 2. Install new servers from this custom config
+:MasonInstallAll
+# 3. Restart nvim once Mason install is done
 ```
 
 ## Language supports (LSP & autoformat)
