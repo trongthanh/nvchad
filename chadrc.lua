@@ -15,7 +15,7 @@ M.ui = {
     header = {
       "       TRONGTHANH NVIM IDE        ",
       "       Based on NvChad 2.0        ",
-      "  github.com/trongthanh/dotfiles  ",
+      "   github.com/trongthanh/nvchad   ",
     },
     buttons = {
       { "  Find File", "Ctrl-p", "Telescope find_files" },
