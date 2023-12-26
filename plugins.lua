@@ -62,6 +62,10 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
+    init = function()
+      -- use twig parser for nunjucks until native nunjucks parser is availablea
+      vim.treesitter.language.register("twig", "nunjucks")
+    end,
   },
 
   {

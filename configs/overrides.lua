@@ -18,6 +18,7 @@ M.treesitter = {
     "yaml",
     "go",
     "vue",
+    "twig", -- for twig and nunjucks templates
     -- "html",
     -- "mermaid"
   },
