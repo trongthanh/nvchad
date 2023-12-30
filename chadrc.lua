@@ -33,19 +33,21 @@ M.ui = {
     -- round and block will work for minimal theme only
     separator_style = "default",
     -- used to display gitblame but not neccessary anymore
-    -- overriden_modules = function(modules)
-    -- see https://nvchad.com/docs/config/nvchad_ui#override_statusline_modules
-
-    -- table.insert(
-    --   modules,
-    --   4,
-    --   (function()
-    --     if vim.b.gitsigns_blame_line then
-    --       return vim.b.gitsigns_blame_line
-    --     end
-    --   end)()
-    -- )
-    -- end,
+    overriden_modules = function(modules)
+      -- see https://nvchad.com/docs/config/nvchad_ui#override_statusline_modules
+      -- display line & column number
+      table.insert(modules, "%l:%c")
+      -- below to display gitblame in statusline, but it's laggy due to async call
+      -- table.insert(
+      --   modules,
+      --   4,
+      --   (function()
+      --     if vim.b.gitsigns_blame_line then
+      --       return vim.b.gitsigns_blame_line
+      --     end
+      --   end)()
+      -- )
+    end,
   },
 }
 
