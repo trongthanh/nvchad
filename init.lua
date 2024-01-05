@@ -44,6 +44,8 @@ autocmd("VimEnter", {
   pattern = "",
   callback = function()
     require("nvim-tree.api").tree.toggle { focus = false }
+    -- open Nvdash on startup but after NvimTree so that it is centered properly
+    vim.cmd "Nvdash"
   end,
   desc = "Open NvimTree on startup",
 })

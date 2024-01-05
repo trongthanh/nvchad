@@ -11,7 +11,7 @@ M.ui = {
   hl_override = highlights.override,
   hl_add = highlights.add,
   nvdash = {
-    load_on_startup = true,
+    load_on_startup = false,
     header = {
       "       TRONGTHANH NVIM IDE        ",
       "       Based on NvChad 2.0        ",
