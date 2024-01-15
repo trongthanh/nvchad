@@ -28,12 +28,18 @@ M.general = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
     ["<C-A-z>"] = { "<cmd> set wrap! <CR>", "toggle soft wrap" },
     ["<leader>q"] = { "<C-w>q", "Close (split) window" },
-    ["<C-A-f>"] = { ":%s/", "Search prompt" },
+    ["<C-A-f>"] = { ":%s/", "Search and replace prompt" },
     ["<leader>nn"] = { "<cmd> set nu! <CR>", "Toggle line number" },
     ["<leader>nr"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
     ["<C-A-t>"] = { '"=strftime("%FT%T%z")<CR>P', "Insert ISO Time string" },
     ["<C-S-a>"] = { "ggVG", "Select all" },
     ["<leader>wji"] = { ":WikiJournalIndex<CR>", "Insert Journal Index" },
+    ["<leader>X"] = {
+      function()
+        require("nvchad.tabufline").closeAllBufs()
+      end,
+      "Close all (unedited) buffers",
+    },
   },
   v = {
     ["<C-f>"] = { 'y<ESC>/<c-r>"<CR>', "Search current selection" },

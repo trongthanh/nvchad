@@ -4,7 +4,8 @@ local overrides = require "custom.configs.overrides"
 local plugins = {
 
   -- Override plugin definition options
-
+  -- null-ls is deprecated, to replace with conform,
+  -- as per https://github.com/NvChad/example_config/commit/a321ba986da839dc82eec52d072f1c16737d63b8#diff-1660c606ea1d8cca2ce1bc43638942036b7914842621c40e9df9581da3d4dcfe
   {
     "neovim/nvim-lspconfig",
     dependencies = {
