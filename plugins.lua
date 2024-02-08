@@ -141,6 +141,13 @@ local plugins = {
     lazy = false,
   },
   {
+    "chentoast/marks.nvim",
+    lazy = false,
+    config = function()
+      require("marks").setup()
+    end,
+  },
+  {
     "iamcco/markdown-preview.nvim",
     ft = { "markdown" },
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
