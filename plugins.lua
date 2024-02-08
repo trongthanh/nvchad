@@ -2,27 +2,21 @@ local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
-
-  -- Override plugin definition options
-  -- null-ls is deprecated, to replace with conform,
-  -- as per https://github.com/NvChad/example_config/commit/a321ba986da839dc82eec52d072f1c16737d63b8#diff-1660c606ea1d8cca2ce1bc43638942036b7914842621c40e9df9581da3d4dcfe
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      -- format & linting
-      {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-          require "custom.configs.null-ls"
-        end,
-      },
-    },
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end, -- Override to setup mason-lspconfig
   },
-
+  {
+    "stevearc/conform.nvim",
+    --  for users those who want auto-save conform + lazyloading!
+    event = { "BufWritePre" },
+    config = function()
+      require "custom.configs.conform"
+    end,
+  },
   {
     "nvim-telescope/telescope.nvim",
     opts = overrides.telescope,
