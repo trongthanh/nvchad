@@ -11,7 +11,7 @@ local plugins = {
   },
   {
     "stevearc/conform.nvim",
-    --  for users those who want auto-save conform + lazyloading!
+    -- for users those who want auto-save conform + lazyloading!
     event = { "BufWritePre" },
     config = function()
       require "custom.configs.conform"
@@ -58,7 +58,7 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
     init = function()
-      -- use twig parser for nunjucks until native nunjucks parser is availablea
+      -- use twig parser for nunjucks until native nunjucks parser is available
       vim.treesitter.language.register("twig", "nunjucks")
     end,
   },
