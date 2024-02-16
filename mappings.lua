@@ -40,6 +40,7 @@ M.general = {
       end,
       "Close all (unedited) buffers",
     },
+    ["<leader>cw"] = { "g<C-g>", "Count words in buffer" },
   },
   v = {
     ["<C-f>"] = { 'y<ESC>/<c-r>"<CR>', "Search current selection" },
