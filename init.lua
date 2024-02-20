@@ -43,11 +43,27 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- Open NvimTree on startup
 autocmd("VimEnter", {
-  pattern = "",
-  callback = function()
-    require("nvim-tree.api").tree.toggle { focus = false }
-    -- open Nvdash on startup but after NvimTree so that it is centered properly
-    vim.cmd "Nvdash"
+  -- pattern = "",
+  callback = function(data)
+    -- buffer is a directory
+    local directory = vim.fn.isdirectory(data.file) == 1
+
+    -- buffer is a [No Name]
+    local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+    -- if not directory and not no_name then
+    -- return
+    -- end
+
+    if directory then
+      -- change to the directory
+      vim.cmd.cd(data.file)
+      require("nvim-tree.api").tree.toggle { focus = false }
+    end
+
+    if no_name then
+      vim.cmd "Nvdash"
+    end
   end,
   desc = "Open NvimTree on startup",
 })
