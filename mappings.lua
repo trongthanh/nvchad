@@ -92,7 +92,7 @@ M.telescope = {
     -- find
     ["<C-p>"] = { "<cmd> Telescope find_files hidden=true <CR>", "Find files" },
     ["<C-f>"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
-    ["<C-j>"] = { "<cmd> Telescope treesitter <CR>", "Find symbols" },
+    ["<C-t>"] = { "<cmd> Telescope treesitter <CR>", "Find symbols" },
 
     ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
     ["<leader>tm"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
