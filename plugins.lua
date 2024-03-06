@@ -40,6 +40,14 @@ local plugins = {
           require("scrollbar").setup(opts)
         end,
       },
+      -- not related, but make use of the gitsigns lazy loading
+      {
+        "kdheepak/lazygit.nvim",
+        -- optional for floating window border decoration
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+        },
+      },
     },
 
     config = function(_, opts)
@@ -190,11 +198,20 @@ local plugins = {
     end,
   },
   {
+    "SidOfc/mkdx",
+    ft = { "markdown", "mermaid" },
+  },
+  {
     "lervag/wiki.vim",
     ft = { "markdown" },
     lazy = false,
     init = function()
       vim.g.wiki_root = "~/Documents/wiki"
+      vim.g.wiki_mappings_local_journal = {
+        ["<plug>(wiki-journal-prev)"] = "[w",
+        ["<plug>(wiki-journal-next)"] = "]w",
+      }
+      require("core.utils").load_mappings "wiki"
     end,
   },
   {
