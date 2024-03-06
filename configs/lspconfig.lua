@@ -60,8 +60,9 @@ vim.diagnostic.config {
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
     local opts = {
-      focusable = false, -- focus with Tab and Esc, turn off since it often focus accidentally, use the shortcut Space-d then C-w w instead
       close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+      focus = false, -- float is not focused immediately, use <C-w>w to focus
+      focusable = true,
       border = "rounded",
       source = "always",
       -- prefix = ' ',

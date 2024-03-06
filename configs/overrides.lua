@@ -99,6 +99,11 @@ M.mason = {
 }
 
 M.cmp = {
+  completion = {
+    -- added noselect so that I can <CR> if I don't want to accept any of the suggestions
+    completeopt = "menu,menuone,noselect",
+  },
+
   mapping = {
     ["<CR>"] = require("cmp").mapping.confirm {
       behavior = require("cmp").ConfirmBehavior.Insert,

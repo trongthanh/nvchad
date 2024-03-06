@@ -148,6 +148,14 @@ M.lspconfig = {
       "LSP code action",
     },
   },
+  v = {
+    ["<leader>a"] = {
+      function()
+        vim.lsp.buf.code_action()
+      end,
+      "LSP code action",
+    },
+  },
 }
 
 M.ctrlsf = {

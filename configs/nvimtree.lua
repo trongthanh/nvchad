@@ -41,6 +41,14 @@ end
 
 -- git support in nvimtree
 local options = {
+  view = {
+    width = {
+      min = 35,
+      max = "25%",
+      padding = 1,
+    },
+    side = "left",
+  },
   git = {
     enable = true,
     ignore = false,
