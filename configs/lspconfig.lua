@@ -60,7 +60,7 @@ vim.diagnostic.config {
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
     local opts = {
-      close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+      close_events = { "CursorMoved", "InsertEnter", "FocusLost" },
       focus = false, -- float is not focused immediately, use <C-w>w to focus
       focusable = true,
       border = "rounded",
