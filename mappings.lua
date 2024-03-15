@@ -33,7 +33,7 @@ M.general = {
     ["<leader>nr"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
     ["<C-A-t>"] = { '"=strftime("%FT%T%z")<CR>P', "Insert ISO Time string" },
     ["<C-S-a>"] = { "ggVG", "Select all" },
-    ["<leader>wji"] = { ":WikiJournalIndex<CR>", "Insert Journal Index" },
+    ["<leader>gg"] = { ":LazyGit<CR>", "LazyGit" },
     ["<leader>X"] = {
       function()
         require("nvchad.tabufline").closeAllBufs()
@@ -202,6 +202,13 @@ M.copilot = {
       "Copilot Accept",
       { replace_keycodes = true, nowait = true, silent = true, expr = true, noremap = true },
     },
+  },
+}
+
+M.wiki = {
+  plugin = true,
+  n = {
+    ["<leader>wji"] = { ":WikiJournalIndex<CR>", "Insert Journal Index" },
   },
 }
 
