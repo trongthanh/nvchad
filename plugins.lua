@@ -48,6 +48,13 @@ local plugins = {
           "nvim-lua/plenary.nvim",
         },
       },
+      {
+        "sindrets/diffview.nvim",
+        lazy = false,
+        config = function()
+          require("diffview").setup()
+        end,
+      },
     },
 
     config = function(_, opts)

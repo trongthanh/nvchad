@@ -40,6 +40,8 @@ M.general = {
       end,
       "Close all (unedited) buffers",
     },
+    ["<leader>gd"] = { ":DiffviewOpen<CR>", "DiffviewOpen" },
+    ["<leader>gx"] = { ":DiffviewClose<CR>", "DiffviewClose" },
     ["<leader>cw"] = { "g<C-g>", "Count words in buffer" },
   },
   v = {
