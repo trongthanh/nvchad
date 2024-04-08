@@ -34,14 +34,9 @@ M.general = {
     ["<C-A-t>"] = { '"=strftime("%FT%T%z")<CR>P', "Insert ISO Time string" },
     ["<C-S-a>"] = { "ggVG", "Select all" },
     ["<leader>gg"] = { ":LazyGit<CR>", "LazyGit" },
-    ["<leader>X"] = {
-      function()
-        require("nvchad.tabufline").closeAllBufs()
-      end,
-      "Close all (unedited) buffers",
-    },
     ["<leader>gd"] = { ":DiffviewOpen<CR>", "DiffviewOpen" },
     ["<leader>gx"] = { ":DiffviewClose<CR>", "DiffviewClose" },
+    ["<leader>X"] = { "<ESC>:%db<CR>", "Close all (unedited) buffers" },
     ["<leader>cw"] = { "g<C-g>", "Count words in buffer" },
   },
   v = {
@@ -56,8 +51,8 @@ M.general = {
     [")"] = { "i)", "select inner brackets shortcut" },
   },
   x = {
-    ["il"] = { "g_o^", "line object", opts = { silent = true } },
-    ["al"] = { "$o0", "line object", opts = { silent = true } },
+    ["il"] = { "g_o^", "inner line object", opts = { silent = true } },
+    ["al"] = { "$o0", "outer line object", opts = { silent = true } },
   },
   o = {
     ["il"] = { ":<c-u>normal! g_v^<cr>", "inner line object", opts = { silent = true } },

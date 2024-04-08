@@ -179,10 +179,6 @@ local plugins = {
     ft = { "html", "xml" },
   },
   {
-    "mracos/mermaid.vim",
-    ft = { "mermaid", "markdown" },
-  },
-  {
     "github/copilot.vim",
     lazy = false,
     init = function()
