@@ -38,6 +38,8 @@ M.general = {
     ["<leader>gx"] = { ":DiffviewClose<CR>", "DiffviewClose" },
     ["<leader>X"] = { "<ESC>:%db<CR>", "Close all (unedited) buffers" },
     ["<leader>cw"] = { "g<C-g>", "Count words in buffer" },
+    ["<C-S-c>"] = { "<cmd> %y+ <CR>", "Copy whole file to clipboard" },
+    ["<C-c>"] = { "<cmd> .y+ <CR>", "Copy current line to clipboard" },
   },
   v = {
     ["<C-f>"] = { 'y<ESC>/<c-r>"<CR>', "Search current selection" },
