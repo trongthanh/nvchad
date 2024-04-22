@@ -29,6 +29,7 @@ opt.colorcolumn = "+1"
 opt.clipboard = ""
 -- add trailing newline
 opt.fixeol = true
+
 -- Auto commands
 local autocmd = vim.api.nvim_create_autocmd
 --
@@ -82,6 +83,7 @@ autocmd("FileType", {
   pattern = "markdown",
   callback = function()
     vim.g.surround_42 = "**\r**"
+    vim.opt.spell = true -- enable spell check
   end,
   desc = "Change surround * to double ** in markdown",
 })
