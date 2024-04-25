@@ -108,3 +108,13 @@ autocmd("FileType", {
     )
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "terminal",
+  callback = function(args)
+    -- close terminal
+    vim.keymap.set("n", "<C-x>", function()
+      require("nvchad.tabufline").close_buffer()
+    end, { buffer = args.buf })
+  end,
+})
