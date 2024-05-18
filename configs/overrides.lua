@@ -20,7 +20,7 @@ M.treesitter = {
     "go",
     "vue",
     "twig", -- for twig and nunjucks templates
-    -- "html",
+    "html",
     -- "mermaid"
   },
   -- ignore_install = { "markdown" },
