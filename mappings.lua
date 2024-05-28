@@ -39,7 +39,11 @@ M.general = {
     ["<leader>X"] = { "<cmd> %bd <CR>", "Close all (unedited) buffers" },
     ["<leader>cw"] = { "g<C-g>", "Count words in buffer" },
     ["<C-S-c>"] = { "<cmd> %y+ <CR>", "Copy whole file to clipboard" },
-    ["<C-c>"] = { "<cmd> .y+ <CR>", "Copy current line to clipboard" },
+    ["<C-c>"] = {
+      '^vg_"+y',
+      "Copy current line (without newline) to clipboard",
+      opts = { noremap = true, silent = true },
+    },
   },
   v = {
     ["<C-f>"] = { 'y<ESC>/<c-r>"<CR>', "Search current selection" },
