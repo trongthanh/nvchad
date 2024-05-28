@@ -4,7 +4,17 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "eslint", "stylelint_lsp", "jsonls", "gopls", "tailwindcss", "yamlls" }
+local servers = {
+  "html",
+  -- "cssls",
+  "tsserver",
+  "eslint",
+  "stylelint_lsp",
+  "jsonls",
+  -- "custom_elements_ls",
+  "gopls",
+  "tailwindcss",
+}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -12,6 +22,19 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+lspconfig["yamlls"].setup {
+  -- ... -- other configuration for setup {}
+  settings = {
+    yaml = {
+      -- ... -- other settings. note this overrides the lspconfig defaults.
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        ["https://json.schemastore.org/catalog-info.json"] = "component.yaml",
+      },
+    },
+  },
+}
 
 -- Vue.js language server
 lspconfig["volar"].setup {
