@@ -134,6 +134,22 @@ M.cmp = {
       callback()
     end,
   },
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "nvim_lua" },
+    { name = "path" },
+    {
+      name = "spell",
+      option = {
+        keep_all_entries = false,
+        enable_in_context = function()
+          return true
+        end,
+      },
+    },
+  },
 }
 
 M.telescope = {

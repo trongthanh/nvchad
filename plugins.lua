@@ -25,6 +25,9 @@ local plugins = {
 
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
+    dependencies = {
+      { "f3fora/cmp-spell" },
+    },
   },
   -- load git related plugin
   {
