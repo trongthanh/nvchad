@@ -175,6 +175,26 @@ M.lspconfig = {
   },
 }
 
+M.nvterm = {
+  plugin = true,
+  t = {
+    ["<C-`>"] = {
+      function()
+        require("nvterm.terminal").toggle "horizontal"
+      end,
+      "Toggle terminal",
+    },
+  },
+  n = {
+    ["<C-`>"] = {
+      function()
+        require("nvterm.terminal").toggle "horizontal"
+      end,
+      "Toggle terminal",
+    },
+  },
+}
+
 M.ctrlsf = {
   plugin = true,
   n = {
