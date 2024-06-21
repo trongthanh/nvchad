@@ -52,15 +52,16 @@ autocmd("VimEnter", {
     -- buffer is a [No Name]
     local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
 
-    -- if not directory and not no_name then
-    -- return
-    -- end
+    if not directory and not no_name then
+      return
+    end
 
     if directory then
       -- change to the directory
       vim.cmd.cd(data.file)
-      require("nvim-tree.api").tree.toggle { focus = false }
     end
+
+    require("nvim-tree.api").tree.toggle { focus = false }
 
     if no_name then
       vim.cmd "Nvdash"
@@ -109,7 +110,7 @@ autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   pattern = "terminal",
   callback = function(args)
     -- close terminal
@@ -118,3 +119,15 @@ vim.api.nvim_create_autocmd("FileType", {
     end, { buffer = args.buf })
   end,
 })
+
+vim.api.nvim_create_user_command("Indent4", function()
+  vim.bo.shiftwidth = 4
+  vim.bo.tabstop = 4
+  vim.bo.expandtab = true
+end, { desc = "Set indent width to 4 spaces" })
+
+vim.api.nvim_create_user_command("Indent2", function()
+  vim.bo.shiftwidth = 4
+  vim.bo.tabstop = 4
+  vim.bo.expandtab = true
+end, { desc = "Set indent width to 4 spaces" })
