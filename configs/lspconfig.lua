@@ -69,6 +69,27 @@ lspconfig["pyright"].setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
+-- Robot Framework LSP OVERRIDE
+local virtualenv = os.getenv "VIRTUAL_ENV"
+local settings = {
+  robot = {
+    lint = {
+      robocop = {
+        enabled = true,
+      },
+    },
+  },
+}
+if virtualenv then
+  settings.robot.python = {
+    executable = virtualenv .. "/bin/python",
+  }
+end
+lspconfig["robotframework_ls"].setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = settings,
+}
 
 -- [LSP] Change inline diagnostic text to hover popup
 vim.diagnostic.config {
