@@ -1,37 +1,30 @@
-NvChad Custom Config for neovim
+NvChad Config for neovim
 ===============================
 
-This is my repo for the `custom` folder in [NvChad config](https://nvchad.com/docs/config/walkthrough#custom_config)
+This is my repo for the `~/.config/nvim` folder in [NvChad config](https://nvchad.com/docs/config/walkthrough#custom_config)
 
 ## Installation:
 
 Prerequisites: 
 
-- nvim >= 9.0
-- Node.js >= 16, `npm` and `yarn` CLI
+- nvim >= 0.10
+- Node.js >= 18, `npm` and `yarn` CLI
 - go CLI
 - python CLI
 
 For Linux & macOS:
 
 ```bash
-# Install NvChad core 2.0
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-
-# init nvchad core
+# Clone this nvim config repo
+git clone https://github.com/trongthanh/nvchad ~/.config/nvim
+# init settings
 nvim
-# 1. Choose N (No) when asking for example config
-# 2. Wait until the bootstrap script is done and ask to quit nvim.
+# 1. Lazy will automatically start installing plugins, wait until it's done
+# 2. Run :MasonInstallAll to install all servers from this custom config
+# 3. Quit nvim to continue
 
-# Install this custom config for Front End, Go lang and Python
-rm -rf ~/.config/nvim/lua/custom
-git clone https://github.com/trongthanh/nvchad ~/.config/nvim/lua/custom --depth 1
-# start nvim again to begin custom setup
-nvim
-# 1. Wait until lazy install new plugins finished
-# 2. Install new servers from this custom config
-:MasonInstallAll
-# 3. Restart nvim once Mason install is done
+# Remove the .git folder
+rm -rf ~/.config/nvim/.git
 ```
 
 ## Language supports (LSP & autoformat)
