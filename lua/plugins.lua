@@ -1,12 +1,13 @@
-local overrides = require "custom.configs.overrides"
+local overrides = require "configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
+      dofile(vim.g.base46_cache .. "lsp")
+      require "nvchad.lsp"
+      require "configs.lspconfig"
     end, -- Override to setup mason-lspconfig
   },
   {
@@ -14,7 +15,7 @@ local plugins = {
     -- for users those who want auto-save conform + lazyloading!
     event = { "BufWritePre" },
     config = function()
-      require "custom.configs.conform"
+      require "configs.conform"
     end,
   },
   {
@@ -83,7 +84,7 @@ local plugins = {
 
   {
     "nvim-tree/nvim-tree.lua",
-    opts = require("custom.configs.nvimtree").opts,
+    opts = require("configs.nvimtree").opts,
   },
 
   -- Install a plugin
@@ -150,9 +151,6 @@ local plugins = {
   {
     "dyng/ctrlsf.vim",
     lazy = false,
-    init = function()
-      require("core.utils").load_mappings "ctrlsf"
-    end,
   },
   {
     "godlygeek/tabular",
@@ -174,7 +172,7 @@ local plugins = {
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     config = function()
-      require("core.utils").load_mappings "markdownpreview"
+      require("mappings").markdown_preview()
     end,
   },
   {
@@ -194,7 +192,7 @@ local plugins = {
       -- or run <leader>ch to see copilot mapping section
     end,
     config = function()
-      require("core.utils").load_mappings "copilot"
+      require("mappings").copilot()
     end,
   },
   {
@@ -217,7 +215,7 @@ local plugins = {
         ["<plug>(wiki-journal-prev)"] = "[w",
         ["<plug>(wiki-journal-next)"] = "]w",
       }
-      require("core.utils").load_mappings "wiki"
+      -- require("core.utils").load_mappings "wiki"
     end,
   },
   {

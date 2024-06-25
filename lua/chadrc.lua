@@ -2,7 +2,7 @@
 local M = {}
 
 -- Path to overriding theme and highlights files
-local highlights = require "custom.highlights"
+local highlights = require "highlights"
 
 M.ui = {
   theme = "oceanic-next",
@@ -32,28 +32,19 @@ M.ui = {
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
     separator_style = "default",
-    -- used to display gitblame but not neccessary anymore
-    overriden_modules = function(modules)
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor", "loc" },
+    modules = {
       -- see https://nvchad.com/docs/config/nvchad_ui#override_statusline_modules
       -- display line & column number
-      table.insert(modules, "%l:%c")
+      loc = "%l:%c",
       -- below to display gitblame in statusline, but it's laggy due to async call
-      -- table.insert(
-      --   modules,
-      --   4,
-      --   (function()
-      --     if vim.b.gitsigns_blame_line then
-      --       return vim.b.gitsigns_blame_line
-      --     end
-      --   end)()
-      -- )
-    end,
+      -- blame = function()
+      --   if vim.b.gitsigns_blame_line then
+      --     return vim.b.gitsigns_blame_line
+      --   end
+      -- end
+    },
   },
 }
-
-M.plugins = "custom.plugins"
-
--- check core.mappings for table structure
-M.mappings = require "custom.mappings"
 
 return M

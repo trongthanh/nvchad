@@ -1,7 +1,3 @@
--- local function opts(desc)
---   return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
--- end
-
 local augroup = vim.api.nvim_create_augroup("nvimtree", {})
 -- Auto commands
 local autocmd = vim.api.nvim_create_autocmd
@@ -11,6 +7,12 @@ autocmd("BufEnter", {
   group = augroup,
   pattern = "NvimTree*",
   command = "stopinsert",
+})
+
+autocmd("FileType", {
+  group = augroup,
+  pattern = "NvimTree*",
+  callback = require("mappings").nvimtree,
 })
 
 -- extra action for nvimtree
@@ -36,8 +38,6 @@ local git_add = function()
 
   api.tree.reload()
 end
-
--- vim.keymap.set("n", "ga", git_add, { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true })
 
 -- git support in nvimtree
 local options = {

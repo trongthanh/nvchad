@@ -1,7 +1,14 @@
-local on_attach = require("plugins.configs.lspconfig").on_attach
-local capabilities = require("plugins.configs.lspconfig").capabilities
+local nvchad_on_attach = require("nvchad.configs.lspconfig").on_attach
+local on_init = require("nvchad.configs.lspconfig").on_init
+local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
+
+local on_attach = function(client, bufnr)
+  nvchad_on_attach(client, bufnr)
+  -- custom mappings
+  require("mappings").lspconfig(client, bufnr)
+end
 
 -- if you just want default config for the servers then put them in a table
 local servers = {
@@ -19,12 +26,15 @@ local servers = {
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
+    on_init = on_init,
     capabilities = capabilities,
   }
 end
 
 lspconfig["yamlls"].setup {
-  -- ... -- other configuration for setup {}
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
   settings = {
     yaml = {
       -- ... -- other settings. note this overrides the lspconfig defaults.
@@ -39,10 +49,36 @@ lspconfig["yamlls"].setup {
 -- Vue.js language server
 lspconfig["volar"].setup {
   on_attach = on_attach,
+  on_init = on_init,
   capabilities = capabilities,
   init_options = {
     typescript = {
       tsdk = "/usr/local/lib/node_modules/typescript/lib",
+    },
+  },
+}
+
+-- lua
+lspconfig["lua_ls"].setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  on_init = on_init,
+
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = {
+          vim.fn.expand "$VIMRUNTIME/lua",
+          vim.fn.expand "$VIMRUNTIME/lua/vim/lsp",
+          vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
+          vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+        },
+        maxPreload = 100000,
+        preloadFileSize = 10000,
+      },
     },
   },
 }
@@ -67,6 +103,7 @@ lspconfig["volar"].setup {
 -- MS python language server
 lspconfig["pyright"].setup {
   on_attach = on_attach,
+  on_init = on_init,
   capabilities = capabilities,
 }
 -- Robot Framework LSP OVERRIDE
@@ -87,6 +124,7 @@ if virtualenv then
 end
 lspconfig["robotframework_ls"].setup {
   on_attach = on_attach,
+  on_init = on_init,
   capabilities = capabilities,
   settings = settings,
 }

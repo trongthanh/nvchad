@@ -1,254 +1,166 @@
----@type MappingsTable
-local M = {}
+require "nvchad.mappings"
 
-M.disabled = {
-  n = {
-    -- reserve this shortcut for vim-visual-multi
-    ["<C-n>"] = "",
-    ["<leader>n"] = "", -- changed to <leader>nn
-    ["<leader>rn"] = "", -- changed to <leader>nr
-    -- telescope
-    ["<leader>cm"] = "", -- changed to <leader>gc
-    ["<leader>ma"] = "", -- changed to <leader>tm
-    -- Change lspconfig shortcuts to <leader>l*
-    ["<leader>q"] = "",
-    ["<leader>fm"] = "",
-    ["<leader>ca"] = "",
-    ["<leader>ra"] = "",
-    ["<leader>rh"] = "", -- changed to hr
-    ["<leader>ph"] = "", -- changed to hp
-  },
-}
+local map = vim.keymap.set
+local nomap = vim.keymap.del
+local lazy = {}
 
-M.general = {
-  i = {
-    ["<C-A-t>"] = { "<C-r>=strftime('%FT%T%z')<CR>", "Insert ISO Time string" },
-  },
-  n = {
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
-    ["<C-A-z>"] = { "<cmd> set wrap! <CR>", "toggle soft wrap" },
-    ["<leader>q"] = { "<C-w>q", "Close (split) window" },
-    ["<C-A-f>"] = { ":%s/", "Search and replace prompt" },
-    ["<leader>nn"] = { "<cmd> set nu! <CR>", "Toggle line number" },
-    ["<leader>nr"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
-    ["<C-A-t>"] = { '"=strftime("%FT%T%z")<CR>P', "Insert ISO Time string" },
-    ["<C-S-a>"] = { "ggVG", "Select all" },
-    ["<leader>gg"] = { ":LazyGit<CR>", "LazyGit" },
-    ["<leader>gd"] = { ":DiffviewOpen<CR>", "DiffviewOpen" },
-    ["<leader>gx"] = { ":DiffviewClose<CR>", "DiffviewClose" },
-    ["<leader>X"] = { "<cmd> %bd <CR>", "Close all (unedited) buffers" },
-    ["<leader>cw"] = { "g<C-g>", "Count words in buffer" },
-    ["<C-S-c>"] = { "<cmd> %y+ <CR>", "Copy whole file to clipboard" },
-    ["<C-c>"] = {
-      '^vg_"+y',
-      "Copy current line (without newline) to clipboard",
-      opts = { noremap = true, silent = true },
-    },
-  },
-  v = {
-    ["<C-f>"] = { 'y<ESC>/<c-r>"<CR>', "Search current selection" },
-    ["<C-h>"] = { ":s/\\%V", "Start search and replace within selection" },
-    ["<C-c>"] = { '"+y', "copy selection to clipboard" },
-    ["'"] = { "i'", "select inner quotes shortcut" },
-    ['"'] = { 'i"', "select inner quotes shortcut" },
-    ["`"] = { "i`", "select inner quotes shortcut" },
-    ["]"] = { "i]", "select inner brackets shortcut" },
-    ["}"] = { "i}", "select inner brackets shortcut" },
-    [")"] = { "i)", "select inner brackets shortcut" },
-  },
-  x = {
-    ["il"] = { "g_o^", "inner line object", opts = { silent = true } },
-    ["al"] = { "$o0", "outer line object", opts = { silent = true } },
-  },
-  o = {
-    ["il"] = { ":<c-u>normal! g_v^<cr>", "inner line object", opts = { silent = true } },
-    ["al"] = { ":<c-u>normal! $v0<cr>", "outer line object", opts = { silent = true } },
-    ['"'] = { ':<c-u>normal! vi"<cr>', "inner quote object", opts = { silent = true } },
-    ["'"] = { ":<c-u>normal! vi'<cr>", "inner quote object", opts = { silent = true } },
-    ["`"] = { ":<c-u>normal! vi`<cr>", "inner quote object", opts = { silent = true } },
-    ["]"] = { ":<c-u>normal! vi]<cr>", "inner brackets object", opts = { silent = true } },
-    ["}"] = { ":<c-u>normal! vi}<cr>", "inner brackets object", opts = { silent = true } },
-    [")"] = { ":<c-u>normal! vi)<cr>", "inner brackets object", opts = { silent = true } },
-  },
-}
+-- Disabled mappings
+-- reserve this shortcut for vim-visual-multi
+nomap("n", "<C-n>")
+nomap("n", "<leader>n") -- line number
+nomap("n", "<leader>rn") -- relative number
+nomap("n", "<leader>fm") -- conform format
+nomap("n", "<leader>ds") -- loclist
+-- telescope
+nomap("n", "<leader>cm")
+nomap("n", "<leader>ma")
+-- new term
+nomap("n", "<leader>h")
+nomap("n", "<leader>v")
 
-M.nvimtree = {
-  plugin = true,
+-- General mappings
+map("i", "<C-A-t>", "<C-r>=strftime('%FT%T%z')<CR>", { desc = "general Insert ISO Time string" })
+map("n", ";", ":", { desc = "general Enter command mode", nowait = true })
+map("n", "<C-A-z>", "<cmd> set wrap! <CR>", { desc = "general Toggle soft wrap" })
+map("n", "<leader>q", "<C-w>q", { desc = "general Close (split) window" })
+map("n", "<C-A-f>", ":%s/", { desc = "general Search and replace prompt" })
+map("n", "<leader>nn", "<cmd> set nu! <CR>", { desc = "general Toggle line number" })
+map("n", "<leader>nr", "<cmd> set rnu! <CR>", { desc = "general Toggle relative number" })
+map("n", "<C-A-t>", '"=strftime("%FT%T%z")<CR>P', { desc = "general Insert ISO Time string" })
+map("n", "<C-S-a>", "ggVG", { desc = "general Select all" })
+map("n", "<leader>gg", ":LazyGit<CR>", { desc = "general LazyGit" })
+map("n", "<leader>gd", ":DiffviewOpen<CR>", { desc = "general DiffviewOpen" })
+map("n", "<leader>gx", ":DiffviewClose<CR>", { desc = "general DiffviewClose" })
+map("n", "<leader>X", "<cmd> %bd <CR>", { desc = "general Close all (unedited) buffers" })
+map("n", "<leader>cw", "g<C-g>", { desc = "general Count words in buffer" })
+map("n", "<C-S-c>", "<cmd> %y+ <CR>", { desc = "general Copy whole file to clipboard" })
+map("n", "<C-c>", '^vg_"+y', { desc = "general Copy current inner line to clipboard", noremap = true, silent = true })
 
-  n = {
-    -- toggle
-    ["<C-b>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
-    ["ga"] = {
-      function()
-        require("custom.configs.nvimtree").git_add()
-      end,
-      "nvim-tree: Git Add",
-    },
-  },
-}
+map("v", "<C-f>", 'y<ESC>/<c-r>"<CR>', { desc = "general Search current selection" })
+map("v", "<C-h>", ":s/\\%V", { desc = "general Start search and replace within selection" })
+map("v", "<C-c>", '"+y', { desc = "general Copy selection to clipboard" })
 
-M.telescope = {
-  plugin = true,
+-- Text objects
+map("v", "'", "i'", { desc = "general Select inner quotes shortcut" })
+map("v", '"', 'i"', { desc = "general Select inner quotes shortcut" })
+map("v", "`", "i`", { desc = "general Select inner quotes shortcut" })
+map("v", "]", "i]", { desc = "general Select inner brackets shortcut" })
+map("v", "}", "i}", { desc = "general Select inner brackets shortcut" })
+map("v", ")", "i)", { desc = "general Select inner brackets shortcut" })
 
-  n = {
-    ["<C-S-p>"] = { "<cmd> Telescope commands <CR>", "Open commands panel" },
-    -- find
-    ["<C-p>"] = { "<cmd> Telescope find_files hidden=true <CR>", "Find files" },
-    ["<C-f>"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
-    ["<C-t>"] = { "<cmd> Telescope treesitter <CR>", "Find symbols" },
+map("x", "il", "g_o^", { desc = "general Inner line object", silent = true })
+map("x", "al", "$o0", { desc = "general Outer line object", silent = true })
 
-    ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
-    ["<leader>tm"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
-  },
-}
+map("o", "il", ":<c-u>normal! g_v^<cr>", { desc = "general Inner line object", silent = true })
+map("o", "al", ":<c-u>normal! $v0<cr>", { desc = "general Outer line object", silent = true })
+map("o", '"', ':<c-u>normal! vi"<cr>', { desc = "general Inner quote object", silent = true })
+map("o", "'", ":<c-u>normal! vi'<cr>", { desc = "general Inner quote object", silent = true })
+map("o", "`", ":<c-u>normal! vi`<cr>", { desc = "general Inner quote object", silent = true })
+map("o", "]", ":<c-u>normal! vi]<cr>", { desc = "general Inner brackets object", silent = true })
+map("o", "}", ":<c-u>normal! vi}<cr>", { desc = "general Inner brackets object", silent = true })
+map("o", ")", ":<c-u>normal! vi)<cr>", { desc = "general Inner brackets object", silent = true })
 
-M.tabufline = {
-  plugin = true,
+-- NvimTree mappings
+map("n", "<C-b>", "<cmd> NvimTreeToggle <CR>", { desc = "nvimtree Toggle nvimtree" })
+lazy.nvimtree = function(args)
+  map("n", "ga", require("configs.nvimtree").git_add, { buffer = args.buf, desc = "nvimtree Git Add" })
+end
 
-  n = {
-    -- close buffer + hide terminal buffer
-    ["<A-w>"] = {
-      function()
-        require("nvchad.tabufline").close_buffer()
-      end,
-      "Close buffer",
-    },
-    -- cycle through buffers
-    ["]t"] = {
-      function()
-        require("nvchad.tabufline").tabuflineNext()
-      end,
-      "Goto next buffer",
-    },
+-- Telescope mappings
+map("n", "<C-S-p>", "<cmd> Telescope commands <CR>", { desc = "telescope Open commands panel" })
+map("n", "<C-p>", "<cmd> Telescope find_files hidden=true <CR>", { desc = "telescope Find files" })
+map("n", "<C-f>", "<cmd> Telescope current_buffer_fuzzy_find <CR>", { desc = "telescope Find in current buffer" })
+map("n", "<C-t>", "<cmd> Telescope treesitter <CR>", { desc = "telescope Find symbols" })
+map("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "telescope Git commits" })
+map("n", "<leader>tm", "<cmd> Telescope marks <CR>", { desc = "telescope Bookmarks" })
 
-    ["[t"] = {
-      function()
-        require("nvchad.tabufline").tabuflinePrev()
-      end,
-      "Goto prev buffer",
-    },
-  },
-}
+-- Tabufline mappings
+map("n", "<A-w>", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "tabufline Close buffer" })
+map("n", "]t", function()
+  require("nvchad.tabufline").tabuflineNext()
+end, { desc = "tabufline Goto next buffer" })
+map("n", "[t", function()
+  require("nvchad.tabufline").tabuflinePrev()
+end, { desc = "tabufline Goto prev buffer" })
 
-M.lspconfig = {
-  plugin = true,
-  n = {
-    ["<leader>d"] = {
-      function()
-        vim.diagnostic.open_float { border = "rounded" }
-      end,
-      "Floating diagnostic",
-    },
-    ["<leader>lf"] = {
-      function()
-        vim.lsp.buf.format { async = true }
-      end,
-      "LSP formatting",
-    },
-    ["<leader>ll"] = {
-      function()
-        vim.diagnostic.setloclist()
-      end,
-      "Diagnostic setloclist",
-    },
-    ["<leader>r"] = {
-      function()
-        require("nvchad.renamer").open()
-      end,
-      "LSP rename",
-    },
+-- LSPConfig mappings
+lazy.lspconfig = function(client, bufnr)
+  local function opts(desc)
+    return { buffer = bufnr, desc = "LSP " .. desc }
+  end
+  -- Change lspconfig shortcuts to <leader>l*
+  nomap({ "n", "v" }, "<leader>ca", opts "code action") -- LSP code action
+  nomap("n", "<leader>ra", opts "rename") -- renamer
+  -- Set new shortcuts
+  map("n", "<leader>d", function()
+    vim.diagnostic.open_float { border = "rounded" }
+  end, opts "diagnostic")
+  map("n", "<leader>lf", function()
+    vim.lsp.buf.format { async = true }
+  end, opts "format")
+  map("n", "<leader>ll", function()
+    vim.diagnostic.setloclist()
+  end, opts "Diagnostic setloclist")
+  map("n", "<leader>r", function()
+    require("nvchad.lsp.renamer").open()
+  end, opts "rename")
+  map({ "n", "v" }, "<leader>a", function()
+    vim.lsp.buf.code_action()
+  end, opts "code action")
+end
 
-    ["<leader>a"] = {
-      function()
-        vim.lsp.buf.code_action()
-      end,
-      "LSP code action",
-    },
-  },
-  v = {
-    ["<leader>a"] = {
-      function()
-        vim.lsp.buf.code_action()
-      end,
-      "LSP code action",
-    },
-  },
-}
+-- Quickfix mappings
+lazy.quickfix = function(args)
+  map("n", "<CR>", "<CR>:cclose<CR>", { desc = "Quickfix Close", buffer = true, silent = true, nowait = true })
+  map("n", "q", ":cclose<CR>", { desc = "Quickfix Close", buffer = true, silent = true, nowait = true })
+end
 
-M.nvterm = {
-  plugin = true,
-  t = {
-    ["<C-`>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "Toggle terminal",
-    },
-  },
-  n = {
-    ["<C-`>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "Toggle terminal",
-    },
-  },
-}
+-- Terminal mappings
+map({ "n", "t" }, "<C-`>", function()
+  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+end, { desc = "terminal Toggle terminal" })
 
-M.ctrlsf = {
-  plugin = true,
-  n = {
-    ["<C-S-f>"] = { "<Esc> :CtrlSF ", "Begin find in files" },
-    ["<leader>tf"] = { "<cmd> CtrlSFToggle <CR>", "Toggle CtrlSF Window" },
-  },
-}
+lazy.terminal = function(args)
+  -- close terminal
+  vim.keymap.set("n", "<C-x>", function()
+    require("nvchad.tabufline").close_buffer()
+  end, { buffer = args.buf, desc = "terminal Close terminal" })
+end
 
-M.markdownpreview = {
-  plugin = true,
-  n = {
-    ["<leader>pm"] = { "<cmd> MarkdownPreview <CR>", "Preview Markdown" },
-  },
-}
+-- Cheatsheet mappings
+lazy.cheatsheet = function(args)
+  map("n", "q", "<C-w>q", { buffer = args.buff, desc = "cheatsheet Close cheat sheet window" })
+end
 
-M.gitsigns = {
-  plugin = true,
-  n = {
-    ["<leader>hr"] = {
-      function()
-        require("gitsigns").reset_hunk()
-      end,
-      "Reset hunk",
-    },
+-- CtrlSF mappings
+map("n", "<C-S-f>", "<Esc> :CtrlSF ", { desc = "ctrlsf Begin find in files" })
+map("n", "<leader>tf", "<cmd> CtrlSFToggle <CR>", { desc = "ctrlsf Toggle CtrlSF Window" })
 
-    ["<leader>hp"] = {
-      function()
-        require("gitsigns").preview_hunk()
-      end,
-      "Preview hunk",
-    },
-  },
-}
+-- MarkdownPreview mappings
+lazy.markdown_preview = function()
+  map("n", "<leader>pm", "<cmd> MarkdownPreview <CR>", { desc = "markdown_preview Preview Markdown" })
+end
 
-M.copilot = {
-  plugin = true,
-  i = {
-    ["<C-Space>"] = {
-      function()
-        vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
-      end,
-      "Copilot Accept",
-      { replace_keycodes = true, nowait = true, silent = true, expr = true, noremap = true },
-    },
-  },
-}
+-- Gitsigns mappings
+lazy.gitsigns = function(bufnr, gitsigns)
+  map("n", "<leader>hr", gitsigns.reset_hunk, { buffer = bufnr, desc = "gitsigns Reset hunk" })
+  map("n", "<leader>hp", gitsigns.preview_hunk, { buffer = bufnr, desc = "gitsigns Preview hunk" })
+  map("n", "<leader>gb", gitsigns.blame_line, { buffer = bufnr, desc = "gitsigns Blame Line" })
+end
 
-M.wiki = {
-  plugin = true,
-  n = {
-    ["<leader>wji"] = { ":WikiJournalIndex<CR>", "Insert Journal Index" },
-  },
-}
+-- Copilot mappings
+lazy.copilot = function()
+  map("i", "<C-Space>", function()
+    vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
+  end, { desc = "copilot Accept", replace_keycodes = true, nowait = true, silent = true, expr = true, noremap = true })
+end
 
--- more keybinds!
+-- Wiki mappings
+lazy.wiki = function()
+  map("n", "<leader>wji", ":WikiJournalIndex<CR>", { desc = "wiki Insert Journal Index" })
+end
 
-return M
+-- lazy mappings for lazy plugins
+return lazy

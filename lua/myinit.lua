@@ -12,24 +12,6 @@ vim.api.nvim_create_user_command("Q", "qa<bang>", {
   bang = true,
 })
 
--- Options
-local opt = vim.opt
--- enable update terminal title
-opt.title = true
--- enable blinking caret
-opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25-blinkon300-blinkoff200,r-cr-o:hor20"
-
--- indent and whitespaces
-opt.expandtab = false -- use tabs by default, to be overriden by .editorconfig
-opt.listchars = "tab:‣─,trail:~,extends:›,precedes:‹" -- space:·
-opt.list = true
--- show column limit bar when textwidth is set
-opt.colorcolumn = "+1"
--- do not use clipboard for register
-opt.clipboard = ""
--- add trailing newline
-opt.fixeol = true
-
 -- Auto commands
 local autocmd = vim.api.nvim_create_autocmd
 --
@@ -92,32 +74,16 @@ autocmd("FileType", {
 -- close quickfix menu after selecting choice
 autocmd("FileType", {
   pattern = { "qf" },
-  callback = function()
-    -- vim.cmd [[nnoremap <buffer> <CR> <CR>:cclose<CR>]]
+  callback = require("mappings").quickfix,
+})
 
-    vim.keymap.set(
-      "n",
-      "<CR>",
-      "<CR>:cclose<CR>",
-      { desc = "Quickfix: Close", buffer = true, noremap = true, silent = true, nowait = true }
-    )
-    vim.keymap.set(
-      "n",
-      "q",
-      ":cclose<CR>",
-      { desc = "Quickfix: Close", buffer = true, noremap = true, silent = true, nowait = true }
-    )
-  end,
+autocmd("TermOpen", {
+  callback = require("mappings").terminal,
 })
 
 autocmd("FileType", {
-  pattern = "terminal",
-  callback = function(args)
-    -- close terminal
-    vim.keymap.set("n", "<C-x>", function()
-      require("nvchad.tabufline").close_buffer()
-    end, { buffer = args.buf })
-  end,
+  pattern = "nvcheatsheet",
+  callback = require("mappings").cheatsheet,
 })
 
 vim.api.nvim_create_user_command("Indent4", function()
@@ -127,7 +93,7 @@ vim.api.nvim_create_user_command("Indent4", function()
 end, { desc = "Set indent width to 4 spaces" })
 
 vim.api.nvim_create_user_command("Indent2", function()
-  vim.bo.shiftwidth = 4
-  vim.bo.tabstop = 4
+  vim.bo.shiftwidth = 2
+  vim.bo.tabstop = 2
   vim.bo.expandtab = true
-end, { desc = "Set indent width to 4 spaces" })
+end, { desc = "Set indent width to 2 spaces" })
