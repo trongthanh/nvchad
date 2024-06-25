@@ -118,10 +118,6 @@ local plugins = {
   {
     "matze/vim-move",
     lazy = false,
-    config = function()
-      vim.g.ctrlsf_auto_focus = { at = "start" }
-      vim.g.ctrlsf_position = "right_local"
-    end,
   },
   {
     "windwp/nvim-ts-autotag",
@@ -151,6 +147,10 @@ local plugins = {
   {
     "dyng/ctrlsf.vim",
     lazy = false,
+    config = function()
+      vim.g.ctrlsf_auto_focus = { at = "start" }
+      vim.g.ctrlsf_position = "right_local"
+    end,
   },
   {
     "godlygeek/tabular",
@@ -171,9 +171,9 @@ local plugins = {
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
-    config = function()
-      require("mappings").markdown_preview()
-    end,
+    -- config = function()
+    -- require("mappings").markdown_preview()
+    -- end,
   },
   {
     "mattn/emmet-vim",

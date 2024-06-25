@@ -64,9 +64,10 @@ autocmd("TextYankPost", {
 -- change surround * to double ** in markdown
 autocmd("FileType", {
   pattern = "markdown",
-  callback = function()
+  callback = function(args)
     vim.g.surround_42 = "**\r**"
     vim.opt.spell = true -- enable spell check
+    require("mappings").markdown_preview(args)
   end,
   desc = "Change surround * to double ** in markdown",
 })

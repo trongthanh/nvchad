@@ -14,7 +14,7 @@ M.ui = {
     load_on_startup = false,
     header = {
       "       TRONGTHANH NVIM IDE        ",
-      "       Based on NvChad 2.0        ",
+      "       Based on NvChad 2.5        ",
       "   github.com/trongthanh/nvchad   ",
     },
     buttons = {

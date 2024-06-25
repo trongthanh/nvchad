@@ -14,6 +14,7 @@ nomap("n", "<leader>ds") -- loclist
 -- telescope
 nomap("n", "<leader>cm")
 nomap("n", "<leader>ma")
+nomap("n", "<leader>pt")
 -- new term
 nomap("n", "<leader>h")
 nomap("n", "<leader>v")
@@ -66,12 +67,13 @@ lazy.nvimtree_git_add = function(args, git_add)
 end
 
 -- Telescope mappings
-map("n", "<C-S-p>", "<cmd> Telescope commands <CR>", { desc = "telescope Open commands panel" })
-map("n", "<C-p>", "<cmd> Telescope find_files hidden=true <CR>", { desc = "telescope Find files" })
-map("n", "<C-f>", "<cmd> Telescope current_buffer_fuzzy_find <CR>", { desc = "telescope Find in current buffer" })
-map("n", "<C-t>", "<cmd> Telescope treesitter <CR>", { desc = "telescope Find symbols" })
-map("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "telescope Git commits" })
-map("n", "<leader>tm", "<cmd> Telescope marks <CR>", { desc = "telescope Bookmarks" })
+map("n", "<C-S-p>", "<cmd> Telescope commands <CR>", { desc = "Telescope Open commands panel" })
+map("n", "<C-p>", "<cmd> Telescope find_files hidden=true <CR>", { desc = "Telescope Find files" })
+map("n", "<C-f>", "<cmd> Telescope current_buffer_fuzzy_find <CR>", { desc = "Telescope Find in current buffer" })
+map("n", "<C-t>", "<cmd> Telescope treesitter <CR>", { desc = "Telescope Find symbols" })
+map("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "Telescope Git commits" })
+map("n", "<leader>tm", "<cmd> Telescope marks <CR>", { desc = "Telescope Bookmarks" })
+map("n", "<leader>ft", "<cmd>Telescope terms<CR>", { desc = "Telescope Pick hidden term" })
 
 -- Tabufline mappings
 map("n", "<leader>X", require("nvchad.tabufline").closeOtherBufs, { desc = "tabufline Close all other buffers" })
@@ -125,7 +127,7 @@ end
 
 -- Cheatsheet mappings
 lazy.cheatsheet = function(args)
-  map("n", "q", "<C-w>q", { buffer = args.buff, desc = "cheatsheet Close cheat sheet window" })
+  map("n", "q", "<C-w>q", { buffer = args.buf, desc = "cheatsheet Close cheat sheet window" })
 end
 
 -- CtrlSF mappings
@@ -133,8 +135,13 @@ map("n", "<C-S-f>", "<Esc> :CtrlSF ", { desc = "ctrlsf Begin find in files" })
 map("n", "<leader>tf", "<cmd> CtrlSFToggle <CR>", { desc = "ctrlsf Toggle CtrlSF Window" })
 
 -- MarkdownPreview mappings
-lazy.markdown_preview = function()
-  map("n", "<leader>pm", "<cmd> MarkdownPreview <CR>", { desc = "markdown_preview Preview Markdown" })
+lazy.markdown_preview = function(args)
+  map(
+    "n",
+    "<leader>pm",
+    "<cmd> MarkdownPreview <CR>",
+    { buffer = args.buf, desc = "markdown_preview Preview Markdown" }
+  )
 end
 
 -- Gitsigns mappings
@@ -156,5 +163,5 @@ lazy.wiki = function()
   map("n", "<leader>wji", ":WikiJournalIndex<CR>", { desc = "wiki Insert Journal Index" })
 end
 
--- lazy mappings for lazy plugins
+-- lazy mappings for lazy plugins & autocmds
 return lazy
