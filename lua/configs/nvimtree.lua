@@ -9,12 +9,6 @@ autocmd("BufEnter", {
   command = "stopinsert",
 })
 
-autocmd("FileType", {
-  group = augroup,
-  pattern = "NvimTree*",
-  callback = require("mappings").nvimtree,
-})
-
 -- extra action for nvimtree
 local git_add = function()
   local api = require "nvim-tree.api"
@@ -39,6 +33,13 @@ local git_add = function()
   api.tree.reload()
 end
 
+autocmd("FileType", {
+  group = augroup,
+  pattern = "NvimTree*",
+  callback = function(args)
+    require("mappings").nvimtree_git_add(args, git_add)
+  end,
+})
 -- git support in nvimtree
 local options = {
   view = {
@@ -83,5 +84,4 @@ local options = {
 
 return {
   opts = options,
-  git_add = git_add,
 }

@@ -27,7 +27,6 @@ map("n", "<C-A-z>", "<cmd> set wrap! <CR>", { desc = "general Toggle soft wrap" 
 map("n", "<C-S-a>", "ggVG", { desc = "general Select all" })
 map("n", "<C-S-c>", "<cmd> %y+ <CR>", { desc = "general Copy whole file to clipboard" })
 map("n", "<C-c>", '^vg_"+y', { desc = "general Copy current inner line to clipboard", noremap = true, silent = true })
-map("n", "<leader>X", "<cmd> %bd <CR>", { desc = "general Close all (unedited) buffers" })
 map("n", "<leader>cw", "g<C-g>", { desc = "general Count words in buffer" })
 map("n", "<leader>gd", ":DiffviewOpen<CR>", { desc = "general DiffviewOpen" })
 map("n", "<leader>gg", ":LazyGit<CR>", { desc = "general LazyGit" })
@@ -62,8 +61,8 @@ map("o", ")", ":<c-u>normal! vi)<cr>", { desc = "general Inner brackets object",
 
 -- NvimTree mappings
 map("n", "<C-b>", "<cmd> NvimTreeToggle <CR>", { desc = "nvimtree Toggle nvimtree" })
-lazy.nvimtree = function(args)
-  map("n", "ga", require("configs.nvimtree").git_add, { buffer = args.buf, desc = "nvimtree Git Add" })
+lazy.nvimtree_git_add = function(args, git_add)
+  map("n", "ga", git_add, { buffer = args.buf, desc = "nvimtree Git Add" })
 end
 
 -- Telescope mappings
@@ -75,9 +74,10 @@ map("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "telescope G
 map("n", "<leader>tm", "<cmd> Telescope marks <CR>", { desc = "telescope Bookmarks" })
 
 -- Tabufline mappings
+map("n", "<leader>X", require("nvchad.tabufline").closeOtherBufs, { desc = "tabufline Close all other buffers" })
 map("n", "<A-w>", require("nvchad.tabufline").close_buffer, { desc = "tabufline Close buffer" })
-map("n", "]t", require("nvchad.tabufline").tabuflineNext, { desc = "tabufline Goto next buffer" })
-map("n", "[t", require("nvchad.tabufline").tabuflinePrev, { desc = "tabufline Goto prev buffer" })
+map("n", "]t", require("nvchad.tabufline").next, { desc = "tabufline Goto next buffer" })
+map("n", "[t", require("nvchad.tabufline").prev, { desc = "tabufline Goto prev buffer" })
 
 -- LSPConfig mappings
 lazy.lspconfig = function(client, bufnr)
