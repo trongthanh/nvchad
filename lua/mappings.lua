@@ -130,6 +130,7 @@ map({ "n" }, "<C-`>", function()
   if term_info and term_info.buf and vim.fn.bufwinid(term_info.buf) ~= -1 then
     -- Focus the existing terminal window
     vim.api.nvim_set_current_win(vim.fn.bufwinid(term_info.buf))
+    vim.cmd "startinsert"
   else
     -- Toggle the terminal as usual
     term.toggle { pos = "sp", id = term_id }
@@ -168,6 +169,9 @@ end
 lazy.gitsigns = function(bufnr, gitsigns)
   map("n", "<leader>hr", gitsigns.reset_hunk, { buffer = bufnr, desc = "gitsigns Reset hunk" })
   map("n", "<leader>hp", gitsigns.preview_hunk, { buffer = bufnr, desc = "gitsigns Preview hunk" })
+  map("n", "<leader>hn", gitsigns.next_hunk, { buffer = bufnr, desc = "gitsigns Next hunk" })
+  map("n", "<leader>hb", gitsigns.prev_hunk, { buffer = bufnr, desc = "gitsigns Prev hunk" })
+  map("n", "<leader>hs", gitsigns.select_hunk, { buffer = bufnr, desc = "gitsigns Select hunk" })
   map("n", "<leader>gb", gitsigns.blame_line, { buffer = bufnr, desc = "gitsigns Blame Line" })
 end
 
