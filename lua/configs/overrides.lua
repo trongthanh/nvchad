@@ -64,8 +64,8 @@ M.gitsigns = {
   current_line_blame = true,
   current_line_blame_opts = {
     -- we use statusline
-    virt_text = true,
-    delay = 100,
+    virt_text = false,
+    delay = 0,
     virt_text_pos = "right_align",
   },
   current_line_blame_formatter = " <author>, <author_time:%R>",

@@ -33,17 +33,15 @@ M.ui = {
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
     separator_style = "default",
-    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor", "loc" },
+    order = { "mode", "file", "git", "blame", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor", "loc" },
     modules = {
       -- see https://nvchad.com/docs/config/nvchad_ui#override_statusline_modules
       -- display line & column number
       loc = "%l:%c",
-      -- below to display gitblame in statusline, but it's laggy due to async call
-      -- blame = function()
-      --   if vim.b.gitsigns_blame_line then
-      --     return vim.b.gitsigns_blame_line
-      --   end
-      -- end
+      -- display gitblame in statusline, note that it's laggy due to blame is async
+      blame = function()
+        return vim.b.gitsigns_blame_line or nil
+      end,
     },
   },
 }
