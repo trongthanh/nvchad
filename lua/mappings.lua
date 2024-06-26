@@ -114,9 +114,29 @@ lazy.quickfix = function(args)
 end
 
 -- Terminal mappings
-map({ "n", "t" }, "<C-`>", function()
-  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
-end, { desc = "terminal Toggle terminal" })
+map({ "n" }, "<C-`>", function()
+  local term = require "nvchad.term"
+  local nvchad_terms = vim.g.nvchad_terms
+  local term_id = "htoggleTerm"
+  local term_info
+
+  for _, opts in pairs(nvchad_terms) do
+    if opts.id == term_id then
+      term_info = opts
+    end
+  end
+
+  -- Check if the terminal buffer is already open in another window
+  if term_info and term_info.buf and vim.fn.bufwinid(term_info.buf) ~= -1 then
+    -- Focus the existing terminal window
+    vim.api.nvim_set_current_win(vim.fn.bufwinid(term_info.buf))
+  else
+    -- Toggle the terminal as usual
+    term.toggle { pos = "sp", id = term_id }
+  end
+end, { desc = "terminal Toggle or Focus terminal" })
+
+map({ "t" }, "<C-`>", "<C-\\><C-n><C-w>W", { desc = "terminal Blur terminal" })
 
 lazy.terminal = function(args)
   -- close terminal
