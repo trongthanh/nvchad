@@ -6,17 +6,25 @@ local M = {}
 
 ---@type Base46HLGroupsList
 M.override = {
+  ["@comment"] = {
+    italic = true,
+  },
   Comment = {
     italic = true,
   },
   Normal = {
+    -- darken background
     bg = { "black", -3 },
   },
+  -- nvimtree
+  NvimTreeOpenedFolderName = { bold = true },
+  NvimTreeGitDirty = { fg = "yellow" },
+  NvimTreeGitNew = { fg = "green" },
+  NvimTreeSpecialFile = { fg = "cyan" },
 }
 
----@type HLTable
-M.add = {
-  NvimTreeOpenedFolderName = { fg = "green", bold = true },
-}
+--- @type HLTable
+--- For new highlight groups not in NvChad/base46 repo
+M.add = {}
 
 return M

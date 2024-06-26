@@ -1,8 +1,8 @@
----@type ChadrcConfig
-local M = {}
-
 -- Path to overriding theme and highlights files
 local highlights = require "highlights"
+
+---@type ChadrcConfig
+local M = {}
 
 M.ui = {
   theme = "oceanic-next",
@@ -10,6 +10,7 @@ M.ui = {
 
   hl_override = highlights.override,
   hl_add = highlights.add,
+
   nvdash = {
     load_on_startup = false,
     header = {
