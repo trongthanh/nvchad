@@ -1,6 +1,6 @@
 -- Path to overriding theme and highlights files
 local highlights = require "highlights"
-
+local blame_deferred = false
 ---@type ChadrcConfig
 local M = {}
 
@@ -38,9 +38,17 @@ M.ui = {
       -- see https://nvchad.com/docs/config/nvchad_ui#override_statusline_modules
       -- display line & column number
       loc = "%l:%c",
-      -- display gitblame in statusline, note that it's laggy due to blame is async
+      -- display gitblame in statusline, the defer_fn is necessary due to blame is async
       blame = function()
-        return vim.b.gitsigns_blame_line or nil
+        if not blame_deferred then
+          vim.defer_fn(function()
+            blame_deferred = true
+            vim.cmd "redrawstatus"
+          end, 200)
+          return vim.b.gitsigns_blame_line or ""
+        end
+        blame_deferred = false
+        return vim.b.gitsigns_blame_line or ""
       end,
     },
   },
