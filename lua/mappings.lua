@@ -1,3 +1,4 @@
+-- nvchad mappings: https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/mappings.lua
 require "nvchad.mappings"
 
 local map = vim.keymap.set
@@ -5,8 +6,6 @@ local nomap = vim.keymap.del
 local lazy = {}
 
 -- Disabled mappings
--- reserve this shortcut for vim-visual-multi
-nomap("n", "<C-n>")
 nomap("n", "<leader>n") -- line number
 nomap("n", "<leader>rn") -- relative number
 nomap("n", "<leader>fm") -- conform format
@@ -88,8 +87,10 @@ lazy.lspconfig = function(client, bufnr)
     return { buffer = bufnr, desc = "LSP " .. desc }
   end
   -- Change lspconfig shortcuts to <leader>l*
-  nomap({ "n", "v" }, "<leader>ca", opts "code action") -- LSP code action
-  nomap("n", "<leader>ra", opts "rename") -- renamer
+  nomap({ "n", "v" }, "<leader>ca", opts "code action")
+  nomap("n", "<leader>ra", opts "renamer")
+  nomap("n", "<leader>sh", opts "signature help")
+
   -- Set new shortcuts
   map("n", "<leader>d", function()
     vim.diagnostic.open_float { border = "rounded" }
@@ -100,6 +101,9 @@ lazy.lspconfig = function(client, bufnr)
   map("n", "<leader>ll", function()
     vim.diagnostic.setloclist()
   end, opts "Diagnostic setloclist")
+  map("n", "<leader>ls", function()
+    vim.lsp.buf.signature_help()
+  end, opts "signature help")
   map("n", "<leader>r", function()
     require "nvchad.lsp.renamer"()
   end, opts "rename")
