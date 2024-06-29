@@ -17,6 +17,7 @@ local options = {
     yaml = { "prettierd" },
     graphql = { "prettierd" },
 
+    -- lua = { "lsp" },
     lua = { "stylua" },
 
     go = { "gofmt" },
