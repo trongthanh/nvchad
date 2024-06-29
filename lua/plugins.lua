@@ -38,7 +38,7 @@ local plugins = {
       -- scrollbar
       {
         "petertriho/nvim-scrollbar",
-        lazy = false,
+        -- lazy = false,
         opts = overrides.scrollbar,
         config = function(_, opts)
           require("scrollbar").setup(opts)
@@ -46,15 +46,8 @@ local plugins = {
       },
       -- not related, but make use of the gitsigns lazy loading
       {
-        "kdheepak/lazygit.nvim",
-        -- optional for floating window border decoration
-        dependencies = {
-          "nvim-lua/plenary.nvim",
-        },
-      },
-      {
         "sindrets/diffview.nvim",
-        lazy = false,
+        -- lazy = false,
         config = function()
           require("diffview").setup()
         end,
@@ -66,6 +59,20 @@ local plugins = {
       require("gitsigns").setup(opts)
       require("scrollbar.handlers.gitsigns").setup()
     end,
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
   },
   -- override plugin configs
   {
@@ -171,9 +178,6 @@ local plugins = {
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
-    -- config = function()
-    -- require("mappings").markdown_preview()
-    -- end,
   },
   {
     "mattn/emmet-vim",
@@ -215,7 +219,6 @@ local plugins = {
         ["<plug>(wiki-journal-prev)"] = "[w",
         ["<plug>(wiki-journal-next)"] = "]w",
       }
-      -- require("core.utils").load_mappings "wiki"
     end,
   },
   {
