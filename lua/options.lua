@@ -17,3 +17,5 @@ opt.colorcolumn = "+1"
 opt.clipboard = ""
 -- add trailing newline
 opt.fixeol = true
+-- scroll offset
+opt.scrolloff = 5
