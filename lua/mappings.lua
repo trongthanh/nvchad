@@ -74,6 +74,7 @@ map("n", "<C-t>", "<cmd> Telescope treesitter <CR>", { desc = "Telescope Find sy
 map("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "Telescope Git commits" })
 map("n", "<leader>tm", "<cmd> Telescope marks <CR>", { desc = "Telescope Bookmarks" })
 map("n", "<leader>ft", "<cmd>Telescope terms<CR>", { desc = "Telescope Pick hidden term" })
+map("n", "<leader>fd", "<cmd> TodoTelescope <CR>", { desc = "Telescope Find TOḎOs" })
 
 -- Tabufline mappings
 map("n", "<leader>X", require("nvchad.tabufline").closeOtherBufs, { desc = "tabufline Close all other buffers" })

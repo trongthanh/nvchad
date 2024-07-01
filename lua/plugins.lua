@@ -96,6 +96,7 @@ local plugins = {
 
   -- Install a plugin
   {
+
     "max397574/better-escape.nvim",
     event = "InsertEnter",
     config = function()
@@ -114,7 +115,7 @@ local plugins = {
   -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
   {
     "mg979/vim-visual-multi",
-    lazy = false,
+    event = "BufEnter",
   },
   -- surround text ysiw" cs'` ysiw)
   {
@@ -182,6 +183,12 @@ local plugins = {
   {
     "mattn/emmet-vim",
     ft = { "html", "xml" },
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {}, -- must provide empty opts to enable lazy loading
   },
   {
     "github/copilot.vim",
