@@ -16,6 +16,10 @@ M.override = {
     -- darken background
     bg = { "black", -3 },
   },
+  Visual = {
+    -- make visual selection more readable at comments
+    bg = "one_bg2",
+  },
   -- nvimtree
   NvimTreeOpenedFolderName = { bold = true },
   NvimTreeGitDirty = { fg = "yellow" },
