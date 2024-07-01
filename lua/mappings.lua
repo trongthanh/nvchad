@@ -71,9 +71,9 @@ map("n", "<C-S-p>", "<cmd> Telescope commands <CR>", { desc = "Telescope Open co
 map("n", "<C-p>", "<cmd> Telescope find_files hidden=true <CR>", { desc = "Telescope Find files" })
 map("n", "<C-f>", "<cmd> Telescope current_buffer_fuzzy_find <CR>", { desc = "Telescope Find in current buffer" })
 map("n", "<C-t>", "<cmd> Telescope treesitter <CR>", { desc = "Telescope Find symbols" })
-map("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "Telescope Git commits" })
-map("n", "<leader>tm", "<cmd> Telescope marks <CR>", { desc = "Telescope Bookmarks" })
-map("n", "<leader>ft", "<cmd>Telescope terms<CR>", { desc = "Telescope Pick hidden term" })
+map("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "Telescope Git čommits" })
+map("n", "<leader>fm", "<cmd> Telescope marks <CR>", { desc = "Telescope Bookṃarks" })
+map("n", "<leader>ft", "<cmd> Telescope terms <CR>", { desc = "Telescope Pick hidden ṯerm" })
 map("n", "<leader>fd", "<cmd> TodoTelescope <CR>", { desc = "Telescope Find TOḎOs" })
 
 -- Tabufline mappings
