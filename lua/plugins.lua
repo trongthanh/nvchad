@@ -153,6 +153,11 @@ local plugins = {
     end,
   },
   {
+    "folke/ts-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
+  },
+  {
     "dyng/ctrlsf.vim",
     lazy = false,
     config = function()
