@@ -220,6 +220,9 @@ local plugins = {
   {
     "SidOfc/mkdx",
     ft = { "markdown", "mermaid" },
+    init = function()
+      vim.g["mkdx#settings"] = { insert_indent_mappings = 1, tab = { enable = 0 } }
+    end,
   },
   {
     "lervag/wiki.vim",
