@@ -13,14 +13,14 @@ end
 -- if you just want default config for the servers then put them in a table
 local servers = {
   "html",
-  -- "cssls",
+  "cssls",
   "tsserver",
   "eslint",
   "stylelint_lsp",
   "jsonls",
-  -- "custom_elements_ls",
   "gopls",
-  "tailwindcss",
+  -- "custom_elements_ls",
+  -- "tailwindcss",
 }
 
 for _, lsp in ipairs(servers) do

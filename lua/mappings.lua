@@ -77,7 +77,8 @@ map("n", "<leader>ft", "<cmd> Telescope terms <CR>", { desc = "Telescope Pick hi
 map("n", "<leader>fd", "<cmd> TodoTelescope <CR>", { desc = "Telescope Find TOḎOs" })
 
 -- Tabufline mappings
-map("n", "<leader>X", require("nvchad.tabufline").closeOtherBufs, { desc = "tabufline Close all other buffers" })
+-- Note closeAllBufs(include_cur_buf)
+map("n", "<leader>X", require("nvchad.tabufline").closeAllBufs, { desc = "tabufline Close all other buffers" })
 map("n", "<A-w>", require("nvchad.tabufline").close_buffer, { desc = "tabufline Close buffer" })
 map("n", "]t", require("nvchad.tabufline").next, { desc = "tabufline Goto next buffer" })
 map("n", "[t", require("nvchad.tabufline").prev, { desc = "tabufline Goto prev buffer" })
