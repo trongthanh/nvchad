@@ -11,7 +11,7 @@ opt.exrc = true
 
 -- indent and whitespaces
 opt.expandtab = false -- use tabs by default, to be overriden by .editorconfig
-opt.listchars = "tab:‣─,trail:~,extends:›,precedes:‹" -- space:·
+opt.listchars = "tab:‣ ,trail:~,extends:›,precedes:‹" -- space:·
 opt.list = true
 -- show column limit bar when textwidth is set
 opt.colorcolumn = "+1"
