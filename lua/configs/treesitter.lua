@@ -112,6 +112,44 @@ local treesitterconfig = {
       -- and should return true or false
       include_surrounding_whitespace = false,
     },
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        ["]f"] = { query = "@function.outer", desc = "Next function start" },
+        ["]c"] = { query = "@class.outer", desc = "Next class start" },
+        --
+        -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
+        ["]l"] = { query = "@loop.*", desc = "Next loop" },
+        -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
+        --
+        -- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
+        -- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
+        ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+        ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
+      },
+      goto_next_end = {
+        ["]F"] = { query = "@function.outer", desc = "Next function end" },
+        ["]C"] = { query = "@class.outer", desc = "Next class end" },
+      },
+      goto_previous_start = {
+        ["[f"] = { query = "@function.outer", desc = "Previous function start" },
+        ["[c"] = { query = "@class.outer", desc = "Previous class start" },
+      },
+      goto_previous_end = {
+        ["[F"] = { query = "@function.outer", desc = "Previous function end" },
+        ["[C"] = { query = "@class.outer", desc = "Previous class end" },
+      },
+      -- Below will go to either the start or the end, whichever is closer.
+      -- Use if you want more granular movements
+      -- Make it even more gradual by adding multiple queries and regex.
+      goto_next = {
+        ["]i"] = { query = "@conditional.outer", desc = "Next condition start" },
+      },
+      goto_previous = {
+        ["[i"] = { query = "@conditional.outer", desc = "Previous condition start" },
+      },
+    },
   },
 }
 
