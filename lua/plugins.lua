@@ -86,6 +86,7 @@ local plugins = {
     init = function()
       -- use twig parser for nunjucks until native nunjucks parser is available
       vim.treesitter.language.register("twig", "nunjucks")
+      vim.treesitter.language.register("glimmer", "handlebars")
     end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",

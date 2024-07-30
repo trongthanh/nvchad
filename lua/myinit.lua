@@ -4,6 +4,7 @@ vim.filetype.add {
   extension = {
     mdx = "markdown", -- map mdx to markdown, until native support
     njk = "nunjucks", -- nunjucks is registered in treesitter as twig
+    hbs = "handlebars", -- actual glimmer
   },
 }
 
