@@ -5,12 +5,6 @@ local blame_deferred = false
 local M = {}
 
 M.ui = {
-  theme = "oceanic-next",
-  theme_toggle = { "oceanic-next", "one_light" },
-
-  hl_override = highlights.override,
-  hl_add = highlights.add,
-
   nvdash = {
     load_on_startup = false,
     header = {
@@ -52,6 +46,14 @@ M.ui = {
       end,
     },
   },
+}
+
+M.base46 = {
+  theme = "chadracula",
+  theme_toggle = { "chadracula", "one_light" },
+
+  hl_override = highlights.override,
+  hl_add = highlights.add,
 }
 
 return M

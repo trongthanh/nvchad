@@ -18,7 +18,7 @@ M.override = {
   },
   Visual = {
     -- make visual selection more readable at comments
-    bg = "one_bg2",
+    bg = { "one_bg2", -3 },
   },
   -- nvimtree
   NvimTreeOpenedFolderName = { bold = true },
