@@ -41,12 +41,12 @@ map("v", "<C-h>", ":s/\\%V", { desc = "general Start search and replace within s
 map("v", "<C-c>", '"+y', { desc = "general Copy selection to clipboard" })
 
 -- Text objects
-map("v", "'", "i'", { desc = "general Select inner quotes shortcut" })
-map("v", '"', 'i"', { desc = "general Select inner quotes shortcut" })
-map("v", "`", "i`", { desc = "general Select inner quotes shortcut" })
-map("v", "]", "i]", { desc = "general Select inner brackets shortcut" })
-map("v", "}", "i}", { desc = "general Select inner brackets shortcut" })
-map("v", ")", "i)", { desc = "general Select inner brackets shortcut" })
+map("v", "'", "i'", { desc = "general Select inner quotes shortcut", noremap = true, silent = true })
+map("v", '"', 'i"', { desc = "general Select inner quotes shortcut", noremap = true, silent = true })
+map("v", "`", "i`", { desc = "general Select inner quotes shortcut", noremap = true, silent = true })
+map("v", "]", "i]", { desc = "general Select inner brackets shortcut", noremap = true, silent = true })
+map("v", "}", "i}", { desc = "general Select inner brackets shortcut", noremap = true, silent = true })
+map("v", ")", "i)", { desc = "general Select inner brackets shortcut", noremap = true, silent = true })
 
 map("x", "il", "g_o^", { desc = "general Inner line object", silent = true })
 map("x", "al", "$o0", { desc = "general Outer line object", silent = true })

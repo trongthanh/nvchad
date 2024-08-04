@@ -96,11 +96,11 @@ local treesitterconfig = {
       -- * method: eg 'v' or 'o'
       -- and should return the mode ('v', 'V', or '<c-v>') or a table
       -- mapping query_strings to modes.
-      selection_modes = {
-        ["@parameter.outer"] = "v", -- charwise
-        ["@function.outer"] = "V", -- linewise
-        ["@class.outer"] = "<c-v>", -- blockwise
-      },
+      -- selection_modes = {
+      --   ["@parameter.outer"] = "v", -- charwise
+      --   ["@function.outer"] = "V", -- linewise
+      --   ["@class.outer"] = "<c-v>", -- blockwise
+      -- },
       -- If you set this to `true` (default is `false`) then any textobject is
       -- extended to include preceding or succeeding whitespace. Succeeding
       -- whitespace has priority in order to act similarly to eg the built-in
