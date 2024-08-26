@@ -38,6 +38,7 @@ M.mason = {
     -- python
     -- "python-lsp-server",
     "pyright",
+    "black", -- python formatter
     -- yaml
     "yaml-language-server",
   },
