@@ -23,34 +23,27 @@ local plugins = {
     opts = overrides.telescope,
   },
   {
-
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
     dependencies = {
       { "f3fora/cmp-spell" },
     },
   },
+  {
+    "petertriho/nvim-scrollbar",
+    lazy = false,
+    opts = overrides.scrollbar,
+  },
   -- load git related plugin
   {
     "lewis6991/gitsigns.nvim",
     opts = overrides.gitsigns,
     dependencies = {
-      -- scrollbar
-      {
-        "petertriho/nvim-scrollbar",
-        -- lazy = false,
-        opts = overrides.scrollbar,
-        config = function(_, opts)
-          require("scrollbar").setup(opts)
-        end,
-      },
+      "petertriho/nvim-scrollbar",
       -- not related, but make use of the gitsigns lazy loading
       {
         "sindrets/diffview.nvim",
         -- lazy = false,
-        config = function()
-          require("diffview").setup()
-        end,
       },
     },
 
@@ -97,17 +90,23 @@ local plugins = {
     "nvim-tree/nvim-tree.lua",
     opts = require("configs.nvimtree").opts,
   },
-
-  -- Install a plugin
   {
-
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup()
-    end,
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "mfussenegger/nvim-dap",
+    },
   },
-
+  {
+    "mfussenegger/nvim-dap-python",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+    },
+    -- config = function()
+    -- customize debugpy location
+    -- require("dap-python").setup ".venv/bin/python"
+    -- end,
+  },
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
@@ -152,9 +151,7 @@ local plugins = {
       "handlebars",
       "hbs",
     },
-    config = function()
-      require("nvim-ts-autotag").setup()
-    end,
+    opts = {},
   },
   {
     "folke/ts-comments.nvim",
@@ -164,7 +161,7 @@ local plugins = {
   {
     "dyng/ctrlsf.vim",
     lazy = false,
-    config = function()
+    init = function()
       vim.g.ctrlsf_auto_focus = { at = "start" }
       vim.g.ctrlsf_position = "right_local"
     end,
@@ -176,9 +173,7 @@ local plugins = {
   {
     "chentoast/marks.nvim",
     lazy = false,
-    config = function()
-      require("marks").setup()
-    end,
+    opts = {},
   },
   {
     "iamcco/markdown-preview.nvim",
@@ -217,7 +212,7 @@ local plugins = {
   },
   {
     "ggandor/leap.nvim",
-    init = function()
+    config = function()
       require("leap").add_default_mappings()
     end,
   },
