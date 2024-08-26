@@ -45,7 +45,7 @@ local options = {
   view = {
     width = {
       min = 25,
-      max = 40,
+      max = "20%",
       padding = 1,
     },
     side = "left",

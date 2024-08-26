@@ -129,10 +129,34 @@ lspconfig["robotframework_ls"].setup {
   settings = settings,
 }
 
+------------------------------------------------------
+
+local diagnostics = {
+  BoldError = "",
+  Error = "",
+  BoldWarning = "",
+  Warning = "",
+  BoldInformation = "",
+  Information = "",
+  BoldQuestion = "",
+  Question = "",
+  BoldHint = "",
+  Hint = "󰌶",
+  Debug = "",
+  Trace = "✎",
+}
 -- [LSP] Change inline diagnostic text to hover popup
 vim.diagnostic.config {
   virtual_text = false,
-  signs = true,
+  -- signs = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = diagnostics.Error,
+      [vim.diagnostic.severity.WARN] = diagnostics.Warning,
+      [vim.diagnostic.severity.HINT] = diagnostics.Hint,
+      [vim.diagnostic.severity.INFO] = diagnostics.Information,
+    },
+  },
   underline = true,
   update_in_insert = false,
   severity_sort = false,

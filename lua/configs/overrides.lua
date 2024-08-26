@@ -111,6 +111,18 @@ M.telescope = {
 }
 
 M.scrollbar = {
+  excluded_buftypes = {
+    "terminal",
+    "nofile",
+  },
+  excluded_filetypes = {
+    "cmp_docs",
+    "cmp_menu",
+    "noice",
+    "prompt",
+    "TelescopePrompt",
+    "NVimTree",
+  },
   marks = {
     Search = { color = "#ff9e64" },
     Error = { color = "#db4b4b" },

@@ -39,6 +39,13 @@ map("n", "<leader>q", "<C-w>q", { desc = "general Close (split) window" })
 map("v", "<C-f>", 'y<ESC>/<c-r>"<CR>', { desc = "general Search current selection" })
 map("v", "<C-h>", ":s/\\%V", { desc = "general Start search and replace within selection" })
 map("v", "<C-c>", '"+y', { desc = "general Copy selection to clipboard" })
+-- homemade block comment at selection
+map(
+  "v",
+  "/",
+  "<Esc>`>a */<Esc>`<i/* <Esc>",
+  { desc = "comment Wrap selection in block comment /* */ ", noremap = true, silent = true }
+)
 
 -- Text objects
 map("v", "'", "i'", { desc = "general Select inner quotes shortcut", noremap = true, silent = true })
