@@ -39,7 +39,6 @@ local plugins = {
     "lewis6991/gitsigns.nvim",
     opts = overrides.gitsigns,
     dependencies = {
-      "petertriho/nvim-scrollbar",
       -- not related, but make use of the gitsigns lazy loading
       {
         "sindrets/diffview.nvim",
@@ -212,7 +211,7 @@ local plugins = {
   },
   {
     "ggandor/leap.nvim",
-    config = function()
+    init = function()
       require("leap").add_default_mappings()
     end,
   },
