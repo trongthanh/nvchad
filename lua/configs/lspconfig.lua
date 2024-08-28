@@ -14,8 +14,8 @@ end
 local servers = {
   "html",
   "cssls",
-  "tsserver",
   "eslint",
+  "tsserver",
   "stylelint_lsp",
   "jsonls",
   "gopls",
@@ -159,7 +159,7 @@ vim.diagnostic.config {
   },
   underline = true,
   update_in_insert = false,
-  severity_sort = false,
+  severity_sort = true,
 }
 
 -- Open diganostic when hover on error words
