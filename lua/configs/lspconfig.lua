@@ -15,7 +15,7 @@ local servers = {
   "html",
   "cssls",
   "eslint",
-  "tsserver",
+  "ts_ls",
   "stylelint_lsp",
   "jsonls",
   "gopls",
