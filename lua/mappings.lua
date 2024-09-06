@@ -21,56 +21,63 @@ nomap("n", "<leader>v")
 -- General mappings
 map("n", "<A-q>", "<ESC>:qa<CR>", { desc = "general Quit vim", nowait = true })
 map("n", ";", ":", { desc = "general Enter command mode", nowait = true })
-map("i", "<C-A-t>", "<C-r>=strftime('%FT%T%z')<CR>", { desc = "general Insert ISO Time string" })
-map("n", "<C-A-t>", '"=strftime("%FT%T%z")<CR>P', { desc = "general Insert ISO Time string" })
+map("i", "<C-A-t>", "<C-r>=strftime('%FT%T%z')<CR>", { desc = "Insert ISO Time string" })
+map("n", "<C-A-t>", '"=strftime("%FT%T%z")<CR>P', { desc = "Insert ISO Time string" })
+map("i", "<C-A-d>", "<C-r>=strftime('%F')<CR>", { desc = "Insert ISO Date string" })
+map("n", "<C-A-d>", '"=strftime("%F")<CR>P', { desc = "Insert ISO Date string" })
 map("n", "<C-A-f>", ":%s/", { desc = "general Search and replace prompt" })
-map("n", "<C-A-z>", "<cmd> set wrap! <CR>", { desc = "general Toggle soft wrap" })
-map("n", "<C-S-a>", "ggVG", { desc = "general Select all" })
+map("n", "<C-A-z>", "<cmd> set wrap! <CR>", { desc = "Toggle soft wrap" })
+map("n", "<C-S-a>", "ggVG", { desc = "selection Select all" })
 map("n", "<C-S-c>", "<cmd> %y+ <CR>", { desc = "general Copy whole file to clipboard" })
 map("n", "<C-c>", '^vg_"+y', { desc = "general Copy current inner line to clipboard", noremap = true, silent = true })
 map("n", "<leader>cw", "g<C-g>", { desc = "general Count words in buffer" })
-map("n", "<leader>gd", ":DiffviewOpen<CR>", { desc = "general DiffviewOpen" })
-map("n", "<leader>gg", ":LazyGit<CR>", { desc = "general LazyGit" })
-map("n", "<leader>gx", ":DiffviewClose<CR>", { desc = "general DiffviewClose" })
-map("n", "<leader>nn", "<cmd> set nu! <CR>", { desc = "general Toggle line number" })
-map("n", "<leader>nr", "<cmd> set rnu! <CR>", { desc = "general Toggle relative number" })
+map("n", "<leader>gd", ":DiffviewOpen<CR>", { desc = "git DiffviewOpen" })
+map("n", "<leader>gg", ":LazyGit<CR>", { desc = "git LazyGit" })
+map("n", "<leader>gx", ":DiffviewClose<CR>", { desc = "git DiffviewClose" })
+map("n", "<leader>nn", "<cmd> set nu! <CR>", { desc = "Toggle line number" })
+map("n", "<leader>nr", "<cmd> set rnu! <CR>", { desc = "Toggle relative number" })
 map("n", "<leader>q", "<C-w>q", { desc = "general Close (split) window" })
 
-map("v", "<C-f>", 'y<ESC>/<c-r>"<CR>', { desc = "general Search current selection" })
-map("v", "<C-h>", ":s/\\%V", { desc = "general Start search and replace within selection" })
-map("v", "<C-c>", '"+y', { desc = "general Copy selection to clipboard" })
+map("v", "<C-f>", 'y<ESC>/<c-r>"<CR>', { desc = "selection Search current selection" })
+map("v", "<C-h>", ":s/\\%V", { desc = "selection Start search and replace within selection" })
+map("v", "<C-c>", '"+y', { desc = "selection Copy selection to clipboard" })
 -- homemade block comment at selection
 map(
   "v",
   "/",
   "<Esc>`>a */<Esc>`<i/* <Esc>",
-  { desc = "comment Wrap selection in block comment /* */ ", noremap = true, silent = true }
+  { desc = "selection Wrap selection in block comment /* */ ", noremap = true, silent = true }
 )
 
 -- Text objects
-map("v", "'", "i'", { desc = "general Select inner quotes shortcut", noremap = true, silent = true })
-map("v", '"', 'i"', { desc = "general Select inner quotes shortcut", noremap = true, silent = true })
-map("v", "`", "i`", { desc = "general Select inner quotes shortcut", noremap = true, silent = true })
-map("v", "]", "i]", { desc = "general Select inner brackets shortcut", noremap = true, silent = true })
-map("v", "}", "i}", { desc = "general Select inner brackets shortcut", noremap = true, silent = true })
-map("v", ")", "i)", { desc = "general Select inner brackets shortcut", noremap = true, silent = true })
+map("v", "'", "i'", { desc = "TextObject inner quotes", noremap = true, silent = true })
+map("v", '"', 'i"', { desc = "TextObject inner quotes", noremap = true, silent = true })
+map("v", "`", "i`", { desc = "TextObject inner quotes", noremap = true, silent = true })
+map("v", "]", "i]", { desc = "TextObject inner brackets", noremap = true, silent = true })
+map("v", "}", "i}", { desc = "TextObject inner brackets", noremap = true, silent = true })
+map("v", ")", "i)", { desc = "TextObject inner brackets", noremap = true, silent = true })
 
-map("x", "il", "g_o^", { desc = "general Inner line object", silent = true })
-map("x", "al", "$o0", { desc = "general Outer line object", silent = true })
+map("x", "il", "g_o^", { desc = "TextObject Inner line", silent = true })
+map("x", "al", "$o0", { desc = "TextObject Outer line", silent = true })
 
-map("o", "il", ":<c-u>normal! g_v^<cr>", { desc = "general Inner line object", silent = true })
-map("o", "al", ":<c-u>normal! $v0<cr>", { desc = "general Outer line object", silent = true })
-map("o", '"', ':<c-u>normal! vi"<cr>', { desc = "general Inner quote object", silent = true })
-map("o", "'", ":<c-u>normal! vi'<cr>", { desc = "general Inner quote object", silent = true })
-map("o", "`", ":<c-u>normal! vi`<cr>", { desc = "general Inner quote object", silent = true })
-map("o", "]", ":<c-u>normal! vi]<cr>", { desc = "general Inner brackets object", silent = true })
-map("o", "}", ":<c-u>normal! vi}<cr>", { desc = "general Inner brackets object", silent = true })
-map("o", ")", ":<c-u>normal! vi)<cr>", { desc = "general Inner brackets object", silent = true })
+map("o", "il", ":<c-u>normal! g_v^<cr>", { desc = "TextObject Inner line", silent = true })
+map("o", "al", ":<c-u>normal! $v0<cr>", { desc = "TextObject Outer line", silent = true })
+map("o", '"', ':<c-u>normal! vi"<cr>', { desc = "TextObject Inner quote", silent = true })
+map("o", "'", ":<c-u>normal! vi'<cr>", { desc = "TextObject Inner quote", silent = true })
+map("o", "`", ":<c-u>normal! vi`<cr>", { desc = "TextObject Inner quote", silent = true })
+map("o", "]", ":<c-u>normal! vi]<cr>", { desc = "TextObject Inner brackets", silent = true })
+map("o", "}", ":<c-u>normal! vi}<cr>", { desc = "TextObject Inner brackets", silent = true })
+map("o", ")", ":<c-u>normal! vi)<cr>", { desc = "TextObject Inner brackets", silent = true })
 
 -- NvimTree mappings
 map("n", "<C-b>", "<cmd> NvimTreeToggle <CR>", { desc = "nvimtree Toggle nvimtree" })
-lazy.nvimtree_git_add = function(args, git_add)
-  map("n", "ga", git_add, { buffer = args.buf, desc = "nvimtree Git Add" })
+lazy.nvimtree = function(bufnr, api, cmds)
+  local function opts(desc)
+    return { desc = "nvimtree " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+  map("n", "<leader>e", "<C-w>w", opts "Focus editor")
+  map("n", "?", api.tree.toggle_help, opts "Help")
+  map("n", "ga", cmds.git_add, opts "Git add current file")
 end
 
 -- Telescope mappings
@@ -181,12 +188,12 @@ end
 
 -- Gitsigns mappings
 lazy.gitsigns = function(bufnr, gitsigns)
-  map("n", "<leader>hr", gitsigns.reset_hunk, { buffer = bufnr, desc = "gitsigns Reset hunk" })
-  map("n", "<leader>hp", gitsigns.preview_hunk, { buffer = bufnr, desc = "gitsigns Preview hunk" })
-  map("n", "<leader>hn", gitsigns.next_hunk, { buffer = bufnr, desc = "gitsigns Next hunk" })
-  map("n", "<leader>hb", gitsigns.prev_hunk, { buffer = bufnr, desc = "gitsigns Prev hunk" })
-  map("n", "<leader>hs", gitsigns.select_hunk, { buffer = bufnr, desc = "gitsigns Select hunk" })
-  map("n", "<leader>gb", gitsigns.blame_line, { buffer = bufnr, desc = "gitsigns Blame Line" })
+  map("n", "<leader>hr", gitsigns.reset_hunk, { buffer = bufnr, desc = "git Reset hunk" })
+  map("n", "<leader>hp", gitsigns.preview_hunk, { buffer = bufnr, desc = "git Preview hunk" })
+  map("n", "<leader>hn", gitsigns.next_hunk, { buffer = bufnr, desc = "git Next hunk" })
+  map("n", "<leader>hb", gitsigns.prev_hunk, { buffer = bufnr, desc = "git Prev hunk" })
+  map("n", "<leader>hs", gitsigns.select_hunk, { buffer = bufnr, desc = "git Select hunk" })
+  map("n", "<leader>gb", gitsigns.blame_line, { buffer = bufnr, desc = "git Blame Line" })
 end
 
 -- Copilot mappings

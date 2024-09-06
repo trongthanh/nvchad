@@ -33,15 +33,16 @@ local git_add = function()
   api.tree.reload()
 end
 
-autocmd("FileType", {
-  group = augroup,
-  pattern = "NvimTree*",
-  callback = function(args)
-    require("mappings").nvimtree_git_add(args, git_add)
-  end,
-})
+local on_nvimtree_attach = function(bufnr)
+  local api = require "nvim-tree.api"
+  -- default mappings
+  api.config.mappings.default_on_attach(bufnr)
+  -- custom mappings centralized in mappings.lua
+  require("mappings").nvimtree(bufnr, api, { git_add = git_add })
+end
 -- git support in nvimtree
 local options = {
+  on_attach = on_nvimtree_attach,
   view = {
     width = {
       min = 25,
