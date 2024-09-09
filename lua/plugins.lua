@@ -5,8 +5,6 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      dofile(vim.g.base46_cache .. "lsp")
-      require "nvchad.lsp"
       require "configs.lspconfig"
     end, -- Override to setup mason-lspconfig
   },

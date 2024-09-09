@@ -1,8 +1,13 @@
+-- Load upstream defaults
+require("nvchad.configs.lspconfig").defaults()
+
+local lspconfig = require "lspconfig"
+
+---
+
 local nvchad_on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
-
-local lspconfig = require "lspconfig"
 
 local on_attach = function(client, bufnr)
   nvchad_on_attach(client, bufnr)
@@ -161,6 +166,14 @@ vim.diagnostic.config {
   update_in_insert = false,
   severity_sort = true,
 }
+
+-- Override the default border
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = "rounded"
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 -- Open diganostic when hover on error words
 vim.api.nvim_create_autocmd("CursorHold", {
