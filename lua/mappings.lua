@@ -173,7 +173,8 @@ lazy.cheatsheet = function(args)
 end
 
 -- CtrlSF mappings
-map("n", "<C-S-f>", "<Esc> :CtrlSF ", { desc = "ctrlsf Begin find in files" })
+map("n", "<C-S-f>", "<ESC>:CtrlSF ", { desc = "ctrlsf Begin find in files" })
+map("v", "<C-S-f>", 'y<ESC>:CtrlSF <c-r>"', { desc = "ctrlsf Find selection in files" })
 map("n", "<leader>tf", "<cmd> CtrlSFToggle <CR>", { desc = "ctrlsf Toggle CtrlSF Window" })
 
 -- MarkdownPreview mappings
