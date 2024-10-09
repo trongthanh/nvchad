@@ -75,6 +75,7 @@ local options = {
       "\\.linaria-cache",
       "\\.sass-cache",
       "__coverage__",
+      "__pycache__",
       "node_modules",
       "package-lock\\.json",
       "pnpm-lock\\.yaml",

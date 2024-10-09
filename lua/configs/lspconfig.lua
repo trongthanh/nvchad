@@ -113,12 +113,15 @@ lspconfig["pyright"].setup {
 }
 -- Robot Framework LSP OVERRIDE
 local virtualenv = os.getenv "VIRTUAL_ENV"
+local get_python_path = lspconfig.util.root_pattern "requirements.txt"
 local settings = {
   robot = {
     lint = {
+      enabled = true,
       robocop = {
         enabled = true,
       },
+      keywordResolvesToMultipleKeywords = false,
     },
   },
 }
@@ -126,6 +129,7 @@ if virtualenv then
   settings.robot.python = {
     executable = virtualenv .. "/bin/python",
   }
+  settings.robot.pythonpath = { get_python_path(virtualenv) }
 end
 lspconfig["robotframework_ls"].setup {
   on_attach = on_attach,
