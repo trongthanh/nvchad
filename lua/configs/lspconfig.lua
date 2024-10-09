@@ -136,44 +136,13 @@ lspconfig["robotframework_ls"].setup {
 
 ------------------------------------------------------
 
-local diagnostics = {
-  BoldError = "",
-  Error = "",
-  BoldWarning = "",
-  Warning = "",
-  BoldInformation = "",
-  Information = "",
-  BoldQuestion = "",
-  Question = "",
-  BoldHint = "",
-  Hint = "󰌶",
-  Debug = "",
-  Trace = "✎",
-}
 -- [LSP] Change inline diagnostic text to hover popup
 vim.diagnostic.config {
   virtual_text = false,
-  -- signs = true,
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = diagnostics.Error,
-      [vim.diagnostic.severity.WARN] = diagnostics.Warning,
-      [vim.diagnostic.severity.HINT] = diagnostics.Hint,
-      [vim.diagnostic.severity.INFO] = diagnostics.Information,
-    },
-  },
   underline = true,
   update_in_insert = false,
   severity_sort = true,
 }
-
--- Override the default border
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-  opts = opts or {}
-  opts.border = "rounded"
-  return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
 
 -- Open diganostic when hover on error words
 vim.api.nvim_create_autocmd("CursorHold", {
