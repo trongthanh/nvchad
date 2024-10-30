@@ -99,6 +99,9 @@ M.cmp = {
 
 M.telescope = {
   defaults = {
+    path_display = {
+      "smart",
+    },
     mappings = {
       i = { ["<Esc>"] = require("telescope.actions").close },
       n = {
