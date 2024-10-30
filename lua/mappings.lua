@@ -19,6 +19,8 @@ nomap("n", "<leader>h")
 nomap("n", "<leader>v")
 
 -- General mappings
+map("n", "q", "<Nop>") -- Disable macro recording at q
+map("n", "Q", "q", { desc = "general Enter macro recording (instead of q)", nowait = true })
 map("n", "<A-q>", "<ESC>:qa<CR>", { desc = "general Quit vim", nowait = true })
 map("n", ";", ":", { desc = "general Enter command mode", nowait = true })
 map("i", "<C-A-t>", "<C-r>=strftime('%FT%T%z')<CR>", { desc = "Insert ISO Time string" })
