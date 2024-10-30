@@ -46,6 +46,8 @@ M.mason = {
 
 M.cmp = {
   completion = {
+    -- delay completion in myinit.lua
+    autocomplete = false,
     -- added noselect so that I can <CR> if I don't want to accept any of the suggestions
     completeopt = "menu,menuone,noselect",
   },

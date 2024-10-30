@@ -99,3 +99,27 @@ vim.api.nvim_create_user_command("Indent2", function()
   vim.bo.tabstop = 2
   vim.bo.expandtab = true
 end, { desc = "Set indent width to 2 spaces" })
+
+-- delay cmp completion workaround
+-- taken from https://github.com/hrsh7th/nvim-cmp/issues/715
+
+local timer = nil
+local DELAY = 500
+autocmd({ "TextChangedI", "CmdlineChanged" }, {
+  pattern = "*",
+  callback = function()
+    if timer then
+      vim.loop.timer_stop(timer)
+      timer = nil
+    end
+
+    timer = vim.loop.new_timer()
+    timer:start(
+      DELAY,
+      0,
+      vim.schedule_wrap(function()
+        require("cmp").complete { reason = require("cmp").ContextReason.Auto }
+      end)
+    )
+  end,
+})
