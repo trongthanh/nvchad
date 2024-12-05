@@ -38,7 +38,12 @@ map("n", "<leader>gg", ":LazyGit<CR>", { desc = "git LazyGit" })
 map("n", "<leader>gx", ":DiffviewClose<CR>", { desc = "git DiffviewClose" })
 map("n", "<leader>nn", "<cmd> set nu! <CR>", { desc = "Toggle line number" })
 map("n", "<leader>nr", "<cmd> set rnu! <CR>", { desc = "Toggle relative number" })
-map("n", "<leader>q", "<C-w>q", { desc = "general Close (split) window" })
+-- map("n", "<leader>q", "<C-w>q", { desc = "general Close (split) window" })
+
+map("n", "<C-A-left>", "<C-w>h", { desc = "switch window left" })
+map("n", "<C-A-right>", "<C-w>l", { desc = "switch window right" })
+map("n", "<C-A-down>", "<C-w>j", { desc = "switch window down" })
+map("n", "<C-A-up>", "<C-w>k", { desc = "switch window up" })
 
 map("v", "<C-f>", 'y<ESC>/<c-r>"<CR>', { desc = "selection Search current selection" })
 map("v", "<C-h>", ":s/\\%V", { desc = "selection Start search and replace within selection" })
@@ -94,7 +99,9 @@ map("n", "<leader>fd", "<cmd> TodoTelescope <CR>", { desc = "Telescope Find TOá¸
 
 -- Tabufline mappings
 -- Note closeAllBufs(include_cur_buf)
-map("n", "<leader>X", require("nvchad.tabufline").closeAllBufs, { desc = "tabufline Close all other buffers" })
+map("n", "<leader>X", function()
+  require("nvchad.tabufline").closeAllBufs(false)
+end, { desc = "tabufline Close all other buffers" })
 map("n", "<A-w>", require("nvchad.tabufline").close_buffer, { desc = "tabufline Close buffer" })
 map("n", "]t", require("nvchad.tabufline").next, { desc = "tabufline Goto next buffer" })
 map("n", "[t", require("nvchad.tabufline").prev, { desc = "tabufline Goto prev buffer" })
@@ -125,13 +132,13 @@ lazy.lspconfig = function(client, bufnr)
   map("n", "<leader>r", function()
     require "nvchad.lsp.renamer"()
   end, opts "rename")
-  map({ "n", "v" }, "<leader>a", function()
+  map({ "n", "v" }, "<leader>la", function()
     vim.lsp.buf.code_action()
   end, opts "code action")
 end
 
 -- Quickfix mappings
-lazy.quickfix = function(args)
+lazy.quickfix = function()
   map("n", "<CR>", "<CR>:cclose<CR>", { desc = "Quickfix Close", buffer = true, silent = true, nowait = true })
   map("n", "q", ":cclose<CR>", { desc = "Quickfix Close", buffer = true, silent = true, nowait = true })
 end
