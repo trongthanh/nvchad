@@ -1,5 +1,17 @@
 local M = {}
 
+M.whichkey = {
+  triggers = {
+    { "<leader>", mode = "nxso" },
+    { "<C-w>", mode = "nxso" },
+    { "g", mode = "nxso" },
+    { "\\\\", mode = "nxso" },
+  },
+  defer = function(ctx)
+    return ctx.mode == "<C-V>"
+  end,
+}
+
 M.gitsigns = {
   current_line_blame = true,
   current_line_blame_opts = {

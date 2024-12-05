@@ -3,6 +3,16 @@ local overrides = require "configs.overrides"
 ---@type NvPluginSpec[]
 local plugins = {
   {
+    -- Override nvchad's to remove `v` `c` key
+    "folke/which-key.nvim",
+    keys = { "<leader>", "<c-w>", '"', "'", "`", "g" },
+    cmd = "WhichKey",
+    opts = function()
+      dofile(vim.g.base46_cache .. "whichkey")
+      return overrides.whichkey
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
