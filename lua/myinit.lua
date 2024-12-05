@@ -42,9 +42,9 @@ autocmd("VimEnter", {
     if directory then
       -- change to the directory
       vim.cmd.cd(data.file)
+      -- show nvim-tree initially
+      require("nvim-tree.api").tree.toggle { focus = false }
     end
-
-    require("nvim-tree.api").tree.toggle { focus = false }
 
     if no_name then
       vim.cmd "Nvdash"
