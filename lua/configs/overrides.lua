@@ -65,20 +65,30 @@ M.cmp = {
   },
 
   mapping = {
-    ["<CR>"] = require("cmp").mapping.confirm {
-      behavior = require("cmp").ConfirmBehavior.Insert,
-      select = false,
+    ["<CR>"] = require("cmp").mapping {
+      i = function(fallback)
+        local cmp = require "cmp"
+        if cmp.visible() and cmp.get_active_entry() then
+          cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+        else
+          fallback()
+        end
+      end,
+      s = require("cmp").mapping.confirm { select = true },
+      c = require("cmp").mapping.confirm { behavior = require("cmp").ConfirmBehavior.Replace, select = true },
     },
     ["<Down>"] = require("cmp").mapping(function(fallback)
-      if require("cmp").visible() then
-        require("cmp").select_next_item()
+      local cmp = require "cmp"
+      if cmp.visible() then
+        cmp.select_next_item()
       else
         fallback()
       end
     end, { "i", "s" }),
     ["<Up>"] = require("cmp").mapping(function(fallback)
-      if require("cmp").visible() then
-        require("cmp").select_prev_item()
+      local cmp = require "cmp"
+      if cmp.visible() and cmp.get_active_entry() then
+        cmp.select_prev_item()
       else
         fallback()
       end
@@ -147,6 +157,29 @@ M.scrollbar = {
     Info = { color = "#0db9d7" },
     Hint = { color = "#1abc9c" },
     Misc = { color = "#9d7cd8" },
+    -- these scrollbar marks often hide the last character of wrapped lines
+    GitAdd = { text = "" },
+    GitChange = { text = "" },
+    GitDelete = { text = "" },
+  },
+}
+
+M.avante = {
+  auto_suggestions_provider = "copilot",
+  provider = "copilot",
+  vendors = {
+    qwen = {
+      __inherited_from = "openai",
+      api_key_name = "DASHSCOPE_API_KEY",
+      endpoint = "https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions",
+      model = "qwen-coder-plus-latest",
+    },
+    ollama = {
+      __inherited_from = "openai",
+      api_key_name = "",
+      endpoint = "http://127.0.0.1:11434/v1",
+      model = "qwen2.5-coder",
+    },
   },
 }
 

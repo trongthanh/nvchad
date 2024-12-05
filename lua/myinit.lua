@@ -100,6 +100,11 @@ vim.api.nvim_create_user_command("Indent2", function()
   vim.bo.expandtab = true
 end, { desc = "Set indent width to 2 spaces" })
 
+vim.api.nvim_create_user_command("Tab4", function()
+  vim.bo.shiftwidth = 4
+  vim.bo.tabstop = 4
+  vim.bo.expandtab = false
+end, { desc = "Set indent width to 4-char tab" })
 -- delay cmp completion workaround
 -- taken from https://github.com/hrsh7th/nvim-cmp/issues/715
 
