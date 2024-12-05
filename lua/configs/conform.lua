@@ -16,12 +16,14 @@ local options = {
     vue = { "prettierd" },
     yaml = { "prettierd" },
     graphql = { "prettierd" },
+    svelte = { "prettierd" },
 
     -- lua = { "lsp" },
     lua = { "stylua" },
 
     go = { "gofmt" },
-    python = { "black" },
+
+    python = { "black" }, -- cannot use tabs, consider another formatter
   },
 
   format_on_save = function(bufnr)
