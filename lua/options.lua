@@ -13,6 +13,8 @@ opt.exrc = true
 opt.expandtab = false -- use tabs by default, to be overriden by .editorconfig
 opt.listchars = "tab:‣ ,trail:~,extends:›,precedes:‹" -- space:·
 opt.list = true
+-- lines and wrap
+opt.linebreak = true
 -- show column limit bar when textwidth is set
 opt.colorcolumn = "+1"
 -- do not use clipboard for register
