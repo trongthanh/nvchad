@@ -109,7 +109,7 @@ end, { desc = "Set indent width to 4-char tab" })
 -- taken from https://github.com/hrsh7th/nvim-cmp/issues/715
 
 local timer = nil
-local DELAY = 500
+local DELAY = 1000
 autocmd({ "TextChangedI", "CmdlineChanged" }, {
   pattern = "*",
   callback = function()

@@ -204,10 +204,12 @@ local plugins = {
   {
     "github/copilot.vim",
     lazy = false,
+    -- cmd = { "Copilot" },
+    -- event = "InsertEnter",
     init = function()
-      -- vim.g.copilot_node_command = "/usr/local/bin/node"
+      vim.g.copilot_node_command = "/opt/homebrew/bin/node"
       -- Mapping tab is already used by NvChad
-      -- vim.g.copilot_no_tab_map = true
+      vim.g.copilot_no_tab_map = true
       vim.g.copilot_assume_mapped = true
       -- vim.g.copilot_tab_fallback = ""
       -- The mapping is set to other key, see custom/lua/mappings
@@ -252,7 +254,7 @@ local plugins = {
     build = "make",
     -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
     dependencies = {
-      "stevearc/dressing.nvim",
+      -- "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,

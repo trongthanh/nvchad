@@ -208,9 +208,9 @@ end
 
 -- Copilot mappings
 lazy.copilot = function()
-  map("i", "<C-Space>", function()
+  map("i", "<M-Space>", function()
     vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
-  end, { desc = "copilot Accept", replace_keycodes = true, nowait = true, silent = true, expr = true, noremap = true })
+  end, { desc = "copilot Accept", replace_keycodes = false, nowait = true, silent = true, expr = true, noremap = true })
 end
 
 -- Wiki mappings

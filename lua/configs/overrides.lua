@@ -77,31 +77,31 @@ M.cmp = {
       s = require("cmp").mapping.confirm { select = true },
       c = require("cmp").mapping.confirm { behavior = require("cmp").ConfirmBehavior.Replace, select = true },
     },
-    ["<Down>"] = require("cmp").mapping(function(fallback)
-      local cmp = require "cmp"
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ["<Up>"] = require("cmp").mapping(function(fallback)
-      local cmp = require "cmp"
-      if cmp.visible() and cmp.get_active_entry() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-
-    -- disable tab so that copilot will work
-    ["<Tab>"] = function(callback)
-      callback()
-    end,
-
-    ["<S-Tab>"] = function(callback)
-      callback()
-    end,
+    -- ["<Down>"] = require("cmp").mapping(function(fallback)
+    --   local cmp = require "cmp"
+    --   if cmp.visible() then
+    --     cmp.select_next_item()
+    --   else
+    --     fallback()
+    --   end
+    -- end, { "i" }),
+    -- ["<Up>"] = require("cmp").mapping(function(fallback)
+    --   local cmp = require "cmp"
+    --   if cmp.visible() and cmp.get_active_entry() then
+    --     cmp.select_prev_item()
+    --   else
+    --     fallback()
+    --   end
+    -- end, { "i" }),
+    --
+    -- -- disable tab so that copilot will work
+    -- ["<Tab>"] = function(callback)
+    --   callback()
+    -- end,
+    --
+    -- ["<S-Tab>"] = function(callback)
+    --   callback()
+    -- end,
   },
   sources = {
     { name = "nvim_lsp" },

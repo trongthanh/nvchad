@@ -23,3 +23,5 @@ opt.clipboard = ""
 opt.fixeol = true
 -- scroll offset
 opt.scrolloff = 5
+-- for avante plugin: views can only be fully collapsed with the global statusline
+opt.laststatus = 3
