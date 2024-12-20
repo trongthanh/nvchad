@@ -24,6 +24,7 @@ local servers = {
   "stylelint_lsp",
   "jsonls",
   "gopls",
+  "svelte",
   -- "custom_elements_ls",
   -- "tailwindcss",
 }
@@ -35,6 +36,17 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+-- tailwindcss
+lspconfig["tailwindcss"].setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  settings = {
+    validate = true,
+    filetypes = { "svelte" },
+  },
+}
 
 lspconfig["yamlls"].setup {
   on_attach = on_attach,
