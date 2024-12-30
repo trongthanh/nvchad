@@ -83,6 +83,14 @@ autocmd("TermOpen", {
   callback = require("mappings").terminal,
 })
 
+autocmd("BufEnter", {
+  pattern = "term://*",
+  -- command = "startinsert",
+  callback = function()
+    vim.cmd "startinsert"
+  end,
+})
+
 autocmd("FileType", {
   pattern = "nvcheatsheet",
   callback = require("mappings").cheatsheet,

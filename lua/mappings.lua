@@ -38,7 +38,7 @@ map("n", "<leader>gg", ":LazyGit<CR>", { desc = "git LazyGit" })
 map("n", "<leader>gx", ":DiffviewClose<CR>", { desc = "git DiffviewClose" })
 map("n", "<leader>nn", "<cmd> set nu! <CR>", { desc = "Toggle line number" })
 map("n", "<leader>nr", "<cmd> set rnu! <CR>", { desc = "Toggle relative number" })
--- map("n", "<leader>q", "<C-w>q", { desc = "general Close (split) window" })
+map("n", "<leader>q", "<C-w>q", { desc = "general Close (split) window" })
 
 map("n", "<C-A-left>", "<C-w>h", { desc = "switch window left" })
 map("n", "<C-A-right>", "<C-w>l", { desc = "switch window right" })
@@ -174,6 +174,26 @@ lazy.terminal = function(args)
   vim.keymap.set("n", "<C-x>", function()
     require("nvchad.tabufline").close_buffer()
   end, { buffer = args.buf, desc = "terminal Close terminal" })
+  -- window movement in terminal
+  vim.keymap.set(
+    "t",
+    "<C-M-left>",
+    "<C-\\><C-n><C-w>h<C-i>",
+    { buffer = args.buf, desc = "terminal switch window left" }
+  )
+  vim.keymap.set(
+    "t",
+    "<C-M-right>",
+    "<C-\\><C-n><C-w>l<C-i>",
+    { buffer = args.buf, desc = "terminal switch window right" }
+  )
+  vim.keymap.set(
+    "t",
+    "<C-M-down>",
+    "<C-\\><C-n><C-w>j<C-i>",
+    { buffer = args.buf, desc = "terminal switch window down" }
+  )
+  vim.keymap.set("t", "<C-M-up>", "<C-\\><C-n><C-w>k<C-i>", { buffer = args.buf, desc = "terminal switch window up" })
 end
 
 -- Cheatsheet mappings
@@ -216,6 +236,10 @@ end
 -- Wiki mappings
 lazy.wiki = function()
   map("n", "<leader>wji", ":WikiJournalIndex<CR>", { desc = "wiki Insert Journal Index" })
+end
+
+lazy.avante = function()
+  map({ "n", "i" }, "<C-M-i>", "<cmd> AvanteToggle <CR>", { desc = "avante Toggle" })
 end
 
 -- lazy mappings for lazy plugins & autocmds
