@@ -48,10 +48,16 @@ lspconfig["tailwindcss"].setup {
   },
 }
 
+local ymlCapabilities = vim.lsp.protocol.make_client_capabilities()
+ymlCapabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
+
 lspconfig["yamlls"].setup {
   on_attach = on_attach,
   on_init = on_init,
-  capabilities = capabilities,
+  capabilities = ymlCapabilities,
   settings = {
     yaml = {
       -- ... -- other settings. note this overrides the lspconfig defaults.
