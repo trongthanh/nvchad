@@ -165,12 +165,22 @@ M.scrollbar = {
 }
 
 M.avante = {
-  provider = "copilot",
+  windows = {
+    position = "left",
+    width = 25,
+  },
   ask = {
     focus_on_apply = "theirs",
   },
   -- auto_suggestions_provider = "copilot",
+  provider = "openclaude",
   vendors = {
+    openclaude = {
+      __inherited_from = "openai",
+      api_key_name = "OPENROUTER_API_KEY",
+      endpoint = "https://openrouter.ai/api/v1",
+      model = "anthropic/claude-3.5-sonnet",
+    },
     qwen = {
       __inherited_from = "openai",
       api_key_name = "DASHSCOPE_API_KEY",

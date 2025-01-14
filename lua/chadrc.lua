@@ -15,7 +15,7 @@ local options = {
       modules = {
         -- see https://nvchad.com/docs/config/nvchad_ui#override_statusline_modules
         -- display line & column number
-        loc = "%#St_pos_sep#%#St_pos_icon# %l:%c",
+        loc = "%#St_pos_sep#%#St_pos_icon# %l:%c ",
         -- display gitblame in statusline, the defer_fn is necessary due to blame is async
         blame = function()
           if not blame_deferred then
@@ -29,6 +29,11 @@ local options = {
           return vim.b.gitsigns_blame_line or ""
         end,
       },
+    },
+    tabufline = {
+      enabled = true,
+      lazyload = true,
+      order = { "buffers", "tabs", "btns", "treeOffset" },
     },
   },
   nvdash = {

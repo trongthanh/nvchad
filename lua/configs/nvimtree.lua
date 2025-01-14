@@ -49,7 +49,7 @@ local options = {
       max = "20%",
       padding = 1,
     },
-    side = "left",
+    side = "right",
   },
   git = {
     enable = true,
