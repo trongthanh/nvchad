@@ -284,6 +284,11 @@ local plugins = {
       -- },
     },
   },
+
+  {
+    "varnishcache-friends/vim-varnish",
+    ft = { "vcl" },
+  },
 }
 
 return plugins
