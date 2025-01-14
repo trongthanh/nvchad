@@ -52,8 +52,19 @@ local options = {
       { txt = "  Bookmarks", keys = "Spc m a", cmd = "Telescope marks" },
       { txt = "  Themes", keys = "Spc t h", cmd = "Telescope themes" },
       { txt = "  Mappings", keys = "Spc c h", cmd = "NvCheatsheet" },
-      { txt = "─", hl = "NvDashLazy", no_gap = true, rep = true },
 
+      {
+        txt = function()
+          local path = vim.fn.getcwd()
+          if #path > 58 then
+            return " ..." .. string.sub(path, -55)
+          end
+          return " " .. path
+        end,
+        hl = "NvDashLazy",
+        no_gap = true,
+      },
+      { txt = "─", hl = "NvDashLazy", no_gap = true, rep = true },
       {
         txt = function()
           local stats = require("lazy").stats()
@@ -67,7 +78,6 @@ local options = {
       { txt = "─", hl = "NvDashLazy", no_gap = true, rep = true },
     },
   },
-
   base46 = {
     theme = "chadracula",
     theme_toggle = { "chadracula", "one_light" },
