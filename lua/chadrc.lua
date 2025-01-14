@@ -11,11 +11,11 @@ local options = {
       -- default/round/block/arrow separators work only for default statusline theme
       -- round and block will work for minimal theme only
       separator_style = "default",
-      order = { "mode", "file", "git", "blame", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor", "loc" },
+      order = { "mode", "file", "git", "blame", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "loc" }, -- "cwd", "cursor",
       modules = {
         -- see https://nvchad.com/docs/config/nvchad_ui#override_statusline_modules
         -- display line & column number
-        loc = "%l:%c",
+        loc = "%#St_pos_sep#%#St_pos_icon# %l:%c",
         -- display gitblame in statusline, the defer_fn is necessary due to blame is async
         blame = function()
           if not blame_deferred then

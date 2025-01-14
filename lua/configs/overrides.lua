@@ -165,8 +165,11 @@ M.scrollbar = {
 }
 
 M.avante = {
-  auto_suggestions_provider = "copilot",
   provider = "copilot",
+  ask = {
+    focus_on_apply = "theirs",
+  },
+  -- auto_suggestions_provider = "copilot",
   vendors = {
     qwen = {
       __inherited_from = "openai",

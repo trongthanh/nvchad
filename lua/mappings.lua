@@ -238,9 +238,34 @@ lazy.wiki = function()
   map("n", "<leader>wji", ":WikiJournalIndex<CR>", { desc = "wiki Insert Journal Index" })
 end
 
-lazy.avante = function()
-  map({ "n", "i" }, "<C-M-i>", "<cmd> AvanteToggle <CR>", { desc = "avante Toggle" })
-end
+lazy.avante = {
+  "<leader>aa",
+  "<leader>ar",
+  "<leader>at",
+  {
+    "<C-M-i>",
+    function()
+      local avante = require "avante"
+      local sidebar = avante.get()
+      local curbuf = vim.api.nvim_get_current_buf()
+      if not sidebar then
+        return
+      end
+      --
+      if
+        sidebar:is_open() and (curbuf == sidebar.input_container.bufnr or curbuf == sidebar.result_container.bufnr)
+      then
+        -- input in sidebar
+        avante.close_sidebar()
+      else
+        -- input in editor buffer
+        vim.cmd "AvanteAsk"
+      end
+    end,
+    mode = { "n", "i" },
+    desc = "avante: Toggle or Focus",
+  },
+}
 
 -- lazy mappings for lazy plugins & autocmds
 return lazy

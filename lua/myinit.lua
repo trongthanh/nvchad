@@ -8,7 +8,7 @@ vim.filetype.add {
   },
 }
 
--- allows quit all buffers without saving
+-- allows quit all buffers without saving as Shift-Q
 vim.api.nvim_create_user_command("Q", "qa<bang>", {
   bang = true,
 })
@@ -16,13 +16,6 @@ vim.api.nvim_create_user_command("Q", "qa<bang>", {
 -- Auto commands
 local autocmd = vim.api.nvim_create_autocmd
 --
---
-
--- Auto resize panes when resizing nvim window
--- autocmd("VimResized", {
---   pattern = "*",
---   command = "tabdo wincmd =",
--- })
 --
 
 -- Open NvimTree on startup
@@ -36,12 +29,14 @@ autocmd("VimEnter", {
     local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
 
     if not directory and not no_name then
+      -- open file directly
       return
     end
 
     if directory then
       -- change to the directory
       vim.cmd.cd(data.file)
+      vim.cmd "Nvdash"
       -- show nvim-tree initially
       require("nvim-tree.api").tree.toggle { focus = false }
     end
@@ -117,7 +112,7 @@ end, { desc = "Set indent width to 4-char tab" })
 -- taken from https://github.com/hrsh7th/nvim-cmp/issues/715
 
 local timer = nil
-local DELAY = 1000
+local DELAY = 500
 autocmd({ "TextChangedI", "CmdlineChanged" }, {
   pattern = "*",
   callback = function()
