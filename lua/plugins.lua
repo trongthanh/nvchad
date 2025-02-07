@@ -196,6 +196,12 @@ local plugins = {
     opts = {},
   },
   {
+    "davidmh/mdx.nvim",
+    event = "BufEnter *.mdx",
+    opts = {},
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
+  {
     "iamcco/markdown-preview.nvim",
     ft = { "markdown" },
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
