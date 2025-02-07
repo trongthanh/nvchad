@@ -124,7 +124,7 @@ M.cmp = {
 M.telescope = {
   defaults = {
     path_display = {
-      "smart",
+      "filename_first",
     },
     mappings = {
       i = { ["<Esc>"] = require("telescope.actions").close },
