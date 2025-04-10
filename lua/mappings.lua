@@ -160,7 +160,6 @@ map({ "n" }, "<C-`>", function()
     vim.cmd "startinsert"
   else
     -- Find the main editor window (excluding special windows like NvimTree)
-    local current_win = vim.api.nvim_get_current_win()
     local wins = vim.api.nvim_tabpage_list_wins(0)
     local main_win
 
@@ -169,7 +168,7 @@ map({ "n" }, "<C-`>", function()
       local bt = vim.bo[buf].buftype
       local ft = vim.bo[buf].filetype
       -- Find a normal window (not special windows like NvimTree, etc)
-      if bt == "" and ft ~= "NvimTree" then
+      if ft == "nvdash" or (bt == "" and ft ~= "NvimTree") then
         main_win = win
         break
       end
