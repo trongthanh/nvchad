@@ -158,6 +158,27 @@ map({ "n" }, "<C-`>", function()
     vim.api.nvim_set_current_win(vim.fn.bufwinid(term_info.buf))
     vim.cmd "startinsert"
   else
+    -- Find the main editor window (excluding special windows like NvimTree)
+    local current_win = vim.api.nvim_get_current_win()
+    local wins = vim.api.nvim_tabpage_list_wins(0)
+    local main_win
+
+    for _, win in ipairs(wins) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      local bt = vim.bo[buf].buftype
+      local ft = vim.bo[buf].filetype
+      -- Find a normal window (not special windows like NvimTree, etc)
+      if bt == "" and ft ~= "NvimTree" then
+        main_win = win
+        break
+      end
+    end
+
+    -- Focus main window before toggling terminal
+    if main_win then
+      vim.api.nvim_set_current_win(main_win)
+    end
+
     -- Toggle the terminal as usual
     term.toggle { pos = "sp", id = term_id }
   end

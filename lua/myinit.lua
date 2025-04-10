@@ -56,12 +56,12 @@ autocmd("TextYankPost", {
   desc = "Highlight yank text",
 })
 
--- change surround * to double ** in markdown
-autocmd("FileType", {
+-- change surround * to double ** in markdown editor
+autocmd("BufEnter", {
   pattern = "markdown",
   callback = function(args)
     vim.g.surround_42 = "**\r**"
-    vim.opt.spell = true -- enable spell check
+    vim.bo.spell = true -- enable spell check just for current buffer
     require("mappings").markdown_preview(args)
   end,
   desc = "Change surround * to double ** in markdown",
