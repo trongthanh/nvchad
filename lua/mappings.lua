@@ -85,6 +85,7 @@ lazy.nvimtree = function(bufnr, api, cmds)
   map("n", "<leader>e", "<C-w>w", opts "Focus editor")
   map("n", "?", api.tree.toggle_help, opts "Help")
   map("n", "ga", cmds.git_add, opts "Git add current file")
+  map("n", "A", cmds.avante_add_file, opts "Avante add current file")
 end
 
 -- Telescope mappings

@@ -164,36 +164,4 @@ M.scrollbar = {
   },
 }
 
-M.avante = {
-  windows = {
-    position = "left",
-    width = 25,
-  },
-  ask = {
-    focus_on_apply = "theirs",
-  },
-  -- auto_suggestions_provider = "copilot",
-  provider = "openclaude",
-  vendors = {
-    openclaude = {
-      __inherited_from = "openai",
-      api_key_name = "OPENROUTER_API_KEY",
-      endpoint = "https://openrouter.ai/api/v1",
-      model = "anthropic/claude-3.5-sonnet",
-    },
-    qwen = {
-      __inherited_from = "openai",
-      api_key_name = "DASHSCOPE_API_KEY",
-      endpoint = "https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions",
-      model = "qwen-coder-plus-latest",
-    },
-    ollama = {
-      __inherited_from = "openai",
-      api_key_name = "",
-      endpoint = "http://127.0.0.1:11434/v1",
-      model = "qwen2.5-coder",
-    },
-  },
-}
-
 return M
