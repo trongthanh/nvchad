@@ -111,10 +111,6 @@ lazy.lspconfig = function(client, bufnr)
   local function opts(desc)
     return { buffer = bufnr, desc = "LSP " .. desc }
   end
-  -- Change lspconfig shortcuts to <leader>l*
-  nomap({ "n", "v" }, "<leader>ca", opts "code action")
-  nomap("n", "<leader>ra", opts "renamer")
-  nomap("n", "<leader>sh", opts "signature help")
 
   -- Set new shortcuts
   map("n", "<leader>d", function()

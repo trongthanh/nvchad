@@ -38,7 +38,7 @@ local on_nvimtree_attach = function(bufnr)
   -- default mappings
   api.config.mappings.default_on_attach(bufnr)
   -- custom mappings centralized in mappings.lua
-  require("mappings").nvimtree(bufnr, api, { git_add = git_add })
+  require("mappings").nvimtree(bufnr, api, { git_add = git_add, avante_add_file = avante_add_file })
 end
 -- git support in nvimtree
 local options = {

@@ -65,18 +65,18 @@ M.cmp = {
   },
 
   mapping = {
-    ["<CR>"] = require("cmp").mapping {
-      i = function(fallback)
-        local cmp = require "cmp"
-        if cmp.visible() and cmp.get_active_entry() then
-          cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
-        else
-          fallback()
-        end
-      end,
-      s = require("cmp").mapping.confirm { select = true },
-      c = require("cmp").mapping.confirm { behavior = require("cmp").ConfirmBehavior.Replace, select = true },
-    },
+    -- ["<CR>"] = require("cmp").mapping {
+    --   i = function(fallback)
+    --     local cmp = require "cmp"
+    --     if cmp.visible() and cmp.get_active_entry() then
+    --       cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+    --     else
+    --       fallback()
+    --     end
+    --   end,
+    --   s = require("cmp").mapping.confirm { select = true },
+    --   c = require("cmp").mapping.confirm { behavior = require("cmp").ConfirmBehavior.Replace, select = true },
+    -- },
     -- ["<Down>"] = require("cmp").mapping(function(fallback)
     --   local cmp = require "cmp"
     --   if cmp.visible() then
