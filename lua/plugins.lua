@@ -2,6 +2,8 @@ local overrides = require "configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
+  -- Disable nvim-cmp and enable blink.cmp
+  { import = "nvchad.blink.lazyspec" },
   {
     -- Override nvchad's to remove `v` `c` key
     "folke/which-key.nvim",
@@ -31,10 +33,31 @@ local plugins = {
     opts = overrides.telescope,
   },
   {
-    "hrsh7th/nvim-cmp",
-    opts = overrides.cmp,
+    "saghen/blink.cmp",
     dependencies = {
-      { "f3fora/cmp-spell" },
+      "Kaiser-Yang/blink-cmp-avante",
+    },
+    opts = {
+      keymap = {
+        ["<S-Tab>"] = { "select_prev", "fallback" },
+        ["<Tab>"] = { "select_next", "fallback" },
+      },
+
+      completion = {
+        -- Don't preselectt by default, auto insert on selection
+        list = { selection = { preselect = false, auto_insert = true } },
+      },
+      sources = {
+        -- Add 'avante' to the list
+        default = { "avante", "lsp", "path", "snippets", "buffer" },
+        providers = {
+          avante = {
+            module = "blink-cmp-avante",
+            name = "Avante",
+            opts = {},
+          },
+        },
+      },
     },
   },
   {
@@ -295,7 +318,8 @@ local plugins = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
-      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+      -- "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+      "Kaiser-Yang/blink-cmp-avante", -- autocompletion with blink.cmp
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
       "nvim-telescope/telescope.nvim",
       "zbirenbaum/copilot.lua", -- for providers='copilot'
