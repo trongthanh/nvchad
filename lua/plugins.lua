@@ -221,22 +221,40 @@ local plugins = {
     opts = {}, -- must provide empty opts to enable lazy loading
   },
   {
-    "github/copilot.vim",
-    lazy = false,
-    -- cmd = { "Copilot" },
-    -- event = "InsertEnter",
-    init = function()
-      vim.g.copilot_node_command = "/opt/homebrew/bin/node"
-      -- Mapping tab is already used by NvChad
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_assume_mapped = true
-      -- vim.g.copilot_tab_fallback = ""
-      -- The mapping is set to other key, see custom/lua/mappings
-      -- or run <leader>ch to see copilot mapping section
-    end,
-    config = function()
-      require("mappings").copilot()
-    end,
+    "zbirenbaum/copilot.lua",
+    -- lazy = false,
+    cmd = "Copilot",
+    event = "InsertEnter",
+    opts = {
+      copilot_node_command = "/opt/homebrew/bin/node",
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        hide_during_completion = true,
+        debounce = 200,
+        trigger_on_accept = true,
+        keymap = {
+          accept = "<M-space>",
+          accept_word = "<M-right>",
+          accept_line = false,
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-]>",
+        },
+      },
+    },
+    -- init = function()
+    --   vim.g.copilot_node_command = "/opt/homebrew/bin/node"
+    --   -- Mapping tab is already used by NvChad
+    --   vim.g.copilot_no_tab_map = true
+    --   vim.g.copilot_assume_mapped = true
+    --   -- vim.g.copilot_tab_fallback = ""
+    --   -- The mapping is set to other key, see custom/lua/mappings
+    --   -- or run <leader>ch to see copilot mapping section
+    -- end,
+    -- config = function()
+    --   require("mappings").copilot()
+    -- end,
   },
   {
     "ggandor/leap.nvim",
@@ -280,7 +298,7 @@ local plugins = {
       "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
       "nvim-telescope/telescope.nvim",
-      -- "zbirenbaum/copilot.lua", -- for providers='copilot'
+      "zbirenbaum/copilot.lua", -- for providers='copilot'
       -- {
       --   -- Make sure to set this up properly if you have lazy=true
       --   "MeanderingProgrammer/render-markdown.nvim",

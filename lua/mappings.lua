@@ -112,6 +112,7 @@ lazy.lspconfig = function(client, bufnr)
   local function opts(desc)
     return { buffer = bufnr, desc = "LSP " .. desc }
   end
+  nomap("n", "<leader>ra", opts "renamer")
 
   -- Set new shortcuts
   map("n", "<leader>d", function()
@@ -244,11 +245,11 @@ lazy.gitsigns = function(bufnr, gitsigns)
 end
 
 -- Copilot mappings
-lazy.copilot = function()
-  map("i", "<M-Space>", function()
-    vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
-  end, { desc = "copilot Accept", replace_keycodes = false, nowait = true, silent = true, expr = true, noremap = true })
-end
+-- lazy.copilot = function()
+--   map("i", "<M-Space>", function()
+--     vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
+--   end, { desc = "copilot Accept", replace_keycodes = false, nowait = true, silent = true, expr = true, noremap = true })
+-- end
 
 -- Wiki mappings
 lazy.wiki = function()
