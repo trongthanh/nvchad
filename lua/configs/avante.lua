@@ -2,6 +2,10 @@ local avante_config = {
   windows = {
     position = "left",
     width = 30,
+    input = {
+      prefix = "> ",
+      height = 5, -- Height of the input window in vertical layout
+    },
     ask = {
       focus_on_apply = "theirs",
     },
@@ -37,18 +41,16 @@ local avante_config = {
   -- auto_suggestions_provider = "copilot",
   -- provider = "opengemini",
   -- provider = "copilotclaude",
-  provider = "orclaude",
+  provider = "copilot",
   behaviour = {
     enable_cursor_planning_mode = false,
     -- enable_claude_text_editor_tool_mode = true,
   },
+  cursor_applying_provider = "geminiflash",
+  copilot = {
+    model = "claude-3.5-sonnet",
+  },
   vendors = {
-    copilotclaude = {
-      __inherited_from = "copilot",
-      api_key_name = "GITHUB_TOKEN",
-      model = "claude-3.7-sonnet",
-      max_tokens = 8192,
-    },
     geminiflash = {
       __inherited_from = "gemini",
       api_key_name = "GEMINI_API_KEY",
