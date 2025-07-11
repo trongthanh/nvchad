@@ -65,11 +65,19 @@ autocmd("TextYankPost", {
   desc = "Highlight yank text",
 })
 
--- change surround * to double ** in markdown editor
+autocmd("FileType", {
+  pattern = { "markdown" },
+  callback = function()
+    -- change surround * to double ** in markdown editor
+    vim.g.surround_42 = "**\r**"
+    -- required by obsidian.nvim UI
+    -- vim.opt_local.conceallevel = 1
+  end,
+})
+
 autocmd("BufEnter", {
   pattern = "markdown",
   callback = function(args)
-    vim.g.surround_42 = "**\r**"
     vim.bo.spell = true -- enable spell check just for current buffer
     require("mappings").markdown_preview(args)
   end,

@@ -56,6 +56,8 @@ M.mason = {
   },
 }
 
+-- noexport
+-- local cmp = {
 M.cmp = {
   completion = {
     -- delay completion in myinit.lua

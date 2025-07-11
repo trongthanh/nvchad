@@ -252,8 +252,20 @@ end
 -- end
 
 -- Wiki mappings
-lazy.wiki = function()
-  map("n", "<leader>wji", ":WikiJournalIndex<CR>", { desc = "wiki Insert Journal Index" })
+lazy.obsidian = function()
+  map("n", "<leader>od", ":Obsidian dailies<CR>", { desc = "Obsidian pick dailies" })
+  map("n", "<leader>ot", ":Obsidian today<CR>", { desc = "Obsidian open today" })
+  map("n", "<leader>oy", ":Obsidian yesterday<CR>", { desc = "Obsidian open yesterday" })
+  map("n", "<leader>om", ":Obsidian tomorrow<CR>", { desc = "Obsidian open tomorrow" })
+  map("n", "<leader>ob", ":Obsidian backlinks<CR>", { desc = "Obsidian list backlinks" })
+  map("n", "<leader>oc", ":Obsidian check<CR>", { desc = "Obsidian check" })
+  map("n", "<leader>or", ":Obsidian rename<CR>", { desc = "Obsidian rename" })
+  map("n", "<leader>os", ":Obsidian search<CR>", { desc = "Obsidian search" })
+  map("n", "<leader>ol", ":Obsidian links<CR>", { desc = "Obsidian list links" })
+  map("v", "<leader>ol", ":Obsidian link<CR>", { desc = "Obsidian link" })
+  map("v", "<leader>on", ":Obsidian link_new<CR>", { desc = "Obsidian new link" })
+  map("v", "<leader>oe", ":Obsidian extract_note<CR>", { desc = "Obsidian extract note" })
+  map("v", "<leader>oq", ":Obsidian quick_switch<CR>", { desc = "Obsidian quick switch" })
 end
 
 lazy.avante = {
