@@ -2,8 +2,6 @@ local overrides = require "configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
-  -- Disable nvim-cmp and enable blink.cmp
-  { import = "nvchad.blink.lazyspec" },
   {
     -- Override nvchad's to remove `v` `c` key
     "folke/which-key.nvim",
@@ -33,33 +31,40 @@ local plugins = {
     opts = overrides.telescope,
   },
   {
-    "saghen/blink.cmp",
+    "hrsh7th/nvim-cmp",
+    opts = overrides.cmp,
     dependencies = {
-      "Kaiser-Yang/blink-cmp-avante",
-    },
-    opts = {
-      keymap = {
-        ["<S-Tab>"] = { "select_prev", "fallback" },
-        ["<Tab>"] = { "select_next", "fallback" },
-      },
-
-      completion = {
-        -- Don't preselectt by default, auto insert on selection
-        list = { selection = { preselect = false, auto_insert = true } },
-      },
-      sources = {
-        -- Add 'avante' to the list
-        default = { "avante", "lsp", "path", "snippets", "buffer" },
-        providers = {
-          avante = {
-            module = "blink-cmp-avante",
-            name = "Avante",
-            opts = {},
-          },
-        },
-      },
+      "f3fora/cmp-spell",
     },
   },
+  -- {
+  --   "saghen/blink.cmp",
+  --   dependencies = {
+  --     "Kaiser-Yang/blink-cmp-avante",
+  --     "rafamadriz/friendly-snippets",
+  --   },
+  --   opts = {
+  --     keymap = {
+  --       ["<S-Tab>"] = { "select_prev", "fallback" },
+  --       ["<Tab>"] = { "select_next", "fallback" },
+  --     },
+  --
+  --     completion = {
+  --       -- Don't preselectt by default, auto insert on selection
+  --       list = { selection = { preselect = false, auto_insert = true } },
+  --     },
+  --     sources = {
+  --       -- Add 'avante' to the list
+  --       default = { "avante", "lsp", "path", "snippets", "buffer" },
+  --       providers = {
+  --         avante = {
+  --           module = "blink-cmp-avante",
+  --           name = "Avante",
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
   {
     "petertriho/nvim-scrollbar",
     lazy = false,
@@ -266,18 +271,6 @@ local plugins = {
         },
       },
     },
-    -- init = function()
-    --   vim.g.copilot_node_command = "/opt/homebrew/bin/node"
-    --   -- Mapping tab is already used by NvChad
-    --   vim.g.copilot_no_tab_map = true
-    --   vim.g.copilot_assume_mapped = true
-    --   -- vim.g.copilot_tab_fallback = ""
-    --   -- The mapping is set to other key, see custom/lua/mappings
-    --   -- or run <leader>ch to see copilot mapping section
-    -- end,
-    -- config = function()
-    --   require("mappings").copilot()
-    -- end,
   },
   {
     "ggandor/leap.nvim",
