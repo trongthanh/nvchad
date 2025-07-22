@@ -1,7 +1,7 @@
 local avante_config = {
   windows = {
     position = "left",
-    width = 30,
+    width = 40,
     input = {
       prefix = "> ",
       height = 5, -- Height of the input window in vertical layout
@@ -11,8 +11,12 @@ local avante_config = {
     },
   },
   mappings = {
+    cancel = {
+      normal = { "<C-c>", "<Esc>", "q" },
+      insert = { "<C-c>" },
+    },
     sidebar = {
-      close = { "q" },
+      close = { "<M-w>" },
     },
   },
   repo_map = {
@@ -66,48 +70,59 @@ local avante_config = {
       end,
     },
   },
+
   -- auto_suggestions_provider = "copilot",
-  -- provider = "opengemini",
-  -- provider = "copilotclaude",
-  provider = "copilot",
+  -- provider = "geminiflash",
+  -- provider = "ordeepseek",
+  provider = "orkimik2",
+  -- provider = "orclaude",
+  cursor_applying_provider = "geminiflash",
   behaviour = {
-    enable_cursor_planning_mode = false,
+    enable_cursor_planning_mode = true,
     -- enable_claude_text_editor_tool_mode = true,
   },
-  cursor_applying_provider = "geminiflash",
-  copilot = {
-    model = "claude-3.5-sonnet",
-  },
-  vendors = {
+  providers = {
     geminiflash = {
-      __inherited_from = "gemini",
-      api_key_name = "GEMINI_API_KEY",
-      model = "gemini-2.0-flash-exp",
+      __inherited_from = "openai",
+      api_key_name = "OPENROUTER_API_KEY",
+      endpoint = "https://openrouter.ai/api/v1",
+      model = "google/gemini-2.5-flash",
+    },
+    orkimik2 = {
+      __inherited_from = "openai",
+      api_key_name = "OPENROUTER_API_KEY",
+      endpoint = "https://openrouter.ai/api/v1",
+      model = "moonshotai/kimi-k2",
+    },
+    ordeepseekr1 = {
+      __inherited_from = "openai",
+      api_key_name = "OPENROUTER_API_KEY",
+      endpoint = "https://openrouter.ai/api/v1",
+      model = "deepseek/deepseek-r1-0528",
     },
     ordeepseek = {
       __inherited_from = "openai",
       api_key_name = "OPENROUTER_API_KEY",
       endpoint = "https://openrouter.ai/api/v1",
-      model = "deepseek/deepseek-r1",
+      model = "deepseek/deepseek-chat-v3-0324",
     },
     orclaude = {
       __inherited_from = "openai",
       api_key_name = "OPENROUTER_API_KEY",
       endpoint = "https://openrouter.ai/api/v1",
-      model = "anthropic/claude-3.7-sonnet",
+      model = "anthropic/claude-sonnet-4",
     },
-    orquasaralpha = {
+    orcypheralpha = {
       __inherited_from = "openai",
       api_key_name = "OPENROUTER_API_KEY",
       endpoint = "https://openrouter.ai/api/v1",
-      model = "openrouter/quasar-alpha",
+      model = "openrouter/cypher-alpha:free",
     },
     qwen = {
       __inherited_from = "openai",
       api_key_name = "OPENROUTER_API_KEY",
       endpoint = "https://openrouter.ai/api/v1",
       model = "qwen/qwen-2.5-coder-32b-instruct",
-      max_tokens = 8192,
     },
     ollama = {
       __inherited_from = "openai",
