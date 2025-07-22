@@ -77,7 +77,7 @@ map("o", "}", ":<c-u>normal! vi}<cr>", { desc = "TextObject Inner brackets", sil
 map("o", ")", ":<c-u>normal! vi)<cr>", { desc = "TextObject Inner brackets", silent = true })
 
 -- NvimTree mappings
-map("n", "<C-b>", "<cmd> NvimTreeToggle <CR>", { desc = "nvimtree Toggle nvimtree" })
+map("n", "<C-b>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree Toggle nvimtree" })
 lazy.nvimtree = function(bufnr, api, cmds)
   local function opts(desc)
     return { desc = "nvimtree " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -255,8 +255,8 @@ end
 lazy.obsidian = function()
   map("n", "<leader>od", ":Obsidian dailies<CR>", { desc = "Obsidian pick dailies" })
   map("n", "<leader>ot", ":Obsidian today<CR>", { desc = "Obsidian open today" })
-  map("n", "<leader>oy", ":Obsidian yesterday<CR>", { desc = "Obsidian open yesterday" })
-  map("n", "<leader>om", ":Obsidian tomorrow<CR>", { desc = "Obsidian open tomorrow" })
+  map("n", "<leader>oy", ":Obsidian today -1<CR>", { desc = "Obsidian open yesterday" })
+  map("n", "<leader>om", ":Obsidian today +1<CR>", { desc = "Obsidian open tomorrow" })
   map("n", "<leader>ob", ":Obsidian backlinks<CR>", { desc = "Obsidian list backlinks" })
   map("n", "<leader>oc", ":Obsidian check<CR>", { desc = "Obsidian check" })
   map("n", "<leader>or", ":Obsidian rename<CR>", { desc = "Obsidian rename" })
@@ -269,9 +269,6 @@ lazy.obsidian = function()
 end
 
 lazy.avante = {
-  "<leader>aa",
-  "<leader>ar",
-  "<leader>at",
   {
     "<C-M-i>",
     function()

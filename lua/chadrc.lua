@@ -11,7 +11,7 @@ local options = {
       -- default/round/block/arrow separators work only for default statusline theme
       -- round and block will work for minimal theme only
       separator_style = "default",
-      order = { "mode", "file", "git", "blame", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "loc" }, -- "cwd", "cursor",
+      order = { "mode", "file", "git", "blame", "obsidian", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "loc" }, -- "cwd", "cursor",
       modules = {
         -- see https://nvchad.com/docs/config/nvchad_ui#override_statusline_modules
         -- display line & column number
@@ -27,6 +27,13 @@ local options = {
           end
           blame_deferred = false
           return vim.b.gitsigns_blame_line or ""
+        end,
+
+        obsidian = function()
+          if vim.g.obsidian ~= nil then
+            return " 🪨 " .. vim.g.obsidian
+          end
+          return ""
         end,
       },
     },

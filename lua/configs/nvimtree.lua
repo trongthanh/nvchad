@@ -106,6 +106,4 @@ local options = {
   },
 }
 
-return {
-  opts = options,
-}
+return options
