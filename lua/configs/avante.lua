@@ -1,10 +1,10 @@
 local avante_config = {
   windows = {
     position = "left",
-    width = 40,
+    width = 33,
     input = {
       prefix = "> ",
-      height = 5, -- Height of the input window in vertical layout
+      height = 8, -- Height of the input window in vertical layout
     },
     ask = {
       focus_on_apply = "theirs",
@@ -19,13 +19,20 @@ local avante_config = {
       close = { "<M-w>" },
     },
   },
+  spinner = {
+    -- stylua: ignore
+    editing = { "⡀", "⠄", "⠂", "⠁", "⠈", "⠐", "⠠", "⢀", "⣀", "⢄", "⢂", "⢁", "⢈", "⢐", "⢠", "⣠", "⢤", "⢢", "⢡", "⢨", "⢰", "⣰", "⢴", "⢲", "⢱", "⢸", "⣸", "⢼", "⢺", "⢹", "⣹", "⢽", "⢻", "⣻", "⢿", "⣿" },
+    -- generating = { "·", "·", "✢", "✢", "✳", "✳", "✲", "✲", "✻", "✻", "✽", "✽", "✽" }, -- Spinner characters for the 'generating' state
+    generating = { "◴", "◷", "◶", "◵" },
+    thinking = { "🤯", "🤔" }, -- Spinner characters for the 'thinking' state
+  },
   repo_map = {
     ignore_patterns = { "%.git", "%.worktree", "__pycache__", "node_modules", "NvimTree_1" }, -- ignore files matching these
   },
   -- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
   system_prompt = function()
     local hub = require("mcphub").get_hub_instance()
-    return hub:get_active_servers_prompt()
+    return hub and hub:get_active_servers_prompt() or ""
   end,
   -- The custom_tools type supports both a list and a function that returns a list. Using a function here prevents requiring mcphub before it's loaded
   custom_tools = function()
@@ -74,7 +81,8 @@ local avante_config = {
   -- auto_suggestions_provider = "copilot",
   -- provider = "geminiflash",
   -- provider = "ordeepseek",
-  provider = "orkimik2",
+  -- provider = "orkimik2",
+  provider = "qwen3coder",
   -- provider = "orclaude",
   cursor_applying_provider = "geminiflash",
   behaviour = {
@@ -118,11 +126,11 @@ local avante_config = {
       endpoint = "https://openrouter.ai/api/v1",
       model = "openrouter/cypher-alpha:free",
     },
-    qwen = {
+    qwen3coder = {
       __inherited_from = "openai",
-      api_key_name = "OPENROUTER_API_KEY",
-      endpoint = "https://openrouter.ai/api/v1",
-      model = "qwen/qwen-2.5-coder-32b-instruct",
+      api_key_name = "ALIYUN_API_KEY",
+      endpoint = "https://dashscope-intl.aliyuncs.com/compatible-mode/v1/",
+      model = "qwen3-coder-plus",
     },
     ollama = {
       __inherited_from = "openai",

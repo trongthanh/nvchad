@@ -280,7 +280,7 @@ lazy.avante = {
       end
       --
       if
-        sidebar:is_open() and (curbuf == sidebar.input_container.bufnr or curbuf == sidebar.result_container.bufnr)
+        sidebar:is_open() and (curbuf == sidebar.containers.input.bufnr or curbuf == sidebar.containers.result.bufnr)
       then
         -- input in sidebar
         avante.close_sidebar()
