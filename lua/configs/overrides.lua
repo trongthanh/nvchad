@@ -1,6 +1,8 @@
 local M = {}
 
 M.whichkey = {
+  -- classic, modern, helix
+  preset = "modern",
   triggers = {
     { "<leader>", mode = "nxso" },
     { "<C-w>", mode = "nxso" },
@@ -61,7 +63,7 @@ M.mason = {
 M.cmp = {
   completion = {
     -- delay completion in myinit.lua
-    autocomplete = false,
+    -- autocomplete = false,
     -- added noselect so that I can <CR> if I don't want to accept any of the suggestions
     completeopt = "menu,menuone,noselect",
   },
