@@ -37,7 +37,7 @@ autocmd("VimEnter", {
       vim.cmd.cd(data.file)
       vim.cmd "Nvdash"
       -- show nvim-tree initially
-      require("nvim-tree.api").tree.toggle { focus = false }
+      require("nvim-tree.api").tree.open { focus = false }
     end
 
     if no_name then
@@ -107,13 +107,13 @@ autocmd("FileType", {
   callback = require("mappings").cheatsheet,
 })
 
-vim.api.nvim_create_user_command("Indent4", function()
+vim.api.nvim_create_user_command("Space4", function()
   vim.bo.shiftwidth = 4
   vim.bo.tabstop = 4
   vim.bo.expandtab = true
 end, { desc = "Set indent width to 4 spaces" })
 
-vim.api.nvim_create_user_command("Indent2", function()
+vim.api.nvim_create_user_command("Space2", function()
   vim.bo.shiftwidth = 2
   vim.bo.tabstop = 2
   vim.bo.expandtab = true
@@ -127,23 +127,23 @@ end, { desc = "Set indent width to 4-char tab" })
 -- delay cmp completion workaround
 -- taken from https://github.com/hrsh7th/nvim-cmp/issues/715
 
-local timer = nil
-local DELAY = 500
-autocmd({ "TextChangedI", "CmdlineChanged" }, {
-  pattern = "*",
-  callback = function()
-    if timer then
-      vim.loop.timer_stop(timer)
-      timer = nil
-    end
-
-    timer = vim.loop.new_timer()
-    timer:start(
-      DELAY,
-      0,
-      vim.schedule_wrap(function()
-        require("cmp").complete { reason = require("cmp").ContextReason.Auto }
-      end)
-    )
-  end,
-})
+-- local timer = nil
+-- local DELAY = 500
+-- autocmd({ "TextChangedI", "CmdlineChanged" }, {
+--   pattern = "*",
+--   callback = function()
+--     if timer then
+--       vim.loop.timer_stop(timer)
+--       timer = nil
+--     end
+--
+--     timer = vim.loop.new_timer()
+--     timer:start(
+--       DELAY,
+--       0,
+--       vim.schedule_wrap(function()
+--         require("cmp").complete { reason = require("cmp").ContextReason.Auto }
+--       end)
+--     )
+--   end,
+-- })
