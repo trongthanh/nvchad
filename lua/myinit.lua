@@ -71,17 +71,17 @@ autocmd("FileType", {
     -- change surround * to double ** in markdown editor
     vim.g.surround_42 = "**\r**"
     -- required by obsidian.nvim UI
-    -- vim.opt_local.conceallevel = 1
+    vim.opt_local.conceallevel = 2
   end,
 })
 
 autocmd("BufEnter", {
   pattern = "markdown",
   callback = function(args)
-    vim.bo.spell = true -- enable spell check just for current buffer
+    vim.opt_local.spell = true -- enable spell check just for current buffer
     require("mappings").markdown_preview(args)
   end,
-  desc = "Change surround * to double ** in markdown",
+  desc = "Setup markdown buffer type",
 })
 
 -- close quickfix menu after selecting choice
@@ -108,21 +108,21 @@ autocmd("FileType", {
 })
 
 vim.api.nvim_create_user_command("Space4", function()
-  vim.bo.shiftwidth = 4
-  vim.bo.tabstop = 4
-  vim.bo.expandtab = true
+  vim.opt.shiftwidth = 4
+  vim.opt.tabstop = 4
+  vim.opt.expandtab = true
 end, { desc = "Set indent width to 4 spaces" })
 
 vim.api.nvim_create_user_command("Space2", function()
-  vim.bo.shiftwidth = 2
-  vim.bo.tabstop = 2
-  vim.bo.expandtab = true
+  vim.opt.shiftwidth = 2
+  vim.opt.tabstop = 2
+  vim.opt.expandtab = true
 end, { desc = "Set indent width to 2 spaces" })
 
 vim.api.nvim_create_user_command("Tab4", function()
-  vim.bo.shiftwidth = 4
-  vim.bo.tabstop = 4
-  vim.bo.expandtab = false
+  vim.opt.shiftwidth = 4
+  vim.opt.tabstop = 4
+  vim.opt.expandtab = false
 end, { desc = "Set indent width to 4-char tab" })
 -- delay cmp completion workaround
 -- taken from https://github.com/hrsh7th/nvim-cmp/issues/715
@@ -147,3 +147,18 @@ end, { desc = "Set indent width to 4-char tab" })
 --     )
 --   end,
 -- })
+
+-- mapping for neovide
+if vim.g.neovide then
+  vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
+  vim.keymap.set("i", "<D-s>", "<ESC>:w<CR>") -- Save insert mode
+  vim.keymap.set("v", "<D-c>", '"+y') -- Copy
+  vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
+  vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
+  vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
+  vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
+  -- enable Meta key on macOS
+  vim.g.neovide_input_macos_option_key_is_meta = "only_left"
+  -- enable IME input
+  vim.g.neovide_input_ime = true
+end
