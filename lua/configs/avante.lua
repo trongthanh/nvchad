@@ -1,10 +1,10 @@
 local avante_config = {
   windows = {
-    position = "left",
+    position = "right",
     width = 33,
     input = {
       prefix = "> ",
-      height = 8, -- Height of the input window in vertical layout
+      height = 10, -- Height of the input window in vertical layout
     },
     ask = {
       focus_on_apply = "theirs",
@@ -21,20 +21,19 @@ local avante_config = {
   },
   spinner = {
     -- stylua: ignore
-    editing = { "⡀", "⠄", "⠂", "⠁", "⠈", "⠐", "⠠", "⢀", "⣀", "⢄", "⢂", "⢁", "⢈", "⢐", "⢠", "⣠", "⢤", "⢢", "⢡", "⢨", "⢰", "⣰", "⢴", "⢲", "⢱", "⢸", "⣸", "⢼", "⢺", "⢹", "⣹", "⢽", "⢻", "⣻", "⢿", "⣿" },
-    -- generating = { "·", "·", "✢", "✢", "✳", "✳", "✲", "✲", "✻", "✻", "✽", "✽", "✽" }, -- Spinner characters for the 'generating' state
-    generating = { "◴", "◷", "◶", "◵" },
+    generating = { "·", "·", "✢", "✢", "✳", "✳", "✲", "✲", "✻", "✻", "✽", "✽", "✽" }, -- Spinner characters for the 'generating' state
     thinking = { "🤯", "🤔" }, -- Spinner characters for the 'thinking' state
   },
   repo_map = {
     ignore_patterns = { "%.git", "%.worktree", "__pycache__", "node_modules", "NvimTree_1" }, -- ignore files matching these
   },
-  -- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
+  -- system_prompt as function ensures LLM always has latest MCP server state
+  -- This is evaluated for every message, even in existing chats
   system_prompt = function()
     local hub = require("mcphub").get_hub_instance()
     return hub and hub:get_active_servers_prompt() or ""
   end,
-  -- The custom_tools type supports both a list and a function that returns a list. Using a function here prevents requiring mcphub before it's loaded
+  -- Using function prevents requiring mcphub before it's loaded
   custom_tools = function()
     return {
       require("mcphub.extensions.avante").mcp_tool(),
@@ -42,16 +41,16 @@ local avante_config = {
   end,
   -- Disable any built-in Avante tools that might conflict with builtin mcphub mcp servers
   disabled_tools = {
-    "list_files",
-    "search_files",
-    "read_file",
-    "create_file",
-    "rename_file",
-    "delete_file",
-    "create_dir",
-    "rename_dir",
-    "delete_dir",
-    "bash",
+    -- "list_files",
+    -- "search_files",
+    -- "read_file",
+    -- "create_file",
+    -- "rename_file",
+    -- "delete_file",
+    -- "create_dir",
+    -- "rename_dir",
+    -- "delete_dir",
+    -- "bash",
   },
   selector = {
     --- @alias avante.SelectorProvider "native" | "fzf_lua" | "mini_pick" | "snacks" | "telescope" | fun(selector: avante.ui.Selector): nil
@@ -77,16 +76,32 @@ local avante_config = {
       end,
     },
   },
+  -- provider = "claude-code",
+  -- acp_providers = {
+  --   ["gemini-cli"] = {
+  --     command = "gemini",
+  --     args = { "--experimental-acp" },
+  --     env = {
+  --       NODE_NO_WARNINGS = "1",
+  --     },
+  --   },
+  --   ["claude-code"] = {
+  --     command = "npx",
+  --     args = { "@zed-industries/claude-code-acp" },
+  --     env = {
+  --       NODE_NO_WARNINGS = "1",
+  --       HTTP_PROXY = "http://127.0.0.1",
+  --     },
+  --   },
+  -- },
 
+  ---@alias Mode "agentic" | "legacy"
+  ---@type Mode
+  mode = "agentic",
   -- auto_suggestions_provider = "copilot",
-  -- provider = "geminiflash",
-  -- provider = "ordeepseek",
-  -- provider = "orkimik2",
-  provider = "qwen3coder",
-  -- provider = "orclaude",
-  cursor_applying_provider = "geminiflash",
+  provider = "orgrokcodefast1",
   behaviour = {
-    enable_cursor_planning_mode = true,
+    auto_approve_tool_permissions = false,
     -- enable_claude_text_editor_tool_mode = true,
   },
   providers = {
@@ -108,11 +123,11 @@ local avante_config = {
       endpoint = "https://openrouter.ai/api/v1",
       model = "deepseek/deepseek-r1-0528",
     },
-    ordeepseek = {
+    orqwen3coder = {
       __inherited_from = "openai",
       api_key_name = "OPENROUTER_API_KEY",
       endpoint = "https://openrouter.ai/api/v1",
-      model = "deepseek/deepseek-chat-v3-0324",
+      model = "qwen/qwen3-coder-plus",
     },
     orclaude = {
       __inherited_from = "openai",
@@ -120,11 +135,11 @@ local avante_config = {
       endpoint = "https://openrouter.ai/api/v1",
       model = "anthropic/claude-sonnet-4",
     },
-    orcypheralpha = {
+    orgrokcodefast1 = {
       __inherited_from = "openai",
       api_key_name = "OPENROUTER_API_KEY",
       endpoint = "https://openrouter.ai/api/v1",
-      model = "openrouter/cypher-alpha:free",
+      model = "x-ai/grok-code-fast-1",
     },
     qwen3coder = {
       __inherited_from = "openai",
