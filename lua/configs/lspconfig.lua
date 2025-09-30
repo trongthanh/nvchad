@@ -1,8 +1,6 @@
 -- Load upstream defaults
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
-
 ---
 
 local nvchad_on_attach = require("nvchad.configs.lspconfig").on_attach
@@ -25,20 +23,22 @@ local servers = {
   "jsonls",
   "gopls",
   "svelte",
+  "pyright",
   -- "custom_elements_ls",
   -- "tailwindcss",
 }
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+  vim.lsp.config(lsp, {
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
-  }
+  })
+  vim.lsp.enable(lsp)
 end
 
 -- tailwindcss
-lspconfig["tailwindcss"].setup {
+vim.lsp.config("tailwindcss", {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
@@ -46,7 +46,8 @@ lspconfig["tailwindcss"].setup {
     validate = true,
     filetypes = { "svelte" },
   },
-}
+})
+-- vim.lsp.enable "tailwindcss"
 
 local ymlCapabilities = vim.lsp.protocol.make_client_capabilities()
 ymlCapabilities.textDocument.foldingRange = {
@@ -54,32 +55,20 @@ ymlCapabilities.textDocument.foldingRange = {
   lineFoldingOnly = true,
 }
 
-lspconfig["yamlls"].setup {
+vim.lsp.config("yamlls", {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = ymlCapabilities,
   settings = {
     yaml = {
-      -- ... -- other settings. note this overrides the lspconfig defaults.
       schemas = {
         ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
         ["https://json.schemastore.org/catalog-info.json"] = "component.yaml",
       },
     },
   },
-}
-
--- Vue.js language server
-lspconfig["volar"].setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  init_options = {
-    typescript = {
-      tsdk = "/usr/local/lib/node_modules/typescript/lib",
-    },
-  },
-}
+})
+vim.lsp.enable "yamlls"
 
 -- python-lsp-server (used for styles only)
 -- lspconfig["pylsp"].setup {
@@ -98,15 +87,18 @@ lspconfig["volar"].setup {
 --     },
 --   },
 -- }
--- MS python language server
-lspconfig["pyright"].setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-}
 -- Robot Framework LSP OVERRIDE
+local function root_pattern(pattern)
+  return function(startpath)
+    local result = vim.fs.find(pattern, { path = startpath, upward = true, type = "file" })
+    if #result > 0 then
+      return vim.fs.dirname(result[1])
+    end
+    return startpath -- fallback
+  end
+end
 local virtualenv = os.getenv "VIRTUAL_ENV"
-local get_python_path = lspconfig.util.root_pattern "requirements.txt"
+local get_python_path = root_pattern "requirements.txt"
 local settings = {
   robot = {
     lint = {
@@ -124,12 +116,14 @@ if virtualenv then
   }
   settings.robot.pythonpath = { get_python_path(virtualenv) }
 end
-lspconfig["robotframework_ls"].setup {
+vim.lsp.config("robotframework_ls", {
+  cmd = { "robotframework_ls" },
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
   settings = settings,
-}
+})
+vim.lsp.enable "robotframework_ls"
 
 ------------------------------------------------------
 
