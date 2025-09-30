@@ -60,9 +60,9 @@ return {
   ---@param title string|?
   ---@return string
   note_id_func = function(title)
-    -- Create note IDs in a Zettelkasten format with a timestamp (yymmddhhmm) and a suffix.
+    -- Create note IDs in a Zettelkasten format with a timestamp (yymmdd) and a suffix.
     -- In this case a note with the title 'My new note' will be given an ID that looks
-    -- like '2508071155-my-new-note', and therefore the file name '2508071155-my-new-note.md'.
+    -- like '250807-my-new-note', and therefore the file name '250807-my-new-note.md'.
     -- You may have as many periods in the note ID as you'd like—the ".md" will be added automatically
     local suffix = ""
     if title ~= nil then
@@ -75,7 +75,7 @@ return {
         suffix = suffix .. string.char(math.random(65, 90))
       end
     end
-    return os.date "%y%m%d%H%M" .. "-" .. suffix
+    return os.date "%y%m%d" .. "-" .. suffix
   end,
   checkbox = {
     order = { " ", "/", "x", "-" },
