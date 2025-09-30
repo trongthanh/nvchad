@@ -60,6 +60,9 @@ local plugins = {
         end,
       },
     },
+    keys = {
+        {"<leader>nh",  function() require('snacks').notifier.show_history() end, desc = "Notification History" },
+    }
   },
   {
     "hrsh7th/nvim-cmp",

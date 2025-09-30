@@ -96,6 +96,7 @@ map("n", "<C-t>", "<cmd> Telescope treesitter <CR>", { desc = "Telescope Find sy
 map("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "Telescope Git čommits" })
 map("n", "<leader>fm", "<cmd> Telescope marks <CR>", { desc = "Telescope Bookṃarks" })
 map("n", "<leader>ft", "<cmd> Telescope terms <CR>", { desc = "Telescope Pick hidden ṯerm" })
+map("n", "<leader>fc", "<cmd> Telescope commands <CR>", { desc = "Telescope Find Çommands" })
 map("n", "<leader>fd", "<cmd> TodoTelescope <CR>", { desc = "Telescope Find TOḎOs" })
 
 -- Tabufline mappings
@@ -274,7 +275,7 @@ end
 
 lazy.avante = {
   {
-    "<C-M-i>",
+    "<C-M-a>",
     function()
       local avante = require "avante"
       local sidebar = avante.get()

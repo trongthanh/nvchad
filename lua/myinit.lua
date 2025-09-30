@@ -35,11 +35,9 @@ autocmd("VimEnter", {
     if directory then
       -- change to the directory
       vim.cmd.cd(data.file)
-      vim.cmd "Nvdash"
       -- show nvim-tree initially
       require("nvim-tree.api").tree.open { focus = false }
     end
-
     if no_name then
       vim.cmd "Nvdash"
     end
@@ -71,7 +69,7 @@ autocmd("FileType", {
     -- change surround * to double ** in markdown editor
     vim.g.surround_42 = "**\r**"
     -- required by obsidian.nvim UI
-    vim.opt_local.conceallevel = 2
+    vim.opt_local.conceallevel = 1
   end,
 })
 
