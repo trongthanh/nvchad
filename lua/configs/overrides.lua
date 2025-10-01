@@ -168,4 +168,55 @@ M.scrollbar = {
   },
 }
 
+---@module 'render-markdown'
+---@type render.md.UserConfig
+M.rendermarkdown = {
+  file_types = { "markdown", "Avante" },
+  completions = { lsp = { enabled = true } },
+  code = {
+    enabled = true,
+    -- Additional modes to render code blocks.
+    render_modes = false,
+    -- Turn on / off sign column related rendering.
+    sign = true,
+    -- Whether to conceal nodes at the top and bottom of code blocks.
+    conceal_delimiters = false,
+    border = "none",
+    language = true,
+    disable_background = true,
+  },
+  heading = {
+    enabled = true,
+    -- determines if a border is added above and below headings.
+    border = false,
+    width = "block",
+    -- min_width = 80,
+    right_pad = 1,
+    -- Used above heading for border.
+    above = "▄",
+    -- Used below heading for border.
+    below = "▀",
+    -- border_virtual = true,
+    -- backgrounds = false,
+    position = "overlay",
+    icons = { "󰎤 ", "󰎩 ", "󰼑 ", "󰎲 ", "󰲨 ", "󰲫 " },
+  },
+  checkbox = {
+    checked = {
+      -- Replaces '[x]' of 'task_list_marker_checked'.
+      icon = "󰄲 ",
+      -- Highlight for the checked icon.
+      highlight = "RenderMarkdownSuccess",
+    },
+    -- Define custom checkbox states, common in Obsidian
+    custom = {
+      todo = { raw = "[-]", rendered = "󰍵 ", highlight = "RenderMarkdownError", scope_highlight = nil },
+      in_progress = { raw = "[/]", rendered = "󰪞 ", highlight = "RenderMarkdownWarn", scope_highlight = nil },
+      important = { raw = "[>]", rendered = "󰧚 ", highlight = "RenderMarkdownHint", scope_highlight = nil },
+      question = { raw = "[?]", rendered = "󰞋 ", highlight = "RenderMarkdownInfo", scope_highlight = nil },
+      exclamation = { raw = "[!]", rendered = "󰀧 ", highlight = "RenderMarkdownWarn", scope_highlight = nil },
+    },
+  },
+}
+
 return M
