@@ -1,5 +1,4 @@
 -- Path to overriding theme and highlights files
-local highlights = require "highlights"
 local blame_deferred = false
 
 ---@type ChadrcConfig
@@ -89,8 +88,30 @@ local options = {
     theme = "chadracula",
     theme_toggle = { "chadracula", "one_light" },
 
-    hl_override = highlights.override,
-    hl_add = highlights.add,
+    hl_override = {
+      {
+        italic = true,
+      },
+      Comment = {
+        italic = true,
+      },
+      Normal = {
+        -- darken background
+        bg = { "black", -3 },
+      },
+      Visual = {
+        -- make visual selection more readable at comments
+        bg = { "one_bg2", -3 },
+      },
+      -- nvimtree
+      NvimTreeOpenedFolderName = { bold = true },
+      NvimTreeGitDirty = { fg = "yellow" },
+      NvimTreeGitNew = { fg = "green" },
+      NvimTreeSpecialFile = { fg = "cyan" },
+      -- markdown
+      ["@markup.heading"] = { bold = true },
+    },
+    hl_add = {},
   },
 }
 

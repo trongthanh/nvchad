@@ -192,14 +192,11 @@ M.rendermarkdown = {
     width = "block",
     -- min_width = 80,
     right_pad = 1,
-    -- Used above heading for border.
-    above = "▄",
-    -- Used below heading for border.
-    below = "▀",
-    -- border_virtual = true,
     -- backgrounds = false,
+    foregrounds = false,
     position = "overlay",
-    icons = { "󰎤 ", "󰎩 ", "󰼑 ", "󰎲 ", "󰲨 ", "󰲫 " },
+    -- icons = { "󰎤 ", "󰎩 ", "󰼑 ", "󰎲 ", "󰲨 ", "󰲫 " },
+    icons = false,
   },
   checkbox = {
     checked = {

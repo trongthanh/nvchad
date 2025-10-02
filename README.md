@@ -1,5 +1,5 @@
 NvChad Config for neovim
-===============================
+========================
 
 This is my repo for the `~/.config/nvim` folder in [NvChad config](https://nvchad.com/docs/config/walkthrough#custom_config)
 
