@@ -193,10 +193,20 @@ M.rendermarkdown = {
     -- min_width = 80,
     right_pad = 1,
     -- backgrounds = false,
-    foregrounds = false,
+    foregrounds = {
+      "RenderMarkdownInfo",
+      "RenderMarkdownSuccess",
+      "RenderMarkdownHint",
+      "RenderMarkdownH4",
+      "RenderMarkdownH5",
+      "RenderMarkdownH6",
+    },
     position = "overlay",
     -- icons = { "󰎤 ", "󰎩 ", "󰼑 ", "󰎲 ", "󰲨 ", "󰲫 " },
     icons = false,
+  },
+  bullet = {
+    highlight = "RenderMarkdownUnchecked",
   },
   checkbox = {
     checked = {
