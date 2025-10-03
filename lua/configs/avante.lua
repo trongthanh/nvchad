@@ -41,6 +41,7 @@ local avante_config = {
   end,
   -- Disable any built-in Avante tools that might conflict with builtin mcphub mcp servers
   disabled_tools = {
+    "run_python",
     -- "list_files",
     -- "search_files",
     -- "read_file",
