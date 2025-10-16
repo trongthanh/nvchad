@@ -1,7 +1,9 @@
 local overrides = require "configs.overrides"
+local lazy = require "lazy"
 
 ---@type NvPluginSpec[]
 local plugins = {
+  { import = "nvchad.blink.lazyspec" },
   {
     -- Override nvchad's to remove `v` `c` key
     "folke/which-key.nvim",
@@ -44,7 +46,7 @@ local plugins = {
       explorer = { enabled = false },
       indent = { enabled = false },
       input = { enabled = true },
-      picker = { enabled = false },
+      picker = { enabled = true },
       notifier = { enabled = true, timeout = 5000, top_down = false },
       quickfile = { enabled = true },
       scope = { enabled = false },
@@ -72,39 +74,41 @@ local plugins = {
   },
   {
     "hrsh7th/nvim-cmp",
-    opts = overrides.cmp,
+    enabled = false,
+    -- opts = overrides.cmp,
+    -- dependencies = {
+    --   "f3fora/cmp-spell",
+    -- },
+  },
+  {
+    "saghen/blink.cmp",
+    enabled = true,
     dependencies = {
-      "f3fora/cmp-spell",
+      -- "Kaiser-Yang/blink-cmp-avante",
+      "rafamadriz/friendly-snippets",
+    },
+    opts = {
+      keymap = {
+        ["<S-Tab>"] = { "select_prev", "fallback" },
+        ["<Tab>"] = { "select_next", "fallback" },
+      },
+
+      completion = {
+        -- Don't preselectt by default, auto insert on selection
+        list = { selection = { preselect = false, auto_insert = true } },
+      },
+      sources = {
+        -- Add 'avante' to the list
+        default = { "lsp", "path", "snippets", "buffer" },
+        providers = {
+          -- avante = {
+          --   module = "blink-cmp-avante",
+          --   name = "Avante",
+          -- },
+        },
+      },
     },
   },
-  -- {
-  --   "saghen/blink.cmp",
-  --   dependencies = {
-  --     "Kaiser-Yang/blink-cmp-avante",
-  --     "rafamadriz/friendly-snippets",
-  --   },
-  --   opts = {
-  --     keymap = {
-  --       ["<S-Tab>"] = { "select_prev", "fallback" },
-  --       ["<Tab>"] = { "select_next", "fallback" },
-  --     },
-  --
-  --     completion = {
-  --       -- Don't preselectt by default, auto insert on selection
-  --       list = { selection = { preselect = false, auto_insert = true } },
-  --     },
-  --     sources = {
-  --       -- Add 'avante' to the list
-  --       default = { "avante", "lsp", "path", "snippets", "buffer" },
-  --       providers = {
-  --         avante = {
-  --           module = "blink-cmp-avante",
-  --           name = "Avante",
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
   {
     "petertriho/nvim-scrollbar",
     lazy = false,
