@@ -349,6 +349,7 @@ local plugins = {
   },
   {
     "yetone/avante.nvim",
+    enabled = false,
     event = "VeryLazy",
     version = false, -- set this if you want to always pull the latest change
     opts = require "configs.avante",
@@ -394,6 +395,20 @@ local plugins = {
   {
     "varnishcache-friends/vim-varnish",
     ft = { "vcl" },
+  },
+  {
+    "folke/sidekick.nvim",
+    opts = {
+      -- add any options here
+      cli = {
+        -- mux = {
+        --   backend = "zellij",
+        --   enabled = true,
+        -- },
+      },
+    },
+    -- stylua: ignore
+    keys = require("mappings").sidekick,
   },
 }
 
