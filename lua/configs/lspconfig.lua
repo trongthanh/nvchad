@@ -49,6 +49,26 @@ vim.lsp.config("tailwindcss", {
 })
 -- vim.lsp.enable "tailwindcss"
 
+-- oxlint
+vim.lsp.config("oxlint", {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  settings = {
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+      "typescript.mts",
+    },
+  },
+})
+
+vim.lsp.enable "oxlint"
+
 local ymlCapabilities = vim.lsp.protocol.make_client_capabilities()
 ymlCapabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
