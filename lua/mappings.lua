@@ -27,6 +27,8 @@ map("i", "<C-A-t>", "<C-r>=strftime('%FT%T%z')<CR>", { desc = "Insert ISO Time s
 map("n", "<C-A-t>", '"=strftime("%FT%T%z")<CR>P', { desc = "Insert ISO Time string" })
 map("i", "<C-A-d>", "<C-r>=strftime('%F')<CR>", { desc = "Insert ISO Date string" })
 map("n", "<C-A-d>", '"=strftime("%F")<CR>P', { desc = "Insert ISO Date string" })
+map("i", "<C-A-S-d>", "<C-r>=strftime('%a %B %d, %Y')<CR>", { desc = "Insert formatted date string" })
+map("n", "<C-A-S-d>", '"=strftime("%a %B %d, %Y")<CR>P', { desc = "Insert formatted date string" })
 map("n", "<C-A-f>", ":%s/", { desc = "general Search and replace prompt" })
 map("n", "<C-A-z>", "<cmd> set wrap! <CR>", { desc = "Toggle soft wrap" })
 map("n", "<C-S-a>", "ggVG", { desc = "selection Select all" })
@@ -301,15 +303,12 @@ lazy.avante = {
 
 lazy.sidekick = {
   {
-    "<C-tab>",
+    "<c-.>",
     function()
-      -- if there is a next edit, jump to it, otherwise apply it if any
-      if not require("sidekick").nes_jump_or_apply() then
-        return "<Tab>" -- fallback to normal tab
-      end
+      require("sidekick.cli").toggle()
     end,
-    expr = true,
-    desc = "Goto/Apply Next Edit Suggestion",
+    desc = "Sidekick Toggle",
+    mode = { "n", "t", "i", "x" },
   },
   {
     "<leader>aa",
@@ -328,12 +327,26 @@ lazy.sidekick = {
     desc = "Select CLI",
   },
   {
+    "<leader>ad",
+    function()
+      require("sidekick.cli").close()
+    end,
+    desc = "Detach a CLI Session",
+  },
+  {
     "<leader>at",
     function()
       require("sidekick.cli").send { msg = "{this}" }
     end,
     mode = { "x", "n" },
     desc = "Send This",
+  },
+  {
+    "<leader>af",
+    function()
+      require("sidekick.cli").send { msg = "{file}" }
+    end,
+    desc = "Send File",
   },
   {
     "<leader>av",
@@ -351,14 +364,6 @@ lazy.sidekick = {
     mode = { "n", "x" },
     desc = "Sidekick Select Prompt",
   },
-  {
-    "<c-.>",
-    function()
-      require("sidekick.cli").focus()
-    end,
-    mode = { "n", "x", "i", "t" },
-    desc = "Sidekick Switch Focus",
-  },
   -- Example of a keybinding to open Claude directly
   {
     "<leader>ac",
@@ -366,13 +371,6 @@ lazy.sidekick = {
       require("sidekick.cli").toggle { name = "claude", focus = true }
     end,
     desc = "Sidekick Toggle Claude",
-  },
-  {
-    "<leader>aq",
-    function()
-      require("sidekick.cli").toggle { name = "qwen", focus = true }
-    end,
-    desc = "Sidekick Toggle Qwen",
   },
 }
 

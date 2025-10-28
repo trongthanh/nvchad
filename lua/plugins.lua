@@ -400,12 +400,11 @@ local plugins = {
     "folke/sidekick.nvim",
     opts = {
       -- add any options here
-      cli = {
-        -- mux = {
-        --   backend = "zellij",
-        --   enabled = true,
-        -- },
+      nes = {
+        ---@type boolean|fun(buf:integer):boolean?
+        enabled = false,
       },
+      cli = {},
     },
     -- stylua: ignore
     keys = require("mappings").sidekick,
