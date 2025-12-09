@@ -374,6 +374,13 @@ lazy.sidekick = {
     end,
     desc = "Sidekick Toggle Claude",
   },
+  {
+    "<leader>ao",
+    function()
+      require("sidekick.cli").toggle { name = "opencode", focus = true }
+    end,
+    desc = "Sidekick Toggle OpenCode",
+  },
 }
 
 -- lazy mappings for lazy plugins & autocmds

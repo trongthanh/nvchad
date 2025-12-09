@@ -55,6 +55,7 @@ local plugins = {
       words = { enabled = false },
       image = {
         enabled = true,
+        relative = "editor",
         resolve = function(path, src)
           if require("obsidian.api").path_is_note(path) then
             return require("obsidian.api").resolve_image_path(src)
@@ -404,7 +405,12 @@ local plugins = {
         ---@type boolean|fun(buf:integer):boolean?
         enabled = false,
       },
-      cli = {},
+      cli = {
+        tools = {
+          -- trying claude code router with glm-4.6
+          ccr = { cmd = { "ccr", "code" } },
+        },
+      },
     },
     -- stylua: ignore
     keys = require("mappings").sidekick,
