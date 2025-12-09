@@ -15,6 +15,7 @@ local treesitterconfig = {
     "lua",
     "markdown",
     "markdown_inline",
+    "python",
     "styled",
     "tsx",
     "typescript",
