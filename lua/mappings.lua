@@ -256,19 +256,21 @@ end
 
 -- Wiki mappings
 lazy.obsidian = function()
-  map("n", "<leader>o[", ":Obsidian today -1<CR>", { desc = "Obsidian open yesterday" })
-  map("n", "<leader>o]", ":Obsidian today +1<CR>", { desc = "Obsidian open tomorrow" })
+  map("n", "<leader>od", ":Obsidian today<CR>", { desc = "Obsidian open today" })
+  map("n", "<leader>oy", ":Obsidian today -1<CR>", { desc = "Obsidian open yesterday" })
+  map("n", "<leader>om", ":Obsidian today +1<CR>", { desc = "Obsidian open tomorrow" })
   map("n", "<leader>ob", ":Obsidian backlinks<CR>", { desc = "Obsidian list backlinks" })
-  map("n", "<leader>oc", ":Obsidian toc<CR>", { desc = "Obsidian TOC" })
-  map("n", "<leader>od", ":Obsidian dailies<CR>", { desc = "Obsidian pick dailies" })
+  map("n", "<leader>ot", ":Obsidian toc<CR>", { desc = "Obsidian TOC" })
+  map("n", "<leader>ow", ":Obsidian dailies<CR>", { desc = "Obsidian pick dailies by week" })
   map("n", "<leader>og", ":Obsidian tags<CR>", { desc = "Obsidian tags" })
-  map("n", "<leader>ok", ":Obsidian check<CR>", { desc = "Obsidian check" })
+  map("n", "<leader>oc", ":Obsidian check<CR>", { desc = "Obsidian check" })
   map("n", "<leader>ol", ":Obsidian links<CR>", { desc = "Obsidian list links" })
-  map("n", "<leader>op", ":Obsidian paste_img ", { desc = "Obsidian paste image [title]" })
+  map("n", "<leader>opi", ":Obsidian paste_img ", { desc = "Obsidian paste image [title]" })
   map("n", "<leader>oq", ":Obsidian quick_switch<CR>", { desc = "Obsidian quick switch" })
   map("n", "<leader>or", ":Obsidian rename<CR>", { desc = "Obsidian rename" })
   map("n", "<leader>os", ":Obsidian search<CR>", { desc = "Obsidian search" })
-  map("n", "<leader>ot", ":Obsidian today<CR>", { desc = "Obsidian open today" })
+  map("n", "<leader>oid", '"=strftime("%a %B %d, %Y")<CR>P', { desc = "Insert formatted date string" })
+
   -- visual
   map("v", "<leader>oe", ":Obsidian extract_note<CR>", { desc = "Obsidian extract note" })
   map("v", "<leader>ol", ":Obsidian link<CR>", { desc = "Obsidian link" })
