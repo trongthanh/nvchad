@@ -36,9 +36,17 @@ return {
   },
   attachments = {
     -- keep images in a dedicated folder
-    img_folder = "/images",
+    folder = "/images",
   },
   notes_subdir = "notes",
+  templates = {
+    folder = ".templates",
+    substitutions = {
+      ["date:ddd MMMM D, YYYY"] = function()
+        return os.date "%a %B %-d, %Y"
+      end,
+    },
+  },
   daily_notes = {
     -- Optional, if you keep daily notes in a separate directory.
     folder = "journal",
@@ -49,7 +57,7 @@ return {
     -- Optional, default tags to add to each new daily note created.
     default_tags = { "daily-notes" },
     -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-    template = nil,
+    template = "daily-note.md",
     -- Optional, if you want `Obsidian yesterday` to return the last work day or `Obsidian tomorrow` to return the next work day.
     workdays_only = true,
   },
