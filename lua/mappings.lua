@@ -40,7 +40,7 @@ map("n", "<leader>gg", ":LazyGit<CR>", { desc = "git LazyGit" })
 map("n", "<leader>gx", ":DiffviewClose<CR>", { desc = "git DiffviewClose" })
 map("n", "<leader>nn", "<cmd> set nu! <CR>", { desc = "Toggle line number" })
 map("n", "<leader>nr", "<cmd> set rnu! <CR>", { desc = "Toggle relative number" })
-map("n", "<leader>q", "<C-w>q", { desc = "general Close (split) window" })
+map("n", "<leader>x", "<C-w>q", { desc = "general Close (split) window" })
 
 map("n", "<C-A-left>", "<C-w>h", { desc = "switch window left", noremap = true, silent = true })
 map("n", "<C-A-right>", "<C-w>l", { desc = "switch window right", noremap = true, silent = true })
@@ -51,7 +51,7 @@ map("n", "<C-0>", ":vertical resize +10<CR>", { desc = "increase window width by
 
 map("v", "<C-f>", 'y<ESC>/<c-r>"<CR>', { desc = "selection Search current selection" })
 map("v", "<C-h>", ":s/\\%V", { desc = "selection Start search and replace within selection" })
-map("v", "<C-c>", '"+y', { desc = "selection Copy selection to clipboard" })
+map("v", "<C-c>", '"+ygv', { desc = "selection Copy selection to clipboard" })
 -- homemade block comment at selection
 map(
   "v",
@@ -382,6 +382,42 @@ lazy.sidekick = {
       require("sidekick.cli").toggle { name = "opencode", focus = true }
     end,
     desc = "Sidekick Toggle OpenCode",
+  },
+}
+
+-- Treesitter incremental selection
+lazy.treesitter = {
+  {
+    "+",
+    mode = { "n" },
+    function()
+      require("nvim-treesitter.incremental_selection").init_selection()
+    end,
+    desc = "treesitter init selection",
+  },
+  {
+    "+",
+    mode = { "x" },
+    function()
+      require("nvim-treesitter.incremental_selection").node_incremental()
+    end,
+    desc = "treesitter node incremental",
+  },
+  {
+    "_",
+    mode = { "x" },
+    function()
+      require("nvim-treesitter.incremental_selection").node_decremental()
+    end,
+    desc = "treesitter node decremental",
+  },
+  {
+    ")",
+    mode = { "x" },
+    function()
+      require("nvim-treesitter.incremental_selection").scope_incremental()
+    end,
+    desc = "treesitter scope incremental",
   },
 }
 

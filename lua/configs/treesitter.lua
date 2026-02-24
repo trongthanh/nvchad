@@ -36,15 +36,7 @@ local treesitterconfig = {
       "markdown_inline",
     },
   },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "+",
-      node_incremental = "+",
-      scope_incremental = ")",
-      node_decremental = "_",
-    },
-  },
+
 
   highlight = {
     -- `false` will disable the whole extension
