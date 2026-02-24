@@ -40,6 +40,7 @@ return {
   },
   notes_subdir = "notes",
   templates = {
+    enabled = true,
     folder = ".templates",
     substitutions = {
       ["date:ddd MMMM D, YYYY"] = function()
@@ -48,6 +49,8 @@ return {
     },
   },
   daily_notes = {
+    -- Optional, if you want to enable daily notes
+    enabled = true,
     -- Optional, if you keep daily notes in a separate directory.
     folder = "journal",
     -- Optional, if you want to change the date format for the ID of daily notes.
@@ -61,7 +64,6 @@ return {
     -- Optional, if you want `Obsidian yesterday` to return the last work day or `Obsidian tomorrow` to return the next work day.
     workdays_only = true,
   },
-  -- Either 'wiki' or 'markdown'.
   preferred_link_style = "markdown",
 
   -- Optional, customize how note IDs are generated given an optional title.
@@ -88,11 +90,11 @@ return {
   checkbox = {
     order = { " ", "/", "x", "-" },
   },
+  frontmatter = {
+    enabled = true,
+  },
   ui = {
     enable = false,
-    -- ignore_conceal_warn = true, -- set to true to disable conceallevel specific warning
-    -- checkboxes = { },
-    -- Use bullet marks for non-checkbox lists.
     bullets = { char = "●", hl_group = "ObsidianBullet" },
   },
 }
