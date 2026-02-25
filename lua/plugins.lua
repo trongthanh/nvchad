@@ -387,14 +387,14 @@ local plugins = {
       },
     },
   },
-  {
-    ---@module 'render-markdown'
-    -- Make sure to set this up properly if you have lazy=true
-    "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown", "Avante" },
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
-    opts = overrides.rendermarkdown,
-  },
+  -- {
+  --   ---@module 'render-markdown'
+  --   -- Make sure to set this up properly if you have lazy=true
+  --   "MeanderingProgrammer/render-markdown.nvim",
+  --   ft = { "markdown", "Avante" },
+  --   dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+  --   opts = overrides.rendermarkdown,
+  -- },
   {
     "varnishcache-friends/vim-varnish",
     ft = { "vcl" },

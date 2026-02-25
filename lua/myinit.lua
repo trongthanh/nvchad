@@ -69,7 +69,7 @@ autocmd("FileType", {
     -- change surround * to double ** in markdown editor
     vim.g.surround_42 = "**\r**"
     -- required by obsidian.nvim UI
-    -- vim.opt_local.conceallevel = 2
+    vim.opt_local.conceallevel = 2
     vim.opt_local.shiftwidth = 2
     vim.opt_local.expandtab = true -- use spaces by default, to be overriden by .editorconfig
   end,

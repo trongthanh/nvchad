@@ -94,7 +94,19 @@ return {
     enabled = true,
   },
   ui = {
-    enable = false,
+    enable = true,
     bullets = { char = "●", hl_group = "ObsidianBullet" },
+    checkboxes = {
+      [" "] = { char = "󰄱 ", hl_group = "obsidiantodo" },
+      ["/"] = { char = "󰪞 ", hl_group = "obsidiantilde" },
+      ["x"] = { char = " ", hl_group = "obsidiandone" },
+      ["-"] = { char = "󰍵 ", hl_group = "obsidianimportant" },
+      [">"] = { char = "󰧚 ", hl_group = "obsidianrightarrow" },
+    },
+    hl_groups = {
+      ObsidianTodo = { bold = true, fg = "#89ddff" },
+      ObsidianDone = { bold = true, fg = "#50fa7b" },
+      ObsidianTilde = { bold = true, fg = "#bd93f9" },
+    },
   },
 }
