@@ -335,17 +335,18 @@ local plugins = {
   },
   {
     "obsidian-nvim/obsidian.nvim",
-    version = "*", -- recommended, use latest release instead of latest commit
+    version = "3.14.7", -- recommended, use latest release instead of latest commit
 
-    event = {
-      "BufReadPre " .. vim.fn.expand "~" .. "/Sync/wiki/**.md",
-      "BufNewFile " .. vim.fn.expand "~" .. "/Sync/wiki/**.md",
-    },
+    -- event = {
+    --   "BufReadPre " .. vim.fn.expand "~" .. "/Sync/wiki/**.md",
+    --   "BufNewFile " .. vim.fn.expand "~" .. "/Sync/wiki/**.md",
+    -- },
     dependencies = {
       -- Required.
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
-      "hrsh7th/nvim-cmp",
+      "saghen/blink.cmp",
+      -- "hrsh7th/nvim-cmp",
     },
     keys = require("mappings").obsidian,
     opts = require "configs.obsidian",

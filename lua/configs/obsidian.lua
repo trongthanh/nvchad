@@ -41,7 +41,7 @@ return {
   notes_subdir = "notes",
   templates = {
     enabled = true,
-    folder = ".templates",
+    folder = "~templates",
     substitutions = {
       ["date:ddd MMMM D, YYYY"] = function()
         return os.date "%a %B %-d, %Y"
@@ -64,8 +64,12 @@ return {
     -- Optional, if you want `Obsidian yesterday` to return the last work day or `Obsidian tomorrow` to return the next work day.
     workdays_only = true,
   },
-  preferred_link_style = "markdown",
+  -- link = {
+  --   style = "markdown",
+  --   format = "shortest",
+  -- },
 
+  preferred_link_style = "markdown",
   -- Optional, customize how note IDs are generated given an optional title.
   ---@param title string|?
   ---@return string
@@ -95,6 +99,7 @@ return {
   },
   ui = {
     enable = true,
+    ignore_conceal_warn = true,
     bullets = { char = "●", hl_group = "ObsidianBullet" },
     checkboxes = {
       [" "] = { char = "󰄱 ", hl_group = "obsidiantodo" },
