@@ -5,7 +5,8 @@ local opt = vim.opt
 -- enable update terminal title
 opt.title = true
 -- enable blinking caret
-opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25-blinkon300-blinkoff200,r-cr-o:hor20"
+-- t:ver25 = terminal insert mode uses thin line cursor
+opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25-blinkon300-blinkoff200,r-cr-o:hor20,t:ver25-blinkon300-blinkoff200"
 -- enable local .nvim.lua, .nvimrc, .exrc files
 opt.exrc = true
 

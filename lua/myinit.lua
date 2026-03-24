@@ -91,7 +91,9 @@ autocmd("FileType", {
 })
 
 autocmd("TermOpen", {
-  callback = require("mappings").terminal,
+  callback = function(args)
+    require("mappings").terminal(args)
+  end,
 })
 
 autocmd("BufEnter", {
@@ -124,29 +126,6 @@ vim.api.nvim_create_user_command("Tab4", function()
   vim.opt.tabstop = 4
   vim.opt.expandtab = false
 end, { desc = "Set indent width to 4-char tab" })
--- delay cmp completion workaround
--- taken from https://github.com/hrsh7th/nvim-cmp/issues/715
-
--- local timer = nil
--- local DELAY = 500
--- autocmd({ "TextChangedI", "CmdlineChanged" }, {
---   pattern = "*",
---   callback = function()
---     if timer then
---       vim.loop.timer_stop(timer)
---       timer = nil
---     end
---
---     timer = vim.loop.new_timer()
---     timer:start(
---       DELAY,
---       0,
---       vim.schedule_wrap(function()
---         require("cmp").complete { reason = require("cmp").ContextReason.Auto }
---       end)
---     )
---   end,
--- })
 
 -- mapping for neovide
 if vim.g.neovide then

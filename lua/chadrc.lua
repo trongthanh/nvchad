@@ -89,10 +89,10 @@ local options = {
     theme_toggle = { "chadracula", "one_light" },
 
     hl_override = {
-      {
+      Comment = {
         italic = true,
       },
-      Comment = {
+      ["@comment"] = {
         italic = true,
       },
       Normal = {
