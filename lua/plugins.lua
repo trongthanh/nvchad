@@ -155,16 +155,13 @@ local plugins = {
 
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     lazy = false,
-    opts = require "configs.treesitter",
-    init = function()
-      -- use twig parser for nunjucks until native nunjucks parser is available
-      vim.treesitter.language.register("twig", "nunjucks")
-      vim.treesitter.language.register("glimmer", "handlebars")
-    end,
-    keys = require("mappings").treesitter,
+    opts = (require "configs.treesitter").opts,
+    init = (require "configs.treesitter").init,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
+      branch = "main",
     },
   },
   {

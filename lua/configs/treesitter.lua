@@ -4,64 +4,7 @@ local desc = function(str)
 end
 
 local treesitterconfig = {
-  ensure_installed = {
-    "bash",
-    "css",
-    "dockerfile",
-    "gitignore",
-    "javascript",
-    "jsdoc",
-    "json",
-    "lua",
-    "markdown",
-    "markdown_inline",
-    "python",
-    "styled",
-    "tsx",
-    "typescript",
-    "vim",
-    "yaml",
-    "go",
-    "vue",
-    "twig", -- for twig and nunjucks templates
-    "html",
-    -- "mermaid"
-  },
-  -- ignore_install = { "markdown" },
 
-  indent = {
-    enable = true,
-    disable = {
-      "markdown",
-      "markdown_inline",
-    },
-  },
-
-
-  highlight = {
-    -- `false` will disable the whole extension
-    enable = true,
-
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    -- disable = { "html" },
-    -- disable for large file
-    disable = function(lang, buf)
-      local max_filesize = 100 * 1024 -- 100 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      end
-    end,
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    -- additional_vim_regex_highlighting = { "markdown" },
-  },
   textobjects = {
     select = {
       enable = true,
@@ -158,4 +101,51 @@ local treesitterconfig = {
   },
 }
 
-return treesitterconfig
+return {
+  opts = treesitterconfig,
+  init = function()
+    vim.api.nvim_create_autocmd("FileType", {
+      callback = function()
+        -- Enable treesitter highlighting and disable regex syntax
+        pcall(vim.treesitter.start)
+        -- Enable treesitter-based indentation
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end,
+    })
+    local ensure_installed = {
+      "bash",
+      "css",
+      "dockerfile",
+      "gitignore",
+      "javascript",
+      "jsdoc",
+      "json",
+      "lua",
+      "markdown",
+      "markdown_inline",
+      "python",
+      "styled",
+      "tsx",
+      "typescript",
+      "vim",
+      "yaml",
+      "go",
+      "vue",
+      "twig", -- for twig and nunjucks templates
+      "html",
+      -- "mermaid"
+    }
+
+    local already_installed = require("nvim-treesitter").get_installed()
+    local parsers_to_install = vim
+      .iter(ensure_installed)
+      :filter(function(parser)
+        return not vim.tbl_contains(already_installed, parser)
+      end)
+      :totable()
+    require("nvim-treesitter").install(parsers_to_install)
+    -- use twig parser for nunjucks until native nunjucks parser is available
+    vim.treesitter.language.register("twig", "nunjucks")
+    vim.treesitter.language.register("glimmer", "handlebars")
+  end,
+}
