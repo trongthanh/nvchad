@@ -14,7 +14,7 @@ vim.api.nvim_create_user_command("Q", "qa<bang>", {
 
 -- Auto commands
 local autocmd = vim.api.nvim_create_autocmd
---
+
 --
 
 -- Open NvimTree on startup
@@ -69,9 +69,11 @@ autocmd("FileType", {
     -- change surround * to double ** in markdown editor
     vim.g.surround_42 = "**\r**"
     -- required by obsidian.nvim UI
-    vim.opt_local.conceallevel = 2
+    vim.opt_local.conceallevel = 3
     vim.opt_local.shiftwidth = 2
     vim.opt_local.expandtab = true -- use spaces by default, to be overriden by .editorconfig
+    -- reload buffer when file is changed externally (e.g. edited in Obsidian)
+    vim.opt_local.autoread = true
   end,
 })
 
@@ -107,6 +109,14 @@ autocmd("BufEnter", {
 autocmd("FileType", {
   pattern = "nvcheatsheet",
   callback = require("mappings").cheatsheet,
+})
+
+-- Restore cursor to bar style when leaving Neovim (for tmux terminal)
+autocmd("VimLeave", {
+  pattern = "*",
+  callback = function()
+    vim.fn.system("printf '\\e[6 q'")
+  end,
 })
 
 vim.api.nvim_create_user_command("Space4", function()

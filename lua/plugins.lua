@@ -332,12 +332,12 @@ local plugins = {
   },
   {
     "obsidian-nvim/obsidian.nvim",
-    version = "3.14.7", -- recommended, use latest release instead of latest commit
+    -- version = "3.14.7", -- recommended, use latest release instead of latest commit
 
-    -- event = {
-    --   "BufReadPre " .. vim.fn.expand "~" .. "/Sync/wiki/**.md",
-    --   "BufNewFile " .. vim.fn.expand "~" .. "/Sync/wiki/**.md",
-    -- },
+    event = {
+      "BufReadPre " .. vim.fn.expand "~" .. "/Sync/wiki/**.md",
+      "BufNewFile " .. vim.fn.expand "~" .. "/Sync/wiki/**.md",
+    },
     dependencies = {
       -- Required.
       "nvim-lua/plenary.nvim",

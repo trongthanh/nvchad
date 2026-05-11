@@ -59,6 +59,8 @@ local on_nvimtree_attach = function(bufnr)
   local api = require "nvim-tree.api"
   -- default mappings
   api.config.mappings.default_on_attach(bufnr)
+  -- disable default <C-e> toggle keybinding
+  vim.keymap.del("n", "<C-e>", { buffer = bufnr })
   -- custom mappings centralized in mappings.lua
   require("mappings").nvimtree(bufnr, api, { git_add = git_add, avante_add_file = avante_add_file })
 end

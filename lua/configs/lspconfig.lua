@@ -19,11 +19,12 @@ local servers = {
   "cssls",
   "eslint",
   "ts_ls",
-  "stylelint_lsp",
+  "stylelint-language-server",
   "jsonls",
   "gopls",
   "svelte",
   "pyright",
+  "java-language-server",
   -- "custom_elements_ls",
   -- "tailwindcss",
 }

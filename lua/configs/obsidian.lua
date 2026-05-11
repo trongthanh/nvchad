@@ -34,6 +34,13 @@ return {
       path = "~/Sync/wiki",
     },
   },
+  completion = {
+    nvim_cmp = false,
+    blink = true,
+    min_chars = 1,
+    match_case = false,
+    create_new = true,
+  },
   attachments = {
     -- keep images in a dedicated folder
     folder = "/images",
@@ -64,12 +71,11 @@ return {
     -- Optional, if you want `Obsidian yesterday` to return the last work day or `Obsidian tomorrow` to return the next work day.
     workdays_only = true,
   },
-  -- link = {
-  --   style = "markdown",
-  --   format = "shortest",
-  -- },
+  link = {
+    style = "markdown",
+    format = "shortest",
+  },
 
-  preferred_link_style = "markdown",
   -- Optional, customize how note IDs are generated given an optional title.
   ---@param title string|?
   ---@return string
@@ -98,7 +104,7 @@ return {
     enabled = true,
   },
   ui = {
-    enable = true,
+    enable = false,
     ignore_conceal_warn = true,
     bullets = { char = "●", hl_group = "ObsidianBullet" },
     checkboxes = {
