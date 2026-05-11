@@ -59,7 +59,17 @@ map(
   "<Esc>`>a */<Esc>`<i/* <Esc>",
   { desc = "selection Wrap selection in block comment /* */ ", noremap = true, silent = true }
 )
-
+-- copy path for CLI agents
+map("n", "<leader>yr", function()
+  local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+  vim.fn.setreg("+", path)
+  vim.notify(path, vim.log.levels.INFO)
+end, { desc = "general Yank relative path" })
+map("n", "<leader>ya", function()
+  local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p")
+  vim.fn.setreg("+", path)
+  vim.notify(path, vim.log.levels.INFO)
+end, { desc = "general Yank absolute path" })
 -- Text objects
 map("v", "'", "i'", { desc = "TextObject inner quotes", noremap = true, silent = true })
 map("v", '"', 'i"', { desc = "TextObject inner quotes", noremap = true, silent = true })
@@ -79,6 +89,31 @@ map("o", "`", ":<c-u>normal! vi`<cr>", { desc = "TextObject Inner quote", silent
 map("o", "]", ":<c-u>normal! vi]<cr>", { desc = "TextObject Inner brackets", silent = true })
 map("o", "}", ":<c-u>normal! vi}<cr>", { desc = "TextObject Inner brackets", silent = true })
 map("o", ")", ":<c-u>normal! vi)<cr>", { desc = "TextObject Inner brackets", silent = true })
+
+-- Expand selection
+vim.keymap.set({ "x" }, "[n", function()
+  require("vim.treesitter._select").select_prev(vim.v.count1)
+end, { desc = "Select previous treesitter node" })
+
+vim.keymap.set({ "x" }, "]n", function()
+  require("vim.treesitter._select").select_next(vim.v.count1)
+end, { desc = "Select next treesitter node" })
+
+vim.keymap.set({ "x", "o" }, "an", function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require("vim.treesitter._select").select_parent(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(vim.v.count1)
+  end
+end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
+
+vim.keymap.set({ "x", "o" }, "in", function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require("vim.treesitter._select").select_child(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(-vim.v.count1)
+  end
+end, { desc = "Select child treesitter node or inner incremental lsp selections" })
 
 -- NvimTree mappings
 map("n", "<C-e>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree Toggle nvimtree" })
@@ -381,42 +416,6 @@ lazy.sidekick = {
       require("sidekick.cli").toggle { name = "opencode", focus = true }
     end,
     desc = "Sidekick Toggle OpenCode",
-  },
-}
-
--- Treesitter incremental selection
-lazy.treesitter = {
-  {
-    "+",
-    mode = { "n" },
-    function()
-      require("nvim-treesitter.incremental_selection").init_selection()
-    end,
-    desc = "treesitter init selection",
-  },
-  {
-    "+",
-    mode = { "x" },
-    function()
-      require("nvim-treesitter.incremental_selection").node_incremental()
-    end,
-    desc = "treesitter node incremental",
-  },
-  {
-    "_",
-    mode = { "x" },
-    function()
-      require("nvim-treesitter.incremental_selection").node_decremental()
-    end,
-    desc = "treesitter node decremental",
-  },
-  {
-    ")",
-    mode = { "x" },
-    function()
-      require("nvim-treesitter.incremental_selection").scope_incremental()
-    end,
-    desc = "treesitter scope incremental",
   },
 }
 
