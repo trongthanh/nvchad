@@ -173,6 +173,20 @@ M.scrollbar = {
 M.rendermarkdown = {
   file_types = { "markdown", "Avante" },
   completions = { lsp = { enabled = true } },
+  anti_conceal = {
+    enabled = true,
+    -- disabled_modes = { "n" }, -- Keep cursor line rendered in normal mode
+    ignore = {
+      code_background = true,
+      indent = true,
+      sign = true,
+      virtual_lines = true,
+      bullet = true,
+      table_border = true,
+      check_icon = true,
+      check_scope = true,
+    },
+  },
   code = {
     enabled = true,
     -- Additional modes to render code blocks.

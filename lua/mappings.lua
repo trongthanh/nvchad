@@ -90,7 +90,7 @@ map("o", "]", ":<c-u>normal! vi]<cr>", { desc = "TextObject Inner brackets", sil
 map("o", "}", ":<c-u>normal! vi}<cr>", { desc = "TextObject Inner brackets", silent = true })
 map("o", ")", ":<c-u>normal! vi)<cr>", { desc = "TextObject Inner brackets", silent = true })
 
--- Expand selection
+-- Expand selection useing builtin nvim 0.12
 vim.keymap.set({ "x" }, "[n", function()
   require("vim.treesitter._select").select_prev(vim.v.count1)
 end, { desc = "Select previous treesitter node" })

@@ -7,8 +7,7 @@ local plugins = {
   {
     -- Override nvchad's to remove `v` `c` key
     "folke/which-key.nvim",
-    keys = { "<leader>", "<c-w>", '"', "'", "`", "g" },
-    cmd = "WhichKey",
+    event = "VeryLazy",
     opts = function()
       dofile(vim.g.base46_cache .. "whichkey")
       return overrides.whichkey
@@ -89,10 +88,10 @@ local plugins = {
       "rafamadriz/friendly-snippets",
     },
     opts = {
-      keymap = {
-        ["<S-Tab>"] = { "select_prev", "fallback" },
-        ["<Tab>"] = { "select_next", "fallback" },
-      },
+      -- keymap = {
+      --   ["<S-Tab>"] = { "select_prev", "fallback" },
+      --   ["<Tab>"] = { "select_next", "fallback" },
+      -- },
 
       completion = {
         -- Don't preselectt by default, auto insert on selection
@@ -343,56 +342,19 @@ local plugins = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
       "saghen/blink.cmp",
-      -- "hrsh7th/nvim-cmp",
+      "MeanderingProgrammer/render-markdown.nvim",
     },
     keys = require("mappings").obsidian,
     opts = require "configs.obsidian",
   },
   {
-    "yetone/avante.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    version = false, -- set this if you want to always pull the latest change
-    opts = require "configs.avante",
-    keys = require("mappings").avante,
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-    dependencies = {
-      -- "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "nvim-telescope/telescope.nvim",
-      "zbirenbaum/copilot.lua", -- for providers='copilot'
-      {
-        "ravitemer/mcphub.nvim",
-        dependencies = {
-          "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
-        },
-        -- uncomment the following line to load hub lazily
-        --cmd = "MCPHub",  -- lazy load
-        -- build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
-        -- uncomment this if you don't want mcp-hub to be available globally or can't use -g
-        build = "bundled_build.lua", -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
-        opts = {
-          use_bundled_binary = true,
-          -- for use with Avante
-          auto_approve = true,
-        },
-      },
-    },
+    ---@module 'render-markdown'
+    -- Make sure to set this up properly if you have lazy=true
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown" },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+    opts = overrides.rendermarkdown,
   },
-  -- {
-  --   ---@module 'render-markdown'
-  --   -- Make sure to set this up properly if you have lazy=true
-  --   "MeanderingProgrammer/render-markdown.nvim",
-  --   ft = { "markdown", "Avante" },
-  --   dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
-  --   opts = overrides.rendermarkdown,
-  -- },
   {
     "varnishcache-friends/vim-varnish",
     ft = { "vcl" },
