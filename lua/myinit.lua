@@ -72,8 +72,6 @@ autocmd("FileType", {
     vim.opt_local.conceallevel = 3
     vim.opt_local.shiftwidth = 2
     vim.opt_local.expandtab = true -- use spaces by default, to be overriden by .editorconfig
-    -- reload buffer when file is changed externally (e.g. edited in Obsidian)
-    vim.opt_local.autoread = true
   end,
 })
 
@@ -115,7 +113,7 @@ autocmd("FileType", {
 autocmd("VimLeave", {
   pattern = "*",
   callback = function()
-    vim.fn.system("printf '\\e[6 q'")
+    vim.fn.system "printf '\\e[6 q'"
   end,
 })
 
