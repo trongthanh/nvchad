@@ -71,9 +71,10 @@ local options = {
     width = {
       min = 25,
       max = "20%",
-      padding = 1,
+      padding = 0,
     },
     side = "left",
+    signcolumn = "no",
   },
   git = {
     enable = true,
@@ -84,10 +85,12 @@ local options = {
 
   renderer = {
     highlight_git = true,
+    highlight_bookmarks = "name",
     icons = {
       show = {
-        git = true,
+        git = false,
       },
+      bookmarks_placement = "right_align",
     },
   },
   filters = {

@@ -103,7 +103,16 @@ local options = {
         -- make visual selection more readable at comments
         bg = { "one_bg2", -3 },
       },
+      SpellLocal = {
+        italic = true,
+        fg = "red",
+      },
       -- nvimtree
+      NvimTreeNormal = { bg = { "black", -6 } },
+      NvimTreeNormalNC = { bg = { "black", -6 } },
+      NvimTreeEndOfBuffer = { bg = { "black", -6 } },
+      NvimTreeWinSeparator = { bg = { "black", -6 } },
+      NvimTreeBookmarkHL = { fg = "red", bg = "blue", italic = true }, -- not work, -> need to override during nvimtree setup
       NvimTreeOpenedFolderName = { bold = true },
       NvimTreeGitDirty = { fg = "yellow" },
       NvimTreeGitNew = { fg = "green" },
