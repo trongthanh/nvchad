@@ -35,8 +35,6 @@ return {
     },
   },
   completion = {
-    nvim_cmp = false,
-    blink = true,
     min_chars = 1,
     match_case = false,
     create_new = true,

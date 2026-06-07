@@ -171,20 +171,21 @@ M.scrollbar = {
 ---@module 'render-markdown'
 ---@type render.md.UserConfig
 M.rendermarkdown = {
-  file_types = { "markdown", "Avante" },
+  file_types = { "markdown" },
   completions = { lsp = { enabled = true } },
   anti_conceal = {
     enabled = true,
     -- disabled_modes = { "n" }, -- Keep cursor line rendered in normal mode
     ignore = {
-      code_background = true,
-      indent = true,
-      sign = true,
-      virtual_lines = true,
       bullet = true,
-      table_border = true,
       check_icon = true,
       check_scope = true,
+      code_background = true,
+      dash = true,
+      indent = true,
+      sign = true,
+      table_border = true,
+      virtual_lines = true,
     },
   },
   code = {
