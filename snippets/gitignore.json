@@ -1,0 +1,42 @@
+{
+  "Generic Gitignore": {
+    "prefix": "gitignore",
+    "body": [
+      "# Dependencies",
+      "node_modules/",
+      "vendor/",
+      "",
+      "# Build outputs",
+      "dist/",
+      "build/",
+      "*.min.js",
+      "",
+      "# Logs",
+      "logs/",
+      "*.log",
+      "npm-debug.log*",
+      "",
+      "# OS generated files",
+      ".DS_Store",
+      ".DS_Store?",
+      "._*",
+      ".Spotlight-V100",
+      ".Trashes",
+      "ehthumbs.db",
+      "Thumbs.db",
+      "",
+      "# IDE",
+      ".idea/",
+      ".vscode/",
+      "*.swp",
+      "*.swo",
+      "*~",
+      "",
+      "# Environment variables",
+      ".env",
+      ".env.local",
+      ".env.*.local"
+    ],
+    "description": "A generic .gitignore file template"
+  }
+}

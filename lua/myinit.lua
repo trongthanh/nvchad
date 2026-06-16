@@ -1,5 +1,9 @@
 -- global vim
 
+-- Register custom snippets directory with LuaSnip (NvChad's luasnip config
+-- reads vim.g.vscode_snippets_path to load VSCode-format snippets)
+vim.g.vscode_snippets_path = vim.fn.stdpath("config") .. "/snippets"
+
 vim.filetype.add {
   extension = {
     njk = "nunjucks", -- nunjucks is registered in treesitter as twig
