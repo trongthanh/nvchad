@@ -29,8 +29,8 @@ local options = {
         end,
 
         obsidian = function()
-          if vim.g.obsidian ~= nil then
-            return " 🪨 " .. vim.g.obsidian
+          if vim.b.obsidian_status ~= nil then
+            return "🪨 " .. vim.b.obsidian_status
           end
           return ""
         end,
@@ -102,10 +102,6 @@ local options = {
       Visual = {
         -- make visual selection more readable at comments
         bg = { "one_bg2", -3 },
-      },
-      SpellLocal = {
-        italic = true,
-        fg = "red",
       },
       -- nvimtree
       NvimTreeNormal = { bg = { "black", -6 } },

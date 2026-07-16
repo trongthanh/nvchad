@@ -47,11 +47,7 @@ return {
   templates = {
     enabled = true,
     folder = "~templates",
-    substitutions = {
-      ["date:ddd MMMM D, YYYY"] = function()
-        return os.date "%a %B %-d, %Y"
-      end,
-    },
+    substitutions = {},
   },
   daily_notes = {
     -- Optional, if you want to enable daily notes
@@ -67,7 +63,7 @@ return {
     -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
     template = "daily-note.md",
     -- Optional, if you want `Obsidian yesterday` to return the last work day or `Obsidian tomorrow` to return the next work day.
-    workdays_only = true,
+    workdays_only = false,
   },
   link = {
     style = "markdown",
@@ -102,7 +98,7 @@ return {
     enabled = true,
   },
   ui = {
-    enable = false,
+    enable = true,
     ignore_conceal_warn = true,
     bullets = { char = "●", hl_group = "ObsidianBullet" },
     checkboxes = {
@@ -116,6 +112,8 @@ return {
       ObsidianTodo = { bold = true, fg = "#89ddff" },
       ObsidianDone = { bold = true, fg = "#50fa7b" },
       ObsidianTilde = { bold = true, fg = "#bd93f9" },
+      -- link use comment color
+      ObsidianExtLinkIcon = { fg = "#6C7293" },
     },
   },
 }

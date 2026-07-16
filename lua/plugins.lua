@@ -98,14 +98,7 @@ local plugins = {
         list = { selection = { preselect = false, auto_insert = true } },
       },
       sources = {
-        -- Add 'avante' to the list
         default = { "lsp", "path", "snippets", "buffer" },
-        providers = {
-          -- avante = {
-          --   module = "blink-cmp-avante",
-          --   name = "Avante",
-          -- },
-        },
       },
     },
   },
@@ -342,7 +335,7 @@ local plugins = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
       "saghen/blink.cmp",
-      "MeanderingProgrammer/render-markdown.nvim",
+      -- "MeanderingProgrammer/render-markdown.nvim",
     },
     keys = require("mappings").obsidian,
     opts = require "configs.obsidian",
@@ -351,6 +344,7 @@ local plugins = {
     ---@module 'render-markdown'
     -- Make sure to set this up properly if you have lazy=true
     "MeanderingProgrammer/render-markdown.nvim",
+    enabled = false,
     ft = { "markdown" },
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
     opts = overrides.rendermarkdown,

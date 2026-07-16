@@ -2,7 +2,7 @@
 
 -- Register custom snippets directory with LuaSnip (NvChad's luasnip config
 -- reads vim.g.vscode_snippets_path to load VSCode-format snippets)
-vim.g.vscode_snippets_path = vim.fn.stdpath("config") .. "/snippets"
+vim.g.vscode_snippets_path = vim.fn.stdpath "config" .. "/snippets"
 
 vim.filetype.add {
   extension = {
@@ -73,7 +73,7 @@ autocmd("FileType", {
     -- change surround * to double ** in markdown editor
     vim.g.surround_42 = "**\r**"
     -- required by obsidian.nvim UI
-    vim.opt_local.conceallevel = 3
+    vim.opt_local.conceallevel = 2
     vim.opt_local.shiftwidth = 2
     vim.opt_local.expandtab = true -- use spaces by default, to be overriden by .editorconfig
   end,
