@@ -85,8 +85,8 @@ local options = {
     },
   },
   base46 = {
-    theme = "chadracula",
-    theme_toggle = { "chadracula", "one_light" },
+    theme = "catppuccin",
+    theme_toggle = { "catppuccin", "one_light" },
 
     hl_override = {
       Comment = {
@@ -115,6 +115,7 @@ local options = {
       NvimTreeSpecialFile = { fg = "cyan" },
       -- markdown
       ["@markup.heading"] = { bold = true },
+      ["@markup.link.url"] = { fg = "light_grey" },
     },
     hl_add = {},
   },
