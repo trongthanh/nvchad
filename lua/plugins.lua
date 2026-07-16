@@ -175,24 +175,6 @@ local plugins = {
     opts = require "configs.nvimtree",
   },
   {
-    "rcarriga/nvim-dap-ui",
-    dependencies = {
-      "nvim-neotest/nvim-nio",
-      "mfussenegger/nvim-dap",
-    },
-  },
-  {
-    "mfussenegger/nvim-dap-python",
-    dependencies = {
-      "mfussenegger/nvim-dap",
-    },
-    -- config = function()
-    -- customize debugpy location
-    -- require("dap-python").setup ".venv/bin/python"
-    -- end,
-  },
-  -- To make a plugin not be loaded
-  {
     "NvChad/nvim-colorizer.lua",
     enabled = true,
   },
