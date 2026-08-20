@@ -67,12 +67,17 @@ end
 -- git support in nvimtree
 local options = {
   on_attach = on_nvimtree_attach,
-  view = {
-    width = {
-      min = 25,
-      max = "20%",
-      padding = 0,
+  actions = {
+    open_file = {
+      resize_window = false,
     },
+  },
+  view = {
+    width = 25, -- only fixed width works with no resize_window
+    -- width = {
+    --   min = 25,
+    --   padding = 0,
+    -- },
     side = "left",
     signcolumn = "no",
   },
