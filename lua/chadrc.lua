@@ -117,7 +117,13 @@ local options = {
       ["@markup.heading"] = { bold = true },
       ["@markup.link.url"] = { fg = "light_grey" },
     },
-    hl_add = {},
+    hl_add = {
+      -- custom markdown checkbox markers (used by queries/markdown*.scm)
+      ["@custom.checkbox.checked"] = { fg = "green" },
+      ["@custom.checkbox.progress"] = { fg = "orange" }, -- [/] amber-ish; try "yellow" if preferred
+      ["@custom.checkbox.cancelled"] = { fg = "red" },
+      ["@custom.checkbox.unchecked"] = { fg = "light_grey" }, -- [ ] used to fall back to red-ish @markup.list
+    },
   },
 }
 

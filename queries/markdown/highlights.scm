@@ -79,9 +79,9 @@
 
 (thematic_break) @punctuation.special
 
-(task_list_marker_unchecked) @markup.list.unchecked
+(task_list_marker_unchecked) @custom.checkbox.unchecked
 
-(task_list_marker_checked) @markup.list.checked
+(task_list_marker_checked) @custom.checkbox.checked
 
 ((block_quote) @markup.quote
   (#set! priority 90))
