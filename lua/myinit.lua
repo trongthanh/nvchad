@@ -16,6 +16,10 @@ vim.api.nvim_create_user_command("Q", "qa<bang>", {
   bang = true,
 })
 
+vim.api.nvim_create_user_command("ToggleSoftWrap", function()
+  vim.opt.wrap = not vim.opt.wrap:get()
+end, { desc = "Toggle soft wrap" })
+
 -- Auto commands
 local autocmd = vim.api.nvim_create_autocmd
 
