@@ -46,7 +46,11 @@ return {
   notes_subdir = "notes",
   templates = {
     enabled = true,
-    folder = "~templates",
+    -- relative to the vault root; resolved by obsidian.nvim against the
+    -- workspace dir (see obsidian/api.lua templates_dir). '$' prefix is literal
+    -- (no expansion in vim.fs.normalize) and sorts the folder to the top of
+    -- file listings in both nvim-tree (byte order) and Obsidian (ICU collation).
+    folder = "$templates",
     substitutions = {},
   },
   daily_notes = {
