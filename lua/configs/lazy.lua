@@ -13,7 +13,14 @@ return {
       not_loaded = "",
     },
   },
-
+  git = {
+    throttle = {
+      enabled = true, -- not enabled by default
+      -- max 2 ops every 5 seconds
+      rate = 8,
+      duration = 5 * 1000, -- in ms
+    },
+  },
   performance = {
     rtp = {
       disabled_plugins = {
