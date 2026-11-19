@@ -159,6 +159,10 @@ M.scrollbar = {
     Hint = { highlight = { fg = "#1abc9c" } },
     Misc = { highlight = { fg = "#9d7cd8" } },
   },
+  scrollbar = {
+    -- Hide the track background without changing the thumb's own blend.
+    window = { wo = { winblend = 100 } },
+  },
 }
 
 ---@module 'render-markdown'
