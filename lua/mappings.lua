@@ -5,6 +5,12 @@ local map = vim.keymap.set
 local nomap = vim.keymap.del
 local lazy = {}
 
+-- vim-visual-multi: add cursors on adjacent lines
+vim.g.VM_maps = {
+  ["Add Cursor Up"] = "<A-Up>",
+  ["Add Cursor Down"] = "<A-Down>",
+}
+
 -- Disabled mappings
 nomap("n", "<leader>n") -- line number
 nomap("n", "<leader>rn") -- relative number
@@ -47,8 +53,8 @@ map("n", "<C-A-left>", "<C-w>h", { desc = "switch window left", noremap = true, 
 map("n", "<C-A-right>", "<C-w>l", { desc = "switch window right", noremap = true, silent = true })
 map("n", "<C-A-down>", "<C-w>j", { desc = "switch window down", noremap = true, silent = true })
 map("n", "<C-A-up>", "<C-w>k", { desc = "switch window up", noremap = true, silent = true })
-map("n", "<C-9>", ":vertical resize -5<CR>", { desc = "decrease window width by 5", noremap = true, silent = true })
-map("n", "<C-0>", ":vertical resize +5<CR>", { desc = "increase window width by 5", noremap = true, silent = true })
+map("n", "<C-_>", ":vertical resize -5<CR>", { desc = "decrease window width by 5", noremap = true, silent = true })
+map("n", "<C-=>", ":vertical resize +5<CR>", { desc = "increase window width by 5", noremap = true, silent = true })
 
 map("v", "<C-f>", 'y<ESC>/<c-r>"<CR>', { desc = "selection Search current selection" })
 map("v", "<C-h>", ":s/\\%V", { desc = "selection Start search and replace within selection" })
