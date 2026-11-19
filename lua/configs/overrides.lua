@@ -142,29 +142,22 @@ M.telescope = {
 }
 
 M.scrollbar = {
-  excluded_buftypes = {
-    "terminal",
-    "nofile",
+  exclude = {
+    -- Extend v2's default exclusions.
+    buftypes = { nofile = true },
+    filetypes = { NvimTree = true },
   },
-  excluded_filetypes = {
-    "cmp_docs",
-    "cmp_menu",
-    "noice",
-    "prompt",
-    "TelescopePrompt",
-    "NVimTree",
+  providers = {
+    -- Keep Git marks off the scrollbar so they don't cover wrapped text.
+    gitsigns = false,
   },
   marks = {
-    Search = { color = "#ff9e64" },
-    Error = { color = "#db4b4b" },
-    Warn = { color = "#e0af68" },
-    Info = { color = "#0db9d7" },
-    Hint = { color = "#1abc9c" },
-    Misc = { color = "#9d7cd8" },
-    -- these scrollbar marks often hide the last character of wrapped lines
-    GitAdd = { text = "" },
-    GitChange = { text = "" },
-    GitDelete = { text = "" },
+    Search = { highlight = { fg = "#ff9e64" } },
+    Error = { highlight = { fg = "#db4b4b" } },
+    Warn = { highlight = { fg = "#e0af68" } },
+    Info = { highlight = { fg = "#0db9d7" } },
+    Hint = { highlight = { fg = "#1abc9c" } },
+    Misc = { highlight = { fg = "#9d7cd8" } },
   },
 }
 

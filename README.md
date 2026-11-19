@@ -65,7 +65,7 @@ Extras from NvChad 2:
 - [matze/vim-move](https://github.com/matze/vim-move): Move code block
 - [MeanderingProgrammer/render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim): Render markdown in neovim
 - [mg979/vim-visual-multi](https://github.com/mg979/vim-visual-multi): Vim multi-cursor (`Ctrl-n`)
-- [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar): Scrollbar with git & LSP signs
+- [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar): Scrollbar with search and diagnostic marks
 - [obsidian-nvim/obsidian.nvim](https://github.com/obsidian-nvim/obsidian.nvim): Manage Obsidian notes
 - [sindrets/diffview.nvim](https://github.com/sindrets/diffview.nvim): Git diff viewer
 - [tpope/vim-surround](https://github.com/tpope/vim-surround): Brackets and tags generators (vmode: `S)`, nmode: `ysiw)`, `cs"'` )
