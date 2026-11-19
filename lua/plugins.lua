@@ -1,6 +1,24 @@
 local overrides = require "configs.overrides"
 local lazy = require "lazy"
 
+-- Herdr can run inside tmux, so prefer its explicit marker when both are
+-- present. Outside either multiplexer Sidekick falls back to its own terminal.
+local in_herdr = vim.env.HERDR_ENV == "1"
+local in_tmux = vim.env.TMUX ~= nil and vim.env.TMUX ~= ""
+local sidekick_mux = {
+  backend = in_herdr and "herdr" or "tmux",
+  enabled = in_herdr or in_tmux,
+  create = in_herdr and "terminal" or "split",
+  dump = 2000,
+}
+
+if not in_herdr then
+  sidekick_mux.split = {
+    vertical = true,
+    size = 0.4,
+  }
+end
+
 ---@type NvPluginSpec[]
 local plugins = {
   { import = "nvchad.blink.lazyspec" },
@@ -265,30 +283,30 @@ local plugins = {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {}, -- must provide empty opts to enable lazy loading
   },
-  {
-    "zbirenbaum/copilot.lua",
-    -- lazy = false,
-    cmd = "Copilot",
-    event = "InsertEnter",
-    opts = {
-      copilot_node_command = "/opt/homebrew/bin/node",
-      suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        hide_during_completion = true,
-        debounce = 200,
-        trigger_on_accept = true,
-        keymap = {
-          accept = "<M-space>",
-          accept_word = "<M-right>",
-          accept_line = false,
-          next = "<M-]>",
-          prev = "<M-[>",
-          dismiss = "<C-]>",
-        },
-      },
-    },
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   -- lazy = false,
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   opts = {
+  --     copilot_node_command = "/opt/homebrew/bin/node",
+  --     suggestion = {
+  --       enabled = true,
+  --       auto_trigger = true,
+  --       hide_during_completion = true,
+  --       debounce = 200,
+  --       trigger_on_accept = true,
+  --       keymap = {
+  --         accept = "<M-space>",
+  --         accept_word = "<M-right>",
+  --         accept_line = false,
+  --         next = "<M-]>",
+  --         prev = "<M-[>",
+  --         dismiss = "<C-]>",
+  --       },
+  --     },
+  --   },
+  -- },
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -336,26 +354,22 @@ local plugins = {
   },
   {
     "folke/sidekick.nvim",
+    dependencies = { "UN-9BOT/sidekick_herdr" },
     opts = {
-      -- add any options here
       nes = {
         ---@type boolean|fun(buf:integer):boolean?
-        enabled = false,
-      },
-      mux = {
-        backend = vim.env.ZELLIJ and "zellij" or "tmux", -- default to tmux unless zellij is detected
         enabled = true,
-        -- terminal: new sessions will be created for each CLI tool and shown in a Neovim terminal
-        -- window: when run inside a terminal multiplexer, new sessions will be created in a new tab
-        -- split: when run inside a terminal multiplexer, new sessions will be created in a new split
-        -- NOTE: zellij only supports `terminal`
-        create = "split", ---@type "terminal"|"window"|"split"
-        split = {
-          vertical = true, -- vertical or horizontal split
-          size = 0.4, -- size of the split (0-1 for percentage)
-        },
+      },
+      cli = {
+        mux = sidekick_mux,
       },
     },
+    config = function(_, opts)
+      require("sidekick").setup(opts)
+      if in_herdr then
+        require("sidekick_herdr").setup()
+      end
+    end,
     -- stylua: ignore
     keys = require("mappings").sidekick,
   },
