@@ -1,23 +1,10 @@
 local overrides = require "configs.overrides"
 local lazy = require "lazy"
 
--- Herdr can run inside tmux, so prefer its explicit marker when both are
--- present. Outside either multiplexer Sidekick falls back to its own terminal.
+-- Inside Herdr, only discover and attach to agents already running in panes.
+-- Use tmux to launch agents only when Neovim is in tmux but not Herdr.
 local in_herdr = vim.env.HERDR_ENV == "1"
-local in_tmux = vim.env.TMUX ~= nil and vim.env.TMUX ~= ""
-local sidekick_mux = {
-  backend = in_herdr and "herdr" or "tmux",
-  enabled = in_herdr or in_tmux,
-  create = in_herdr and "terminal" or "split",
-  dump = 2000,
-}
-
-if not in_herdr then
-  sidekick_mux.split = {
-    vertical = true,
-    size = 0.4,
-  }
-end
+local use_tmux = not in_herdr and vim.env.TMUX ~= nil and vim.env.TMUX ~= ""
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -361,13 +348,23 @@ local plugins = {
         enabled = true,
       },
       cli = {
-        mux = sidekick_mux,
+        mux = {
+          backend = "tmux",
+          enabled = use_tmux,
+          create = use_tmux and "split" or "terminal",
+          split = { vertical = true, size = 0.4 },
+          dump = 2000,
+        },
       },
     },
     config = function(_, opts)
       require("sidekick").setup(opts)
       if in_herdr then
+        local mux = require("sidekick.config").cli.mux
+        local backend = mux.backend
         require("sidekick_herdr").setup()
+        -- Keep Herdr registered for discovery without making it the launch backend.
+        mux.backend = backend
       end
     end,
     -- stylua: ignore
